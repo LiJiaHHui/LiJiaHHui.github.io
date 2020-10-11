@@ -1,0 +1,380 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>深入解析position的五个值及z-index - Hexo</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  <meta name="description" content="在css的position中有5个值，分别是stati..."> 
+  
+  <meta name="author" content="John Doe"> 
+
+  
+    <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_hhodbqn7tit.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css">
+
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        loadingImage: '/images/theme/loading.gif',
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      motto: {
+        api: '',
+        default: '一以贯之的努力，不得懈怠的人生'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: false
+      },
+      daovoice: {
+        enable: true
+      }
+    }
+  </script>
+
+  
+
+  
+<meta name="generator" content="Hexo 5.1.1"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left"></div>
+  <div class="center">深入解析position的五个值及z-index</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/categories " class="underline"> 分类</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">深入解析position的五个值及z-index</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>October 06, 2020</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2697</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <p>在css的position中有5个值，分别是static（默认），relative，absolute，fixed和sticky。其中z-index的属性与position中的值密切相关。</p>
+<h1 id="static"><a href="#static" class="headerlink" title="static"></a>static</h1><p>static是position中的默认值，元素出文档流中正常排列，设置上下左右的值是无效的。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs css">     <span class="hljs-selector-class">.div1</span>&#123;<br>         <span class="hljs-attribute">background-color</span>: pink;<br>        <span class="hljs-attribute">width</span>:<span class="hljs-number">200px</span>;<br>  <span class="hljs-attribute">height</span>:<span class="hljs-number">200px</span>;<br>     &#125;<br>     <span class="hljs-selector-class">.div2</span>&#123;<br>         <span class="hljs-attribute">position</span>: static;<br><span class="hljs-attribute">top</span>:<span class="hljs-number">100px</span>;<br><span class="hljs-attribute">left</span>:<span class="hljs-number">100px</span>;<br>         <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>         <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>         <span class="hljs-attribute">background-color</span>: gray;<br>     &#125;<br></code></pre></td></tr></table></figure>
+
+<p>图1</p>
+<h1 id="fixed"><a href="#fixed" class="headerlink" title="fixed"></a>fixed</h1><p>从字面上就知道它是用于‘固定’的啦，可是是相对于谁固定呢？</p>
+<p>fixed是相对于浏览器页面固定的，如果设置放在右下角，就像一个牛皮癣小广告黏在了页面上了。fixed是脱离文档流的。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">body</span>&#123;<br>	<span class="hljs-attribute">background</span>:green;<br>	<span class="hljs-attribute">height</span>:<span class="hljs-number">1800px</span>;<br>&#125;<br>      <span class="hljs-selector-class">.div2</span>&#123;<br>          <span class="hljs-attribute">position</span>: fixed;<br>	<span class="hljs-attribute">right</span>:<span class="hljs-number">0px</span>;<br>	<span class="hljs-attribute">bottom</span>:<span class="hljs-number">0px</span>;<br>          <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>          <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>          <span class="hljs-attribute">background-color</span>: gray;<br>      &#125;<br></code></pre></td></tr></table></figure>
+
+<p><img   class="lazyload" data-original="C:\Users\Rain\AppData\Roaming\Typora\typora-user-images\image-20201006225202484.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201006225202484"></p>
+<h1 id="relative"><a href="#relative" class="headerlink" title="relative"></a>relative</h1><p>即相对定位，相对于元素本身的位置进行定位的，不脱离文档流。也就是说不管移到哪去了，原来在页面中占据的位置都在那。属于落叶归根型~</p>
+<p>也可以用在父元素上，让absolute的子元素有个对照。</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs css">     <span class="hljs-selector-class">.div2</span>&#123;<br>         <span class="hljs-attribute">position</span>: relative;<br><span class="hljs-attribute">top</span>:<span class="hljs-number">100px</span>;<br>         <span class="hljs-attribute">width</span>: <span class="hljs-number">100px</span>;<br>         <span class="hljs-attribute">height</span>: <span class="hljs-number">100px</span>;<br>         <span class="hljs-attribute">background-color</span>: gray;<br>     &#125;<br></code></pre></td></tr></table></figure>
+
+<p><img   class="lazyload" data-original="C:\Users\Rain\AppData\Roaming\Typora\typora-user-images\image-20201006232206364.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201006232206364"></p>
+<p>设置的是top，却向下移动了，可以理解为：移动后是移动前的负的距离，需要自己想象一下</p>
+<h1 id="absolute"><a href="#absolute" class="headerlink" title="absolute"></a>absolute</h1><p>绝对定位相对于最近的已经定位的元素，不包括static默认属性，其他4个属性都可。都没有设置的话，就是相对于html根元素进行定位。absolute是脱离文档流的。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs html"> 		.div1&#123;<br>            background-color: pink;<br>           width:200px;<br>		   height:200px;<br>        &#125;<br>        .div2&#123;<br>		position:start;<br>            width: 100px;<br>            height: 100px;<br>            background-color: gray;<br>        &#125;<br>		p&#123;<br>		position: absolute;<br>		right:10px;<br>		&#125;<br>html：<br>    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;div1&quot;</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;div2&quot;</span>&gt;</span><br>		<span class="hljs-tag">&lt;<span class="hljs-name">p</span>&gt;</span>???<span class="hljs-tag">&lt;/<span class="hljs-name">p</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img   class="lazyload" data-original="C:\Users\Rain\AppData\Roaming\Typora\typora-user-images\image-20201006233135172.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201006233135172"></p>
+<p>这是相对于根元素的定位。</p>
+<h1 id="z-index"><a href="#z-index" class="headerlink" title="z-index"></a>z-index</h1><p>首先先明确，z-index设置的是定位元素的显示顺序，只对于absolute，fixed和relative有效。</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs html">		.div1&#123;<br>		<br>            background-color: pink;<br>           width:200px;<br>		   height:200px;<br>        &#125;<br>        .div2&#123;<br>		position:absolute;<br>            width: 100px;<br>            height: 100px;<br>            background-color: gray;<br>			z-index:10;<br>        &#125;<br>		.div3&#123;<br>		position:absolute;<br>            width: 100px;<br>            height: 100px;<br>			left:50px;<br>			top:50px;<br>            background-color: black;<br>        &#125;<br>html    <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;div1&quot;</span>&gt;</span><br>       		 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;div2&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    		 <span class="hljs-tag">&lt;<span class="hljs-name">div</span> <span class="hljs-attr">class</span>=<span class="hljs-string">&quot;div3&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">div</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p><img   class="lazyload" data-original="C:\Users\Rain\AppData\Roaming\Typora\typora-user-images\image-20201006235326939.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201006235326939"></p>
+<p>由于在html中的加载的顺序问题，灰色块被覆盖了，设置灰色块的z-index就可以解决这个问题了。</p>
+<p>还有一点就是，如果有两个父元素，各自都包含了子元素，那么想让其中被覆盖的子元素上来的话，可以直接设置被覆盖的子元素的z-index，或者设置被覆盖的子元素的父元素的z-index，一起都带上来。</p>
+<h1 id="sticky"><a href="#sticky" class="headerlink" title="sticky"></a>sticky</h1><p>字面意思：黏，与fixed固定不同的是，sticky元素中的内容是可以换成另一个内容的，可以理解成黏住的东西是可以撕下来的嘛，固定了的就没那么好摘了。</p>
+<p>当滚动起来的时候，设置的top会变成与浏览器的距离。</p>
+<h1 id="脱离文档流的问题"><a href="#脱离文档流的问题" class="headerlink" title="脱离文档流的问题"></a>脱离文档流的问题</h1><p>子元素设置为fixed和absolute脱离文档流，会造成父元素高度的坍塌，具体表现就是，父元素不能包裹住子元素了。</p>
+<p>解决的办法：参考清除浮动一文。</p>
+<p>虽然fixed和absolute会形成块级格式化上下文BFC，但是它并不能解决父元素高度坍塌的问题，是可以防止垂直方法margin重叠</p>
+
+      </section>
+      <section class="extra">
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/html/" rel="tag">html</a></li></ul>
+
+        
+<nav class="nav">
+  
+    <a href="/2020/10/08/%E4%BB%8E0%E5%88%B01%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%97%A5%E5%8E%86%E7%BB%84%E4%BB%B6/"><i class="iconfont iconleft"></i>从0到1创建一个日历组件</a>
+  
+  
+    <a href="/2020/10/01/JS%E4%B8%BA%E5%AF%B9%E8%B1%A1%E5%8A%A8%E6%80%81%E6%B7%BB%E5%8A%A0%E5%B1%9E%E6%80%A7/">JS为对象动态添加属性<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+      </section>
+      
+      <section class="comments">
+  
+  <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+</section>
+      
+    </section>
+  </div>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+    
+    
+    
+    
+    <a href="tencent://message/?Menu=yes&uin=1151329119 " target="_blank" onMouseOver="this.style.color= '#12B7F5'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconQQ "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="/images/theme/wechat.png " target="_blank" onMouseOver="this.style.color= '#09BB07'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconwechat-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="https://github.com/LiJiaHHui " target="_blank" onMouseOver="this.style.color= '#24292E'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  icongithub-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="mailto:ljhhhui@126.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconmail"></i>
+    </a>
+    
+  </div>
+  <div class="footer-copyright"></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-daovoice">
+    <i class="iconfont iconcomment"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+</body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i["DaoVoiceObject"] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    a.charset = "utf-8";
+    m.parentNode.insertBefore(a, m)
+  })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+    "//widget.daovoice.io/widget/0f81ff2f.js", "daovoice")
+  daovoice('init', {
+    app_id: "abcdefg"
+  }, {
+    launcher: {
+      disableLauncherIcon: true,
+    },
+  });
+  daovoice('update');
+</script>
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>

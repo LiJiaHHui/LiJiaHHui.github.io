@@ -1,0 +1,386 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>从URL到页面展示 - Hexo</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  <meta name="description" content="面试常见题
+从大体上，分为一下 个步骤：
+1、用户输入..."> 
+  
+  <meta name="author" content="John Doe"> 
+
+  
+    <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_hhodbqn7tit.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css">
+
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        loadingImage: '/images/theme/loading.gif',
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      motto: {
+        api: '',
+        default: '一以贯之的努力，不得懈怠的人生'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: false
+      },
+      daovoice: {
+        enable: true
+      }
+    }
+  </script>
+
+  
+
+  
+<meta name="generator" content="Hexo 5.1.1"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left"></div>
+  <div class="center">从URL到页面展示</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/categories " class="underline"> 分类</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/image/alone.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">从URL到页面展示</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>September 20, 2020</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1329</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <p>面试常见题</p>
+<p>从大体上，分为一下 个步骤：</p>
+<p>1、用户输入url，浏览器url进行解析，浏览器主进程调用网络进程</p>
+<p>2、网络进程进行dns解析后，发送网络请求，其中包含tcp三次握手，四次挥手</p>
+<p>3、服务器返回响应数据</p>
+<p>4、网络线程下载完数据后，主线程调用渲染进程，通过ipc将网络进程的数据传递给渲染线程</p>
+<p>5、渲染进程的渲染过程</p>
+<p> 6、栅格化，gpu加速</p>
+<p>7、显示</p>
+<p>展开</p>
+<p>2、缓存查找，强缓存与协商缓存是在请求中还是响应中？？不对缓存时在第二次发送请求时才有得。进行dns解析后，发送网络请求，其中包含tcp三次握手，四次挥手</p>
+<p>5、解析dom树的过程html文件通过html解析器解析成dom树，css文件解析成渲染树，将css文件首先转换为stylesheet，再进行标准化，根据css的规则：继承和层叠，</p>
+<p>布局树：重排重绘，及其解决方法</p>
+<p>所以在前后端通过http交互的知识可以再补充</p>
+<h1 id="1、用户输入请求信息及浏览器发送请求"><a href="#1、用户输入请求信息及浏览器发送请求" class="headerlink" title="1、用户输入请求信息及浏览器发送请求"></a>1、用户输入请求信息及浏览器发送请求</h1><p>​    首先先判断用户在地址栏中输入的是文本内容还是一个请求url：</p>
+<p>👉是文本内容，调用默认搜索引擎将内容拼接到url中</p>
+<p>👉是请求url，如果请求的是符合url规则的，浏览器会自动加上协议，合成完整的url。url协议一般包括：protocol：协议头，http，ftp等、host：域名或IP地址、host：端口号、path：目录路径</p>
+<p>、query：请求参数和fragment：#后面的hash值，用于定位到某个位置。</p>
+<p>接下来是发送一个网络请求。</p>
+<h2 id="浏览器的多进程架构"><a href="#浏览器的多进程架构" class="headerlink" title="浏览器的多进程架构"></a>浏览器的多进程架构</h2><p>由于浏览器是一个多进程架构，其中包含浏览器主进程，渲染进程，网络进程、GUP进程和插件进程。</p>
+<p>其中浏览器主进程的负责用户的交互，子进程管理和文件存储。网络进程是负责面向主进程和渲染进程提供网络下载。渲染进程负责把从网络上下载的html，css，js和图片等资源解析成浏览器可以显示和交互的页面，浏览器一般会为每个Tab标签创建一个渲染进程，如果是同一个站点下的页面，将共用同一个渲染进程，多个空白页面的tab也会合并成一个进程。GUP进程是负责3d效果绘制。插件进程负责的是插件的运行，避免因为插件的崩溃对浏览器和页面造成影响。</p>
+<p>所以真实的网络请求是由网络进程发送的，浏览器通过IPC将请求的url传递给网络，进程，然后接下来进行网络进程进行网络请求。</p>
+<h2 id="这部分应该在渲染过程中被提到"><a href="#这部分应该在渲染过程中被提到" class="headerlink" title="这部分应该在渲染过程中被提到"></a>这部分应该在渲染过程中被提到</h2><h2 id="进程与线程，渲染进程中的"><a href="#进程与线程，渲染进程中的" class="headerlink" title="进程与线程，渲染进程中的"></a>进程与线程，渲染进程中的</h2><p>渲染进程是多线程的，线程与进程的区别在于：线程是由进程启动和管理的，进程是程序运行的实例，启动一个程序，操作系统需要给这个程序开辟一段内存。线程是依附于进程的，多线程能提高进程的运行速度。线程与进程之间的关系有4个特点：</p>
+<p>​    1、任意线程的崩溃会导致进程的崩溃</p>
+<p>​    2、线程之间共享进程的资源</p>
+<p>​    3、当一个进程关闭的时候，操作系统将会回收进程所占的内存</p>
+<p>​    4、进程之间的内容相互隔绝</p>
+<p>渲染进程的线程包括。。。。。</p>
+<p>2、网络进程发送请求</p>
+<p>网络进程首先<del>会去本地缓存查找是否缓存了请求的所需的资源</del>  DNS解析，</p>
+<p>tcp三次握手，四次挥手</p>
+<p>连接的并发限制</p>
+<p>请求方法get和post的区别</p>
+<p>请求发送的整个过程，从应用层到物理层</p>
+<hr>
+<p>未完待续</p>
+
+      </section>
+      <section class="extra">
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E6%B5%8F%E8%A7%88%E5%99%A8/" rel="tag">浏览器</a></li></ul>
+
+        
+<nav class="nav">
+  
+    <a href="/2020/09/23/script%E8%B7%A8%E5%9F%9F%E8%8E%B7%E5%8F%96iframe%E4%BD%BF%E7%94%A8swiper%E5%AE%9E%E7%8E%B0%E8%BD%AE%E6%92%AD/"><i class="iconfont iconleft"></i>script跨域获取iframe使用swiper实现轮播‘ </a>
+  
+  
+    <a href="/2020/09/17/JS%E4%BF%AE%E6%94%B9%E5%AF%B9%E8%B1%A1%E5%B1%9E%E6%80%A7%E7%9A%84%E5%80%BC/">JS修改对象属性的值<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+      </section>
+      
+      <section class="comments">
+  
+  <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+</section>
+      
+    </section>
+  </div>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+    
+    
+    
+    
+    <a href="tencent://message/?Menu=yes&uin=1151329119 " target="_blank" onMouseOver="this.style.color= '#12B7F5'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconQQ "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="/images/theme/wechat.png " target="_blank" onMouseOver="this.style.color= '#09BB07'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconwechat-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="https://github.com/LiJiaHHui " target="_blank" onMouseOver="this.style.color= '#24292E'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  icongithub-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="mailto:ljhhhui@126.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconmail"></i>
+    </a>
+    
+  </div>
+  <div class="footer-copyright"></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-daovoice">
+    <i class="iconfont iconcomment"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+</body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i["DaoVoiceObject"] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    a.charset = "utf-8";
+    m.parentNode.insertBefore(a, m)
+  })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+    "//widget.daovoice.io/widget/0f81ff2f.js", "daovoice")
+  daovoice('init', {
+    app_id: "abcdefg"
+  }, {
+    launcher: {
+      disableLauncherIcon: true,
+    },
+  });
+  daovoice('update');
+</script>
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>
