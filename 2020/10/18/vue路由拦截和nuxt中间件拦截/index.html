@@ -7,14 +7,14 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>proxy作用及方法 - Hexo</title>
+  <title>vue路由拦截和nuxt中间件拦截 - Hexo</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
 
   
   
-  <meta name="description" content="proxy是es6中新增的方法，作为一个拦截器，对该对..."> 
+  <meta name="description" content="通过路由拦截实现登陆权限的控制，在vue中，通过在路由..."> 
   
   <meta name="author" content="John Doe"> 
 
@@ -106,7 +106,7 @@
 
 <nav class="navbar">
   <div class="left"></div>
-  <div class="center">proxy作用及方法</div>
+  <div class="center">vue路由拦截和nuxt中间件拦截</div>
   <div class="right">
     <i class="iconfont iconmenu j-navbar-menu"></i>
   </div>
@@ -155,42 +155,36 @@
     <section class="head">
   <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
-    <h1 class="head-title">proxy作用及方法</h1>
+    <h1 class="head-title">vue路由拦截和nuxt中间件拦截</h1>
     <div class="head-info">
-      <span class="post-info-item"><i class="iconfont iconcalendar"></i>October 11, 2020</span
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>October 18, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>407</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>974</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
-        <p>proxy是es6中新增的方法，作为一个拦截器，对该对象的访问进行过滤或改写，proxy重定义被访问对象的属性的行为，比如说get，set，都是获取属性的行为，没有proxy的话，就直接进行读取、设置操作了。</p>
-<p>es6可以直接创建一个proxy对象</p>
-<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs aspectj">var proxyObj=<span class="hljs-keyword">new</span> proxy(<span class="hljs-keyword">target</span>,<span class="hljs-keyword">handler</span>)<br><span class="hljs-comment">//target:需要代理的对象</span><br><span class="hljs-comment">//handler:对属性进行操作的函数方法</span><br></code></pre></td></tr></table></figure>
+        <p>通过路由拦截实现登陆权限的控制，在vue中，通过在路由元信息meta中设置实现拦截。</p>
+<p>设置roles，表示能够访问页面的具体用户，访问页面时触发导航守卫router.beforeEach，判断当前访问的用户是否包含时roles里。</p>
+<figure class="highlight moonscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><code class="hljs moonscript">路由设置<br><span class="hljs-name">routes</span>: [<br>  &#123;<br>    <span class="hljs-name">path</span>: <span class="hljs-string">&#x27;/login&#x27;</span>,<br>    <span class="hljs-name">name</span>: <span class="hljs-string">&#x27;login&#x27;</span>,<br>    <span class="hljs-name">meta</span>: &#123;<br>      <span class="hljs-name">roles</span>: [<span class="hljs-string">&#x27;admin&#x27;</span>, <span class="hljs-string">&#x27;user&#x27;</span>]<br>    &#125;,<br>    <span class="hljs-name">component</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;../components/Login.vue&#x27;</span>)<br>  &#125;,<br>  &#123;<br>    <span class="hljs-name">path</span>: <span class="hljs-string">&#x27;home&#x27;</span>,<br>    <span class="hljs-name">name</span>: <span class="hljs-string">&#x27;home&#x27;</span>,<br>    <span class="hljs-name">meta</span>: &#123;<br>      <span class="hljs-name">roles</span>: [<span class="hljs-string">&#x27;admin&#x27;</span>]<br>    &#125;,<br>    <span class="hljs-name">component</span>: <span class="hljs-function"><span class="hljs-params">()</span> =&gt;</span> <span class="hljs-keyword">import</span>(<span class="hljs-string">&#x27;../views/Home.vue&#x27;</span>)<br>  &#125;,<br>]<br>页面控制<br>//从后端获取当前用户<br>const role = <span class="hljs-string">&#x27;user&#x27;</span><br>//触发导航守卫 router.beforeEach <br>router.beforeEach(<span class="hljs-function"><span class="hljs-params">(to,<span class="hljs-keyword">from</span>,<span class="hljs-built_in">next</span>)</span>=&gt;</span>&#123;<br> <span class="hljs-keyword">if</span>(to.meta.roles.includes(role))&#123;<br> <span class="hljs-built_in">next</span>() //放行<br> &#125;esle&#123;<br> <span class="hljs-built_in">next</span>(&#123;<span class="hljs-name">path</span>:<span class="hljs-string">&quot;/404&quot;</span>&#125;) //跳到<span class="hljs-number">404</span>页面<br> &#125;<br>&#125;)<br></code></pre></td></tr></table></figure>
 
-<p>可以将proxy对象设置到obj对象上，通过设置obj.proxy属性</p>
-<figure class="highlight aspectj"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs aspectj">var obj=&#123;proxy:<span class="hljs-keyword">new</span> proxy(<span class="hljs-keyword">target</span>,<span class="hljs-keyword">handler</span>)&#125;<br></code></pre></td></tr></table></figure>
-
-<p>可以将proxy对象作为其他对象的原型，利用Object.create创建新对象obj</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> proxy= <span class="hljs-keyword">new</span> proxy(target,handler)<br><span class="hljs-keyword">let</span> obj=<span class="hljs-built_in">Object</span>.create(proxy)<br></code></pre></td></tr></table></figure>
-
+<p>或者在meta中设置requireAuth属性，然后遍历route.match来检查meta的requireAuth属性，进行判断。</p>
+<p>在nuxt中，由于是同构渲染，对于服务端而言，要在进入页面前进行拦截，nuxt提供中间件实现服务端和客户端的在页面渲染之前对页面进行拦截</p>
 
       </section>
       <section class="extra">
         
         
         
-  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/es6/" rel="tag">es6</a></li></ul>
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue-router/" rel="tag">vue-router</a></li></ul>
 
         
 <nav class="nav">
   
-    <a href="/2020/10/17/%E7%AC%94%E8%AF%95%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/"><i class="iconfont iconleft"></i>笔试总结（一）</a>
   
-  
-    <a href="/2020/10/08/%E4%BB%8E0%E5%88%B01%E5%88%9B%E5%BB%BA%E4%B8%80%E4%B8%AA%E6%97%A5%E5%8E%86%E7%BB%84%E4%BB%B6/">从0到1创建一个日历组件<i class="iconfont iconright"></i></a>
+    <a href="/2020/10/17/%E7%AC%94%E8%AF%95%E6%80%BB%E7%BB%93%EF%BC%88%E4%B8%80%EF%BC%89/">笔试总结（一）<i class="iconfont iconright"></i></a>
   
 </nav>
 
