@@ -7,14 +7,15 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>XSS攻击及预防 - Hexo</title>
+  <title>TS入门学习 - Hexo</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
 
   
   
-  <meta name="description" content="​    XSS攻击是指跨站脚本攻击，是一种黑客攻击的..."> 
+  <meta name="description" content="TS新特性主要体现在字符串、函数、函数参数、类上，
+字..."> 
   
   <meta name="author" content="John Doe"> 
 
@@ -106,7 +107,7 @@
 
 <nav class="navbar">
   <div class="left"></div>
-  <div class="center">XSS攻击及预防</div>
+  <div class="center">TS入门学习</div>
   <div class="right">
     <i class="iconfont iconmenu j-navbar-menu"></i>
   </div>
@@ -155,50 +156,36 @@
     <section class="head">
   <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
-    <h1 class="head-title">XSS攻击及预防</h1>
+    <h1 class="head-title">TS入门学习</h1>
     <div class="head-info">
-      <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 02, 2020</span
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 04, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>544</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>82</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
-        <p>​    XSS攻击是指跨站脚本攻击，是一种黑客攻击的手段，往HTML或者是DOM中注入恶意脚本，当用户浏览页面时实施攻击。最初XSS攻击是通过跨域实现的，但是现在跨域已经不是唯一的实现方式了，XSS的名称（cross site scripting）却一直保存下来。</p>
-<h1 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h1><p>XSS实现的三种方式：反射型，存储型，基于DOM型。</p>
-<p>反射型：将恶意脚本当作用户发送给服务器的请求的一部分，然后服务器将恶意脚本返回给用户。</p>
-<p>存储型：利用服务器漏洞将恶意脚本存储到服务器中，当用户访问页面执行恶意脚本。</p>
-<p>基本DOM型：黑客利用各种手段比如说设置钓鱼WiFi，恶意软件，劫持用户请求的数据，然后用户加载修改过的页面。</p>
-<h1 id="预防攻击的方法"><a href="#预防攻击的方法" class="headerlink" title="预防攻击的方法"></a>预防攻击的方法</h1><p>主要有以下几种方法：</p>
-<p>一：使用服务器对输入脚本进行过滤或转码</p>
-<p>比如服务器对script标签进行过滤，对&lt;&gt;进行转码</p>
-<p>二：充分利用CSP（内容安全策略）</p>
-<p>CSP包含以下内容：</p>
-<ul>
-<li>禁止加载其他域下的资源</li>
-<li>禁止加载内联脚本和未授权脚本</li>
-<li>禁止向第三方发送数据</li>
-<li>提供上报机制，便于修复问题</li>
-</ul>
-<p>三：使用HTTPonly属性</p>
-<p>设置cookie的HTTPonly属性，表明cookie只能使用在HTTP请求的过程中，JS脚本不能通过document.cookie访问。</p>
+        <p>TS新特性主要体现在字符串、函数、函数参数、类上，</p>
+<p>字符串</p>
+<p>首先通过官网的一个小例子</p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/75eb8ca6df71">https://www.jianshu.com/p/75eb8ca6df71</a></p>
 
       </section>
       <section class="extra">
         
         
         
-  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E5%AE%89%E5%85%A8/" rel="tag">安全</a></li></ul>
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/TS/" rel="tag">TS</a></li></ul>
 
         
 <nav class="nav">
   
-    <a href="/2020/11/04/%E5%8D%A0%E5%9D%91-%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E9%82%A3%E4%BA%9B%E4%BA%8B/"><i class="iconfont iconleft"></i>[占坑]服务器部署那些事</a>
+    <a href="/2020/11/04/react%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"><i class="iconfont iconleft"></i>react学习笔记（一）</a>
   
   
-    <a href="/2020/10/22/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89/">面试总结（二）<i class="iconfont iconright"></i></a>
+    <a href="/2020/11/04/%E5%8D%A0%E5%9D%91-%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E9%82%A3%E4%BA%9B%E4%BA%8B/">[占坑]服务器部署那些事<i class="iconfont iconright"></i></a>
   
 </nav>
 
