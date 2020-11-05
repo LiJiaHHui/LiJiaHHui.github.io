@@ -153,21 +153,25 @@
     <article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="/image/%E5%8D%97%E7%93%9C.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">react学习笔记（一）</h1>
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 04, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3331</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3648</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
         <p> 通过官网的九宫格棋子的小例子学习一下react的基础使用，不知道与vue的差别大不大。</p>
-<h1 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h1><p>react中自定义组件通过继承 React.Component 来实现，通过render方法渲染所希望看到的dom结构，实际上render返回的是一个react元素，使用JSX语法能让我们直接书写dom结构而不需重复使用React.createElement来创建。JSX的使用就是一个{}花括号括起来就行了。</p>
+<h1 id="组件"><a href="#组件" class="headerlink" title="组件"></a>组件</h1><p>react中自定义组件通过继承 React.Component 来实现，通过render方法渲染所希望看到的dom结构，实际上render返回的是一个react元素，使用JSX语法能让我们直接书写dom结构而不需重复使用React.createElement来创建，因为使用了Babel来转换。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">return</span> (<br>     &lt;div className=<span class="hljs-string">&quot;shopping-list&quot;</span>&gt;<br>       &lt;h1&gt;Shopping List <span class="hljs-keyword">for</span> &#123;<span class="hljs-built_in">this</span>.props.name&#125;&lt;/h1&gt;<br>     &lt;/div&gt;<br>)<br>编译后<br><span class="hljs-keyword">return</span> React.createElement(<span class="hljs-string">&#x27;div&#x27;</span>, &#123;<span class="hljs-attr">className</span>: <span class="hljs-string">&#x27;shopping-list&#x27;</span>&#125;,<br> React.createElement(<span class="hljs-string">&#x27;h1&#x27;</span>, <span class="hljs-comment">/* ... h1 children ... */</span>)<br>);<br></code></pre></td></tr></table></figure>
+
+
+
 <h2 id="组件通信"><a href="#组件通信" class="headerlink" title="组件通信"></a>组件通信</h2><p>官网的例子中有三个组件：Square、Board、Game，其中Square 组件渲染了一个单独的 <code>&lt;button&gt;</code>。Board 组件渲染了 9 个方块。Game 组件渲染了含有默认值的一个棋盘。</p>
 <p>通过props实现传值（vue中也可以通过props实现父子组件的传值，子组件通过props接收父组件的值）</p>
 <figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs html">class Board extends React.Component &#123;<br>  renderSquare(i) &#123;<br>    return <span class="hljs-tag">&lt;<span class="hljs-name">Square</span> <span class="hljs-attr">value</span>=<span class="hljs-string">&#123;i&#125;</span> /&gt;</span>;  &#125;<br>&#125;<br>class Square extends React.Component &#123;<br>  render() &#123;<br>    return (<br>      <span class="hljs-tag">&lt;<span class="hljs-name">button</span> <span class="hljs-attr">className</span>=<span class="hljs-string">&quot;square&quot;</span>&gt;</span><br>        &#123;this.props.value&#125;      <span class="hljs-tag">&lt;/<span class="hljs-name">button</span>&gt;</span><br>    );<br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
@@ -209,6 +213,8 @@
 
         
 <nav class="nav">
+  
+    <a href="/2020/11/05/react%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/"><i class="iconfont iconleft"></i>react学习笔记（二）</a>
   
   
     <a href="/2020/11/04/TS%E5%85%A5%E9%97%A8%E5%AD%A6%E4%B9%A0/">TS入门学习<i class="iconfont iconright"></i></a>
