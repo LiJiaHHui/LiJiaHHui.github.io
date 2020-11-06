@@ -160,7 +160,7 @@
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 05, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>6506</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>6577</span>
     </div>
   </div>
 </section>
@@ -193,7 +193,7 @@
 <h2 id="渲染-1"><a href="#渲染-1" class="headerlink" title="渲染"></a>渲染</h2><p>渲染用户自定义组件发生了什么</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Welcome</span>(<span class="hljs-params">props</span>) </span>&#123;  <span class="hljs-keyword">return</span> <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">h1</span>&gt;</span>Hello, &#123;props.name&#125;<span class="hljs-tag">&lt;/<span class="hljs-name">h1</span>&gt;</span></span>;<br>&#125;<br><span class="hljs-keyword">const</span> element = <span class="xml"><span class="hljs-tag">&lt;<span class="hljs-name">Welcome</span> <span class="hljs-attr">name</span>=<span class="hljs-string">&quot;Sara&quot;</span> /&gt;</span></span>;<br>ReactDOM.render(<br>  element,<br>  <span class="hljs-built_in">document</span>.getElementById(<span class="hljs-string">&#x27;root&#x27;</span>)<br>);<br></code></pre></td></tr></table></figure>
 
-<p>首先，定义好welcome组件和element，调用ReactDOM.render，对传入的element即<Welcome name="Sara" />中的自定义组件welcome进行调用，传入{name: ‘Sara’}，组件返回<h1>Hello, Sara</h1>。然后在id为root的元素中渲染<h1>Hello, Sara</h1>。</p>
+<p>首先，定义好welcome组件和element，调用ReactDOM.render，对传入的element即&lt;Welcome name=”Sara” /&gt;中的自定义组件welcome进行调用，传入{name: ‘Sara’}，组件返回&lt;h1&gt;Hello, Sara&lt;/h1&gt;。然后在id为root的元素中渲染&lt;h1&gt;Hello, Sara&lt;/h1&gt;。</p>
 <p>注意自定义组件的名称需要大写，小写会被react认为是原生标签。</p>
 <h2 id="组合组件"><a href="#组合组件" class="headerlink" title="组合组件"></a>组合组件</h2><p>就是在组件中也可以使用其他组件</p>
 <h2 id="提取组件"><a href="#提取组件" class="headerlink" title="提取组件"></a>提取组件</h2><p>将耦合的代码变成一个个组件，提高可维护性</p>
