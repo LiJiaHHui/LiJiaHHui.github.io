@@ -1,0 +1,425 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>react入门实例 - Hexo</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  <meta name="description" content="01-render从渲染一个组件开始~
+使用map来渲..."> 
+  
+  <meta name="author" content="John Doe"> 
+
+  
+    <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_hhodbqn7tit.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css">
+
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        loadingImage: '/images/theme/loading.gif',
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      motto: {
+        api: '',
+        default: '一以贯之的努力，不得懈怠的人生'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: false
+      },
+      daovoice: {
+        enable: true
+      }
+    }
+  </script>
+
+  
+
+  
+<meta name="generator" content="Hexo 5.1.1"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left"></div>
+  <div class="center">react入门实例</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/categories " class="underline"> 分类</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/%E6%B5%B7%E7%89%9B.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">react入门实例</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 06, 2020</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>7315</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h1 id="01-render"><a href="#01-render" class="headerlink" title="01-render"></a>01-render</h1><p>从渲染一个组件开始~</p>
+<p>使用map来渲染多个标签</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><code class="hljs scala"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Demo</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span></span>&#123;<br>    render()&#123;<br>        const names = [<span class="hljs-symbol">&#x27;Ale</span>x&#x27;,<span class="hljs-symbol">&#x27;swif</span>t&#x27;,<span class="hljs-symbol">&#x27;jon</span>y&#x27;]<br>        <span class="hljs-keyword">return</span>(<br>            &lt;div&gt;<br>                &lt;ul&gt;&#123;<br>                names.map((name,index)=&gt;&#123;<br>                    <span class="hljs-keyword">return</span>(<br>                    &lt;h1 key=&#123;index&#125;&gt;hello&#123;name&#125;&lt;/h1&gt;<br>                    )<br>                &#125;)<br>                &#125;&lt;/ul&gt;<br>            &lt;/div&gt;<br>        )<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="02-父子组件"><a href="#02-父子组件" class="headerlink" title="02-父子组件"></a>02-父子组件</h1><p>父子组件的渲染</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs scala"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Hello</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span></span>&#123;<br>    render()&#123;<br>    <span class="hljs-keyword">return</span> &lt;h1&gt;hello &#123;<span class="hljs-keyword">this</span>.props.name&#125;&lt;/h1&gt;<br>    &#125;<br>&#125;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Demo</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span></span>&#123;<br>    render()&#123;<br>        const arr = [<br>            &lt;h1 key=<span class="hljs-string">&quot;1&quot;</span>&gt;hello&lt;/h1&gt;,<br>            &lt;h2 key=<span class="hljs-string">&quot;2&quot;</span>&gt;react&lt;/h2&gt;<br>        ]<br>        <span class="hljs-keyword">return</span>(<br>            &lt;div&gt;<br>                &lt;<span class="hljs-type">Hello</span> name=<span class="hljs-string">&quot;john&quot;</span>&gt;&lt;/<span class="hljs-type">Hello</span>&gt;<br>                &lt;ul&gt;&#123;<br>                    arr<br>                &#125;&lt;/ul&gt;<br>            &lt;/div&gt;<br>        )<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="03-children"><a href="#03-children" class="headerlink" title="03-children"></a>03-children</h1><p>类似vue中的slot，获取组件开始标签和结束标签之间的内容</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs scala"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Hello</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span></span>&#123;<br>    render()&#123;<br>    <span class="hljs-keyword">return</span> (<br>    &lt;ol&gt;<br>        &#123;<span class="hljs-keyword">this</span>.props.children.map((child,index)=&gt;&lt;li key=&#123;index&#125;&gt;&#123;child&#125;&lt;/li&gt;)<br>        &#125;<br>    &lt;/ol&gt;)<br>    &#125;<br>&#125;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Demo</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span></span>&#123;<br>    render()&#123;<br>        const arr = [<br>            &lt;h1 key=<span class="hljs-string">&quot;1&quot;</span>&gt;hello&lt;/h1&gt;,<br>            &lt;h2 key=<span class="hljs-string">&quot;2&quot;</span>&gt;react&lt;/h2&gt;<br>        ]<br>        <span class="hljs-keyword">return</span>(<br>            &lt;div&gt;<br>                &lt;<span class="hljs-type">Hello</span>&gt;<br>                   &#123; arr&#125;<br>                &lt;/<span class="hljs-type">Hello</span>&gt;<br>            &lt;/div&gt;<br>        )<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>获取父组件demo中的h1标签，然后渲染成li标签</p>
+<h1 id="04-propTypes验证参数"><a href="#04-propTypes验证参数" class="headerlink" title="04-propTypes验证参数"></a>04-propTypes验证参数</h1><p>对传入组件的参数进行验证，安装prop-type库</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs scala"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyTitle</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span></span>&#123;<br>    render()&#123;<br>    <span class="hljs-keyword">return</span> &lt;h1&gt;&#123;<span class="hljs-keyword">this</span>.props.title&#125;&lt;/h1&gt;<br>        <br>    &#125;<br>&#125;<br><span class="hljs-type">MyTitle</span>.propTypes=&#123;<br>    title:<span class="hljs-type">PropTypes</span>.string<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<h1 id="05-state状态控制"><a href="#05-state状态控制" class="headerlink" title="05-state状态控制"></a>05-state状态控制</h1><p>写一个按钮来显示state，实现每次触发onclick点击事件的时调用handleClick函数来改变state的状态</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs scala"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClick</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span></span>&#123;<br>    constructor(props)&#123;<br>        <span class="hljs-keyword">super</span>(props);<br>        <span class="hljs-keyword">this</span>.state=&#123;success:<span class="hljs-literal">false</span>&#125;<br>    &#125;<br>    handleClick()&#123;<br>        <span class="hljs-keyword">this</span>.setState(&#123;success:!<span class="hljs-keyword">this</span>.state.success&#125;)<br>    &#125;<br>    render()&#123;<br>        const text=<span class="hljs-keyword">this</span>.state.success?<span class="hljs-symbol">&#x27;ye</span>s&#x27;:<span class="hljs-symbol">&#x27;n</span>o&#x27;<br>    <span class="hljs-keyword">return</span> (<br>        &lt;button onClick=&#123;()=&gt;&#123;<br>            <span class="hljs-keyword">this</span>.handleClick()<br>        &#125;&#125;&gt;<br>            &#123;text&#125;<br>        &lt;/button&gt;<br>    )<br>        <br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>官网提到使用箭头函数绑定的话，会导致父组件重复渲染，所以可以写成下面这样，绑定this值后直接调用handleClick函数</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs kotlin"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClick</span> <span class="hljs-title">extends</span> <span class="hljs-title">Component</span></span>&#123;<br>    <span class="hljs-keyword">constructor</span>(props)&#123;<br>        <span class="hljs-keyword">super</span>(props);<br>        <span class="hljs-keyword">this</span>.state=&#123;success:<span class="hljs-literal">false</span>&#125;<br>        <span class="hljs-keyword">this</span>.handleClick=<span class="hljs-keyword">this</span>.handleClick.bind(<span class="hljs-keyword">this</span>)<br>    &#125;<br>    handleClick()&#123;<br>        <span class="hljs-keyword">this</span>.setState(&#123;success:!<span class="hljs-keyword">this</span>.state.success&#125;)<br>    &#125;<br>    render()&#123;<br>        <span class="hljs-keyword">const</span> text=<span class="hljs-keyword">this</span>.state.success?<span class="hljs-string">&#x27;yes&#x27;</span>:<span class="hljs-string">&#x27;no&#x27;</span><br>    <span class="hljs-keyword">return</span> (<br>        &lt;button onClick=&#123;<br>            <span class="hljs-keyword">this</span>.handleClick<br>        &#125;&gt;<br>            &#123;text&#125;<br>        &lt;/button&gt;<br>    )<br>        <br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>注意调用handleClick时后面是没有括号的，不然的话就会因为重复调用，然后报错</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs sql">Maximum <span class="hljs-keyword">update</span> <span class="hljs-keyword">depth</span> exceeded. This can happen <span class="hljs-keyword">when</span> a component repeatedly calls setState inside componentWillUpdate <span class="hljs-keyword">or</span> componentDidUpdate. React limits the <span class="hljs-built_in">number</span> <span class="hljs-keyword">of</span> <span class="hljs-keyword">nested</span> updates <span class="hljs-keyword">to</span> prevent infinite loops.<br></code></pre></td></tr></table></figure>
+
+<p>即，当组件在componentWillUpdate或componentDidUpdate内重复调用setState时，就会发生这种情况</p>
+<p>个人的理解是，当调用函数添加了括号时，执行函数return的结果，这里的handleClick函数内部是没有返回结果的，所以就会重复调用，不添加括号时就只是调用函数</p>
+<h1 id="06-获取真实DOM"><a href="#06-获取真实DOM" class="headerlink" title="06-获取真实DOM"></a>06-获取真实DOM</h1><p>通过ref属性从组件获取真实DOM的节点</p>
+<p>使用一个文本框，来获取用户输入的内容</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs scala"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyClick</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span></span>&#123;<br>    constructor(props)&#123;<br>        <span class="hljs-keyword">super</span>(props);<br>        <span class="hljs-keyword">this</span>.value=<span class="hljs-type">React</span>.createRef();<br>        <span class="hljs-keyword">this</span>.handleClick=<span class="hljs-keyword">this</span>.handleClick.bind(<span class="hljs-keyword">this</span>)<br>    &#125;<br>    handleClick()&#123;<br>        <span class="hljs-keyword">this</span>.value.current.focus();<br>    &#125;<br>    render()&#123;<br>    <span class="hljs-keyword">return</span> (<br>        &lt;div&gt;<br>        &lt;input <span class="hljs-class"><span class="hljs-keyword">type</span></span>=<span class="hljs-string">&quot;text&quot;</span> ref=&#123;<span class="hljs-keyword">this</span>.value&#125; /&gt;<br>        &lt;input <span class="hljs-class"><span class="hljs-keyword">type</span></span>=<span class="hljs-string">&quot;button&quot;</span>  value=<span class="hljs-string">&quot;click me&quot;</span> onClick=&#123;<br>            <span class="hljs-keyword">this</span>.handleClick<br>        &#125;&gt;&lt;/input&gt;<br>       &lt;/div&gt;<br>    )<br>        <br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="07-双向数据绑定"><a href="#07-双向数据绑定" class="headerlink" title="07-双向数据绑定"></a>07-双向数据绑定</h1><p>手动实现一个双向数据绑定，使用onChange事件监听文本框的输入，每次输入触发handleChange事件通过setState来修改value的值。</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><code class="hljs scala"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyBind</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span></span>&#123;<br>    constructor(props)&#123;<br>        <span class="hljs-keyword">super</span>(props);<br>        <span class="hljs-keyword">this</span>.state=&#123;value:<span class="hljs-string">&quot;hi!&quot;</span>&#125;<br>    &#125;<br>    handleChange(event)&#123;<br>        <span class="hljs-keyword">this</span>.setState(&#123;value:event.target.value&#125;)<br>    &#125;<br>    render()&#123;<br>    <span class="hljs-keyword">return</span> (<br>        &lt;div&gt;<br>        &lt;input <span class="hljs-class"><span class="hljs-keyword">type</span></span>=<span class="hljs-string">&quot;text&quot;</span> value=&#123;<span class="hljs-keyword">this</span>.state.value&#125; onChange=&#123;<span class="hljs-keyword">this</span>.handleChange.bind(<span class="hljs-keyword">this</span>)&#125;/&gt;<br>         &lt;p&gt;&#123;<span class="hljs-keyword">this</span>.state.value&#125;&lt;/p&gt;<br>       &lt;/div&gt;<br>    )<br>        <br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="08-生命周期"><a href="#08-生命周期" class="headerlink" title="08-生命周期"></a>08-生命周期</h1><p>组件的<a target="_blank" rel="noopener" href="https://projects.wojtekmaj.pl/react-lifecycle-methods-diagram/">生命周期</a>分成三个状态，官网的图示很清晰地展示了：</p>
+<blockquote>
+<ul>
+<li>Mounting：挂载，已插入真实 DOM</li>
+<li>Updating：更新，正在被重新渲染</li>
+<li>Unmounting：销毁，已移出真实 DOM</li>
+</ul>
+</blockquote>
+<h4 id="挂载"><a href="#挂载" class="headerlink" title="挂载"></a>挂载</h4><p>当组件实例被创建并插入 DOM 中时，其生命周期调用顺序如下：</p>
+<ul>
+<li>constructor()</li>
+<li>static getDerivedStateFromProps()</li>
+<li>render()</li>
+<li>componentDidMount()</li>
+</ul>
+<h4 id="更新"><a href="#更新" class="headerlink" title="更新"></a>更新</h4><p>当组件的 props 或 state 发生变化时会触发更新。组件更新的生命周期调用顺序如下：</p>
+<ul>
+<li>static getDerivedStateFromProps()</li>
+<li>shouldComponentUpdate()</li>
+<li>render()</li>
+<li>getSnapshotBeforeUpdate()</li>
+<li>componentDidUpdate()</li>
+</ul>
+<h4 id="卸载"><a href="#卸载" class="headerlink" title="卸载"></a>卸载</h4><p>当组件从 DOM 中移除时会调用如下方法：</p>
+<ul>
+<li>componentWillUnmount()</li>
+</ul>
+<h4 id="错误处理"><a href="#错误处理" class="headerlink" title="错误处理"></a>错误处理</h4><p>当渲染过程，生命周期，或子组件的构造函数中抛出错误时，会调用如下方法：</p>
+<ul>
+<li>static getDerivedStateFromError()</li>
+<li>componentDidCatch()</li>
+</ul>
+<p>在组件挂载时设置定时器对透明度进行操作，实现文本透明度渐变的效果</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><code class="hljs scala"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyBind</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span></span>&#123;<br>    constructor(props)&#123;<br>        <span class="hljs-keyword">super</span>(props);<br>        <span class="hljs-keyword">this</span>.state=&#123;<br>            opacity:<span class="hljs-number">1.0</span><br>        &#125;<br>    &#125;<br>    componentDidMount()&#123;<br>        <span class="hljs-keyword">this</span>.timer=setInterval(function()&#123;<br>            <span class="hljs-keyword">var</span> opacity=<span class="hljs-keyword">this</span>.state.opacity;<br>            opacity-=<span class="hljs-number">.05</span>;<br>            <span class="hljs-keyword">if</span>(opacity&lt;<span class="hljs-number">0.1</span>)&#123;<br>                opacity=<span class="hljs-number">1</span><br>            &#125;<br>            <span class="hljs-keyword">this</span>.setState(&#123;<br>                opacity:opacity<br>            &#125;)<br>        &#125;.bind(<span class="hljs-keyword">this</span>),<span class="hljs-number">100</span><br>        )<br>    &#125;<br>    render()&#123;<br>    <span class="hljs-keyword">return</span> (<br>        &lt;div style=&#123;&#123;opacity:<span class="hljs-keyword">this</span>.state.opacity&#125;&#125;&gt;<br>            hello &#123;<span class="hljs-keyword">this</span>.props.name&#125;<br>       &lt;/div&gt;<br>    )<br>        <br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<h1 id="09-Ajax请求"><a href="#09-Ajax请求" class="headerlink" title="09-Ajax请求"></a>09-Ajax请求</h1><p>使用componentDidMount方法设置Ajax请求，等请求成功响应再渲染页面。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">MyBind</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span></span>&#123;<br>    <span class="hljs-keyword">constructor</span>(props)&#123;<br>        <span class="hljs-built_in">super</span>(props);<br>        <span class="hljs-built_in">this</span>.state=&#123;<br>            username: <span class="hljs-string">&#x27;&#x27;</span>,<br>            lastGistUrl: <span class="hljs-string">&#x27;&#x27;</span><br>        &#125;<br>    &#125;<br>    componentDidMount()&#123;<br>        $.get(<span class="hljs-built_in">this</span>.props.source, <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">result</span>) </span>&#123;<br>            <span class="hljs-keyword">var</span> lastGist = result[<span class="hljs-number">0</span>];<br>            <span class="hljs-built_in">this</span>.setState(&#123;<br>              username: lastGist.owner.login,<br>              lastGistUrl: lastGist.html_url<br>            &#125;);<br>          &#125;.bind(<span class="hljs-built_in">this</span>));<br>        &#125;<br>    render()&#123;<br>    <span class="hljs-keyword">return</span> (<br>        &lt;div&gt;<br>              &#123;<span class="hljs-built_in">this</span>.state.username&#125;<span class="hljs-string">&#x27;s last gist is &lt;a href=&#123;this.state.lastGistUrl&#125;&gt;here&lt;/a&gt;.</span><br><span class="hljs-string">            &lt;/div&gt;</span><br><span class="hljs-string">    )</span><br><span class="hljs-string">    &#125;</span><br><span class="hljs-string">&#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>阮一峰老师用的是GitHub的api，好像已经挂了。。。。</p>
+<p>参考文章：</p>
+<ul>
+<li><p><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2015/03/react.html">React 入门实例教程</a></p>
+</li>
+<li><p><a target="_blank" rel="noopener" href="https://juejin.im/post/6844903640600150029#heading-10">React-Demo 部分重构</a></p>
+</li>
+</ul>
+
+      </section>
+      <section class="extra">
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/react/" rel="tag">react</a></li></ul>
+
+        
+<nav class="nav">
+  
+  
+    <a href="/2020/11/05/react%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">react学习笔记（二）<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+      </section>
+      
+      <section class="comments">
+  
+  <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+</section>
+      
+    </section>
+  </div>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+    
+    
+    
+    
+    <a href="tencent://message/?Menu=yes&uin=1151329119 " target="_blank" onMouseOver="this.style.color= '#12B7F5'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconQQ "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="/images/theme/wechat.png " target="_blank" onMouseOver="this.style.color= '#09BB07'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconwechat-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="https://github.com/LiJiaHHui " target="_blank" onMouseOver="this.style.color= '#24292E'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  icongithub-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="mailto:ljhhhui@126.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconmail"></i>
+    </a>
+    
+  </div>
+  <div class="footer-copyright"></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-daovoice">
+    <i class="iconfont iconcomment"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+</body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i["DaoVoiceObject"] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    a.charset = "utf-8";
+    m.parentNode.insertBefore(a, m)
+  })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+    "//widget.daovoice.io/widget/0f81ff2f.js", "daovoice")
+  daovoice('init', {
+    app_id: "abcdefg"
+  }, {
+    launcher: {
+      disableLauncherIcon: true,
+    },
+  });
+  daovoice('update');
+</script>
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>
