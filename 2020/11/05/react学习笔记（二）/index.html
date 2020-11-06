@@ -221,9 +221,9 @@
 <ul>
 <li><p>state的更新会被合并</p>
 <p>会将更新的对象合并到当前的state，可以使用setState单独更新state中的对象</p>
-<h2 id="数据向下流动"><a href="#数据向下流动" class="headerlink" title="数据向下流动"></a>数据向下流动</h2></li>
+</li>
 </ul>
-<p>组件无法获知其他组件的状态，state除了拥有和设置了它的组件，其他组件是无法访问的。但是组件也可以选择将state作为props向下传递给子组件</p>
+<h2 id="数据向下流动"><a href="#数据向下流动" class="headerlink" title="数据向下流动"></a>数据向下流动</h2><p>组件无法获知其他组件的状态，state除了拥有和设置了它的组件，其他组件是无法访问的。但是组件也可以选择将state作为props向下传递给子组件</p>
 <figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs pf"><span class="hljs-variable">&lt;h2&gt;</span>It is &#123;this.<span class="hljs-keyword">state</span>.date.<span class="hljs-keyword">to</span>LocaleTimeString()&#125;.&lt;/h2&gt;<br>自定义组件：<br><span class="hljs-variable">&lt;FormattedDate date=&#123;this.state.date&#125; /&gt;</span><br></code></pre></td></tr></table></figure>
 
 <p>子组件是无法知道参数传入的数据是来自父组件的state还是props，还是手动输入的。单向数据流是指state总是属于特定的组件，并且只能影响树中”低于”它们的组件。</p>
