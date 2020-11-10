@@ -15,7 +15,7 @@
   
   
   <meta name="description" content="TS新特性主要体现在字符串、函数、函数参数、类上，
-字..."> 
+首..."> 
   
   <meta name="author" content="John Doe"> 
 
@@ -161,16 +161,70 @@
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 04, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>82</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3446</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
         <p>TS新特性主要体现在字符串、函数、函数参数、类上，</p>
-<p>字符串</p>
-<p>首先通过官网的一个小例子</p>
-<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/75eb8ca6df71">https://www.jianshu.com/p/75eb8ca6df71</a></p>
+<p>首先通过<a target="_blank" rel="noopener" href="https://www.tslang.cn/docs/handbook/typescript-in-5-minutes.html">官网</a>的一个小例子，安装typescript后可以将ts文件可以编译成js文件。</p>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><ul>
+<li><p>多行字符串：使用``包裹跨行的字符串</p>
+</li>
+<li><p>字符串模板：在多行字符串中通过${xxx}使用来模板</p>
+<figure class="highlight arcade"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs arcade"><span class="hljs-keyword">var</span> name = <span class="hljs-string">&#x27;debug&#x27;</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getImg</span>(<span class="hljs-params"></span>) </span>&#123;<br>  <span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;&lt;i&gt;&lt;/i&gt;&#x27;</span><br>&#125;<br><span class="hljs-keyword">var</span> html = <span class="hljs-string">`&lt;div&gt;<span class="hljs-subst">$&#123;names&#125;</span></span><br><span class="hljs-string">&lt;span&gt;<span class="hljs-subst">$&#123;getImg()&#125;</span>&lt;/span&gt;</span><br><span class="hljs-string">&lt;div&gt;`</span><br></code></pre></td></tr></table></figure>
+</li>
+<li><p>拆分字符串</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">getData</span>(<span class="hljs-params">template, name, age</span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(template);<br>    <span class="hljs-built_in">console</span>.log(name);<br>    <span class="hljs-built_in">console</span>.log(age);<br>&#125;<br><span class="hljs-keyword">var</span> names = <span class="hljs-string">&#x27;zyl&#x27;</span>;<br><span class="hljs-keyword">var</span> age = <span class="hljs-number">31</span>;<br>getData<span class="hljs-string">`你好，我的名字是<span class="hljs-subst">$&#123;names&#125;</span>，我今年<span class="hljs-subst">$&#123;age&#125;</span>岁了`</span><br></code></pre></td></tr></table></figure>
+
+</li>
+</ul>
+<h2 id="参数"><a href="#参数" class="headerlink" title="参数"></a>参数</h2><h4 id="参数类型"><a href="#参数类型" class="headerlink" title="参数类型"></a>参数类型</h4><p>Typescript中的参数类型包括：boolean/number/string/array/tuple/enum/any/（null和undefined）/ void /never(10种)。其中元祖（tuple）、枚举、任意值、void类型和never是有别于Javascript的特有类型。</p>
+<p>元组（tuple）是指一个已知元素数量和类型的数组。</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs awk">let x: [string, number];<br><span class="hljs-regexp">//</span> Initialize it<br>x = [<span class="hljs-string">&#x27;hello&#x27;</span>, <span class="hljs-number">10</span>]; <span class="hljs-regexp">//</span> OK<br><span class="hljs-regexp">//</span> Initialize it incorrectly<br>x = [<span class="hljs-number">10</span>, <span class="hljs-string">&#x27;hello&#x27;</span>]; <span class="hljs-regexp">//</span> Error<br></code></pre></td></tr></table></figure>
+
+<p>枚举为一组数值赋予友好的名字</p>
+<figure class="highlight rib"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs rib">enum <span class="hljs-keyword">Color</span> &#123;Red, Green=<span class="hljs-number">2</span>, Blue&#125;<br>let c: <span class="hljs-keyword">Color</span> = <span class="hljs-keyword">Color</span>.Red;<br>let d: <span class="hljs-keyword">Color</span> = <span class="hljs-keyword">Color</span>.Green;<br>let e: <span class="hljs-keyword">Color</span> = <span class="hljs-keyword">Color</span>.Blue;<br>console.log(<span class="hljs-string">&#x27;enum&#x27;</span>,c,d,e) //<span class="hljs-number">0</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span><br></code></pre></td></tr></table></figure>
+
+<p>任意值any，当我们还不能确定变量的类型时就指定为any，让其通过编译阶段的检查。</p>
+<p>或者是只知道一部分变量的类型</p>
+<figure class="highlight golo"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs golo"><span class="hljs-keyword">let</span> <span class="hljs-keyword">list</span>: any[] = [<span class="hljs-number">1</span>, <span class="hljs-literal">true</span>, <span class="hljs-string">&quot;free&quot;</span>];<br><span class="hljs-keyword">list</span>[<span class="hljs-number">1</span>] = <span class="hljs-number">100</span>;<br></code></pre></td></tr></table></figure>
+
+<p>void表示没有任何类型，在c中没有返回值的函数就是声明为void的。ts中也是，不管声明一个void类型的变量什么用，只能为其赋值为null或undefined。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">warnUser</span><span class="hljs-params">()</span>: void </span>&#123;<br>    console.log(<span class="hljs-string">&quot;This is my warning message&quot;</span>);<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>never表示永不存在的值，用于总是抛出异常或者不会有返回值的（箭头）函数表达式的返回值类型。变量也可以是never，当被永不为真的条件约束时。</p>
+<h4 id="类型声明与默认参数"><a href="#类型声明与默认参数" class="headerlink" title="类型声明与默认参数"></a>类型声明与默认参数</h4><p>可以在函数中设置参数的类型和默认</p>
+<figure class="highlight gml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs gml">function <span class="hljs-built_in">max</span>(<span class="hljs-symbol">x</span>: number, <span class="hljs-symbol">y</span>: number = <span class="hljs-number">4</span>): number &#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-symbol">x</span> &gt; <span class="hljs-symbol">y</span> ? <span class="hljs-symbol">x</span> : <span class="hljs-symbol">y</span>;<br>&#125;<br>let result1 = <span class="hljs-built_in">max</span>(<span class="hljs-number">2</span>); <span class="hljs-comment">//正常</span><br>let result2 = <span class="hljs-built_in">max</span>(<span class="hljs-number">2</span>, <span class="hljs-literal">undefined</span>); <span class="hljs-comment">//正常</span><br>let result3 = <span class="hljs-built_in">max</span>(<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">7</span>); <span class="hljs-comment">//报错</span><br>let result4 = <span class="hljs-built_in">max</span>(<span class="hljs-number">2</span>, <span class="hljs-number">7</span>); <span class="hljs-comment">//正常</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="可选参数"><a href="#可选参数" class="headerlink" title="可选参数"></a>可选参数</h4><p>在js中，函数的参数时可以选的，而在ts中，每个参数是必选的。但在实际开发中需要根据实际需求来确认参数，可以通过？来定义可选参数。</p>
+<figure class="highlight gml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs gml">function <span class="hljs-built_in">max</span>(<span class="hljs-symbol">x</span>: number, <span class="hljs-symbol">y</span>: number) &#123;<br>    <span class="hljs-keyword">if</span>(<span class="hljs-symbol">y</span>)&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-symbol">x</span> &gt; <span class="hljs-symbol">y</span> ? <span class="hljs-symbol">x</span> : <span class="hljs-symbol">y</span>;<br>    &#125; <span class="hljs-keyword">else</span> &#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-symbol">x</span><br>    &#125;<br>&#125;<br>let result1 = <span class="hljs-built_in">max</span>(<span class="hljs-number">2</span>);<br>let result2 = <span class="hljs-built_in">max</span>(<span class="hljs-number">2</span>, <span class="hljs-number">4</span>, <span class="hljs-number">7</span>); <span class="hljs-comment">//报错</span><br>let result3 = <span class="hljs-built_in">max</span>(<span class="hljs-number">2</span>, <span class="hljs-number">4</span>);<br><span class="hljs-comment">//注意：可选参数必须放在默认参数后面，y是可选参数</span><br></code></pre></td></tr></table></figure>
+
+<h2 id="函数"><a href="#函数" class="headerlink" title="函数"></a>函数</h2><h4 id="剩余参数"><a href="#剩余参数" class="headerlink" title="剩余参数"></a>剩余参数</h4><p>前面介绍的参数只能表示某一个参数，当需要同时操作多个参数，或者并不知道有多少个参数传入时，就需要用到剩余参数。</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">sum</span><span class="hljs-params">(x: number, <span class="hljs-rest_arg">...restOfNumber</span>: number[])</span></span>&#123;<br>    let result = x;<br>    restOfNumber.forEach(value =&gt; result += value);<br>    <span class="hljs-keyword">return</span> result;<br>&#125;<br>let result1 = sum(<span class="hljs-number">1</span>, <span class="hljs-number">2</span>, <span class="hljs-number">3</span>, <span class="hljs-number">4</span>, <span class="hljs-number">5</span>, <span class="hljs-number">6</span>);<br>console.log(result1);<br><br>let result2 = sum(<span class="hljs-number">2</span>);<br>console.log(result2);<br></code></pre></td></tr></table></figure>
+
+<h4 id="generator函数"><a href="#generator函数" class="headerlink" title="generator函数"></a>generator函数</h4><p>控制函数的执行过程，可以手动的干预函数执行。</p>
+<h4 id="解构表达式"><a href="#解构表达式" class="headerlink" title="解构表达式"></a>解构表达式</h4><p>解构是es6新特性，可以对数组或者是对象一一对应快速赋值，</p>
+<p>数组解构</p>
+<figure class="highlight maxima"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs maxima"><span class="hljs-built_in">let</span> imput = [<span class="hljs-number">1</span>, <span class="hljs-number">2</span>];<br><span class="hljs-built_in">let</span> [<span class="hljs-built_in">first</span>, <span class="hljs-built_in">second</span>] = input;<br>console.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">first</span>); //相当于inputp[<span class="hljs-number">0</span>]<br>console.<span class="hljs-built_in">log</span>(<span class="hljs-built_in">second</span>); //相当于input[<span class="hljs-number">1</span>]<br></code></pre></td></tr></table></figure>
+
+<p>对象解构</p>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs yaml"><span class="hljs-string">let</span> <span class="hljs-string">test</span> <span class="hljs-string">=</span> &#123;<br>    <span class="hljs-attr">x:</span> <span class="hljs-number">0</span>,<br>    <span class="hljs-attr">width:</span> <span class="hljs-number">15</span>,<br>    <span class="hljs-attr">heights:</span> &#123;<br>        <span class="hljs-attr">height1:</span> <span class="hljs-number">10</span>,<br>        <span class="hljs-attr">height2:</span> <span class="hljs-number">20</span><br>    &#125;<br>&#125;<span class="hljs-string">;</span><br><span class="hljs-string">let</span> &#123; <span class="hljs-string">x</span>,  <span class="hljs-string">width</span>, <span class="hljs-attr">heights:</span> &#123;<span class="hljs-string">height2</span>&#125; &#125; <span class="hljs-string">=</span> <span class="hljs-string">test;</span><br><span class="hljs-string">console.log(x,</span> <span class="hljs-string">width,</span> <span class="hljs-string">height2);</span> <span class="hljs-string">//输出：0,15,20</span><br><br></code></pre></td></tr></table></figure>
+
+<h4 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h4><p>ts中同样可以使用箭头函数</p>
+<h4 id="循环"><a href="#循环" class="headerlink" title="循环"></a>循环</h4><p>ts中涉及三种高级循环方式：forEach()、for in、for of</p>
+<h2 id="类"><a href="#类" class="headerlink" title="类"></a>类</h2><p>ts中可以支持基于类（class）的面向对象编程</p>
+<ul>
+<li>类的声明</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs typescript"><span class="hljs-keyword">class</span> Car &#123;<br>    engine: <span class="hljs-built_in">string</span>,<br>    <span class="hljs-keyword">constructor</span>(<span class="hljs-params">engine: <span class="hljs-built_in">string</span></span>) &#123; <br>        <span class="hljs-built_in">this</span>.engine = engine;<br>    &#125;<br>    drive(distanceInMeters: <span class="hljs-built_in">number</span> = <span class="hljs-number">0</span>) &#123; <br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`aaa is running`</span> + <span class="hljs-built_in">this</span>.engine)<br>    &#125;<br>&#125;<br><br><span class="hljs-keyword">let</span> car = <span class="hljs-keyword">new</span> Car(<span class="hljs-string">&#x27;petrol&#x27;</span>);<br>car.drive(<span class="hljs-number">100</span>)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>类的封装、继承、多态<br>封装、继承、多态是面向对象的三大特性。在Typescript中，使用extends关键字可以方便的实现继承。</li>
+</ul>
+<h4 id="修饰符"><a href="#修饰符" class="headerlink" title="修饰符"></a>修饰符</h4><p>在类中的修饰符可以分为公共（public）、私有（private）、和受保护（protected）三种类型。在Typescript里，每个成员默认为public，可以被自由的访问。</p>
+<h4 id="接口"><a href="#接口" class="headerlink" title="接口"></a>接口</h4><p>Typescript接口的使用方式类似于Java。<br>在Typescript中接口有属性类型、函数类型、可索引类型、类类型这几种，我们使用interface关键字定义接口并用implements关键字实现接口。</p>
 
       </section>
       <section class="extra">
