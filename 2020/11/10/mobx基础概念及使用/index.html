@@ -7,13 +7,14 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>Hexo</title>
+  <title>mobx基础概念及使用 - Hexo</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
 
   
   
+  <meta name="description" content=" mobx与redux都是react状态管理的，mob..."> 
   
   <meta name="author" content="John Doe"> 
 
@@ -62,7 +63,7 @@
     var CONFIG = window.CONFIG || {};
     var ZHAOO = window.ZHAOO || {};
     CONFIG = {
-      isHome: true,
+      isHome: false,
       fancybox: true,
       pjax: false,
       lazyload: {
@@ -103,6 +104,14 @@
   
 
 
+<nav class="navbar">
+  <div class="left"></div>
+  <div class="center">mobx基础概念及使用</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
   <nav class="menu">
   <div class="menu-wrap">
     <div class="menu-close">
@@ -140,146 +149,56 @@
   </div>
 </nav>
   <main id="main">
-  
-    <div class="preview">
-  <nav class="navbar j-navbar-menu">
-    <i class="iconfont iconmenu"></i>
-  </nav>
-  <div class="preview-image">
-    <h2 class="preview-motto" id="motto"></h2>
-    <!-- <span class="preview-cursor">|</span> -->
-    
-    <div class="preview-overlay">
-      <svg class="preview-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-        viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
-        <defs>
-          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
-        </defs>
-        <g class="preview-parallax">
-          <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
-          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
-          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
-          <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
-        </g>
-      </svg>
-    </div>
-    
-  </div>
-  <div class="preview-scroll">
-    <a href="#container" class="smooth-scroll"><i class="iconfont iconMouse"></i></a>
-  </div>
-</div>
-  
   <div class="container" id="container">
-    <section class="row post">
-  
-  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
-    
-    <a href="/2020/09/17/JS%E4%B9%8BObject%E7%9A%84%E6%96%B9%E6%B3%95/" class="post-image">
-      <img   class="lazyload" data-original="/image/bridge.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <h3 class="post-title"><a href="/2020/09/17/JS%E4%B9%8BObject%E7%9A%84%E6%96%B9%E6%B3%95/">JS之Object的方法</a></h3>
+    <article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">mobx基础概念及使用</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 10, 2020</span
+        class="post-info-item">
       
-      
-      
-      <div class="post-excerpt">
-        <p class="substr-3">Object.keys(obj)，枚举obj对象的属性，顺序随机，返回字符串
-Object.freeze(obj)，冻结对象，使其不能被修改
-</p>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>September 17, 2020</span
-          class="post-info-item">
-        
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>71</span>
-      </div>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>329</span>
     </div>
   </div>
-</div>
-  
-  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
-    
-    <a href="/2020/09/17/ES6%E7%9F%A5%E8%AF%86%E7%82%B9/" class="post-image">
-      <img   class="lazyload" data-original="/image/deepSea.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <h3 class="post-title"><a href="/2020/09/17/ES6%E7%9F%A5%E8%AF%86%E7%82%B9/">ES6知识点</a></h3>
-      
-      
-      
-      <div class="post-excerpt">
-        <p class="substr-3">let与constlet和const的作用域都是块级作用域，都不能重复声明，都不存在变量提升，在变量声明前使用会导致暂时性死区。两者的区别在于，let声明的是一个常量，声明时可以不赋值，声明后可...</p>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>September 17, 2020</span
-          class="post-info-item">
+</section>
+    <section class="main">
+      <section class="content">
+        <p> mobx与redux都是react状态管理的，mobx相对简单一些，所以就先学它。</p>
+<p>mobx是单向数据流，通过观察者模式对数据进行跟踪，当所观察的属性发生变化或者（被？）引用时，触发依赖的监听函数。在react中通过@observable设置可观察数据（state），通过@observer（观察者）对组件进行数据的更新和监听，并渲染到视图，当@action修改观察的数据时，触发@observer对组件数据更新并重新渲染到视图。@computed，计算属性，get和set可以用来控制computed。</p>
+<p>toJS方法：递归地将一个(observable)对象转换为 javascript 结构。 支持 observable 数组、对象、映射和原始类型。</p>
+
+      </section>
+      <section class="extra">
         
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>1415</span>
-      </div>
-    </div>
-  </div>
-</div>
-  
-  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
-    
-    <a href="/2020/09/12/Node%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E7%8E%B0%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95%E9%A1%B9%E7%9B%AE/" class="post-image">
-      <img   class="lazyload" data-original="/image/snow.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <h3 class="post-title"><a href="/2020/09/12/Node%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E7%8E%B0%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95%E9%A1%B9%E7%9B%AE/">Node搭建服务器实现真机调试项目</a></h3>
-      
-      
-      
-      <div class="post-excerpt">
-        <p class="substr-3">Node搭建服务器实现真机调试项目一、初始化npm初始化项目，终端输入npm init -y，默认直接生成一个package.json文件。
-安装Express，在终端输入 npm i -S e...</p>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>September 12, 2020</span
-          class="post-info-item">
         
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>634</span>
-      </div>
-    </div>
-  </div>
-</div>
-  
-  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
-  <div class="post-wrap">
-    
-    <a href="/2020/02/13/%E6%B5%85%E6%9E%90JS%E4%B8%AD%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8%E6%9C%BA%E5%88%B6/" class="post-image">
-      <img   class="lazyload" data-original="/image/galaxy.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
-    </a>
-    <div class="post-content">
-      <h3 class="post-title"><a href="/2020/02/13/%E6%B5%85%E6%9E%90JS%E4%B8%AD%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8%E6%9C%BA%E5%88%B6/">浅析JS中异步调用机制</a></h3>
-      
-      
-      
-      <div class="post-excerpt">
-        <p class="substr-3">JS是单线程的，单线程是指在事件队列中，每次只执行一个事件，如果设计成多线程模式，DOM之间会存在资源竞争。
-首先，我们要了解浏览器内核的线程，由多个线程组成浏览器的渲染进程，共同渲染出页面。
-...</p>
-      </div>
-      <div class="post-info">
-        <span class="post-info-item"><i class="iconfont iconcalendar"></i>February 13, 2020</span
-          class="post-info-item">
         
-        <span class="post-info-item"><i class="iconfont iconfont-size"></i>854</span>
-      </div>
-    </div>
-  </div>
-</div>
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/image-%E7%BB%AF%E8%89%B2%E5%B1%B1%E6%9E%97-jpg/" rel="tag">/image/绯色山林.jpg</a></li></ul>
+
+        
+<nav class="nav">
+  
+    <a href="/2020/11/12/withRouter%E7%9A%84%E7%94%A8%E6%B3%95-%E5%AE%9E%E7%8E%B0react%E5%AD%90%E7%BB%84%E4%BB%B6%E7%9A%84%E8%B7%AF%E7%94%B1%E8%B7%B3%E8%BD%AC/"><i class="iconfont iconleft"></i>withRouter的用法-实现react子组件的路由跳转</a>
+  
+  
+    <a href="/2020/11/09/react%E5%AD%A6%E4%B9%A0%E4%B9%8B%E9%AB%98%E9%98%B6%E7%BB%84%E4%BB%B6/">react学习之高阶组件<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+      </section>
+      
+      <section class="comments">
+  
+  <div class="btn" id="comments-btn">查看评论</div>
+  
   
 </section>
-    <section class="paginator">
-  
-  <a class="extend prev" rel="prev" href="/page/2/">&lt;</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span>
-  
-</section>
+      
+    </section>
+  </div>
+</article>
   </div>
 </main>
   <footer class="footer">

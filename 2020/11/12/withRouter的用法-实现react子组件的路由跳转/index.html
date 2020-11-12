@@ -1,0 +1,363 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>withRouter的用法-实现react子组件的路由跳转 - Hexo</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  <meta name="description" content=" 需要实现这样一个需求：点击子组件的某个图标实现路由的..."> 
+  
+  <meta name="author" content="John Doe"> 
+
+  
+    <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_hhodbqn7tit.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css">
+
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        loadingImage: '/images/theme/loading.gif',
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      motto: {
+        api: '',
+        default: '一以贯之的努力，不得懈怠的人生'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: false
+      },
+      daovoice: {
+        enable: true
+      }
+    }
+  </script>
+
+  
+
+  
+<meta name="generator" content="Hexo 5.1.1"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left"></div>
+  <div class="center">withRouter的用法-实现react子组件的路由跳转</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/categories " class="underline"> 分类</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">withRouter的用法-实现react子组件的路由跳转</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 12, 2020</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2441</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <p> 需要实现这样一个需求：点击子组件的某个图标实现路由的跳转。一开始我是直接使用react-router的语法的，然后发现不可以实现页面的完全跳转，需要to的组件被包裹在子组件内部了。。。。搜了一下发现需要用到withRouter。</p>
+<p>withRouter的作用是，当我们需要一个不是router但却能实现跳转，比如说点击logo图片，跳转到首页之类的。withRouter将组件包裹到router中， 然后<code>react-router</code>的三个对象<code>history, location, match</code>就会被放进这个组件的<code>props</code>属性中。</p>
+<p>下面分别展示withRouter和react-router的写法，毕竟我写都写了。</p>
+<p>首先都要在顶层进行路由注册</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">Router</span>&gt;</span><br>    <span class="hljs-tag">&lt;<span class="hljs-name">Switch</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">exact</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/&quot;</span> &gt;</span> <span class="hljs-tag">&lt;<span class="hljs-name">Card</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Route</span>&gt;</span><br>        <span class="hljs-tag">&lt;<span class="hljs-name">Route</span> <span class="hljs-attr">path</span>=<span class="hljs-string">&quot;/cart&quot;</span> &gt;</span><span class="hljs-tag">&lt;<span class="hljs-name">Cart</span> /&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">Route</span>&gt;</span><br>    <span class="hljs-tag">&lt;/<span class="hljs-name">Switch</span>&gt;</span><br><span class="hljs-tag">&lt;/<span class="hljs-name">Router</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<h4 id="withRouter的用法"><a href="#withRouter的用法" class="headerlink" title="withRouter的用法"></a>withRouter的用法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">//引入withRouter</span><br><span class="hljs-keyword">import</span> &#123; withRouter &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;react-router-dom&#x27;</span>;<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Cards</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;<br>    toCart = <span class="hljs-function">() =&gt;</span> &#123;     <br>        <span class="hljs-comment">//跳转到cart路由     </span><br>         <span class="hljs-built_in">this</span>.props.history.push(<span class="hljs-string">&#x27;/cart&#x27;</span>);   <br>          &#125;<br>    render() &#123;<br>        <span class="hljs-keyword">return</span> (<br>            &lt;div className=<span class="hljs-string">&#x27;card&#x27;</span>&gt;<br>               &lt;img className=<span class="hljs-string">&#x27;add&#x27;</span> src=&#123;add&#125; alt=<span class="hljs-string">&quot;addPic&quot;</span> onClick=&#123;<span class="hljs-built_in">this</span>.toCart.bind(<span class="hljs-built_in">this</span>)&#125;&gt;&lt;/img&gt;<br>                &#123;<span class="hljs-comment">/* &lt;Router&gt;</span><br><span class="hljs-comment">                    &lt;Link className=&#x27;add&#x27; to=&quot;/cart&quot;&gt;</span><br><span class="hljs-comment">                    &lt;/Link&gt;</span><br><span class="hljs-comment">                    &lt;Route path=&quot;/cart&quot; component=&#123;Cart&#125; /&gt;</span><br><span class="hljs-comment">                &lt;/Router&gt; */</span>&#125;<br>            &lt;/div&gt;<br>        )<br>    &#125;<br>&#125;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> withRouter(Cards);<br></code></pre></td></tr></table></figure>
+
+<p>点击图片触发onClick里面的toCart方法，然后因为withRouter将history对象放在了Cards组件中了，所以toCart方法直接将cart push进路由就行了，最后用withRouter包裹导出。</p>
+<p>如果withRouter和connect一起用一定把withRouter写外面。</p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs routeros"><span class="hljs-builtin-name">export</span><span class="hljs-built_in"> default </span>  withRouter(connect((&#123; menu, mapindex &#125;) =&gt; (&#123; menu, mapindex &#125;))(TopMenu));<br></code></pre></td></tr></table></figure>
+
+
+
+<h4 id="react-router的用法"><a href="#react-router的用法" class="headerlink" title="react-router的用法"></a>react-router的用法</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">import</span> &#123; BrowserRouter <span class="hljs-keyword">as</span> Router, Route, Link &#125; <span class="hljs-keyword">from</span> <span class="hljs-string">&quot;react-router-dom&quot;</span>;<br><span class="hljs-keyword">import</span> Cart <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;./cart&#x27;</span><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Cards</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span> </span>&#123;<br>    render() &#123;<br>        <span class="hljs-keyword">return</span> (<br>            &lt;div className=<span class="hljs-string">&#x27;card&#x27;</span>&gt;<br>                 &lt;Router&gt;<br>                    &lt;Link to=<span class="hljs-string">&quot;/cart&quot;</span>&gt;<br>                    &lt;img className=<span class="hljs-string">&#x27;add&#x27;</span> src=&#123;add&#125; alt=<span class="hljs-string">&quot;addPic&quot;</span>&gt;&lt;/img&gt;<br>                    &lt;/Link&gt;<br>                    &lt;Route path=<span class="hljs-string">&quot;/cart&quot;</span> component=&#123;Cart&#125; /&gt;<br>                &lt;/Router&gt; <br>            &lt;/div&gt;<br>        )<br>    &#125;<br>&#125;<br><span class="hljs-keyword">export</span> <span class="hljs-keyword">default</span> Cards<br></code></pre></td></tr></table></figure>
+
+<p>其实从语法上就可以看出，route标签中加载了Cart组件，应该是嵌套路由</p>
+
+      </section>
+      <section class="extra">
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/react%E8%B7%AF%E7%94%B1/" rel="tag">react路由</a></li></ul>
+
+        
+<nav class="nav">
+  
+  
+    <a href="/2020/11/10/mobx%E5%9F%BA%E7%A1%80%E6%A6%82%E5%BF%B5%E5%8F%8A%E4%BD%BF%E7%94%A8/">mobx基础概念及使用<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+      </section>
+      
+      <section class="comments">
+  
+  <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+</section>
+      
+    </section>
+  </div>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+    
+    
+    
+    
+    <a href="tencent://message/?Menu=yes&uin=1151329119 " target="_blank" onMouseOver="this.style.color= '#12B7F5'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconQQ "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="/images/theme/wechat.png " target="_blank" onMouseOver="this.style.color= '#09BB07'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconwechat-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="https://github.com/LiJiaHHui " target="_blank" onMouseOver="this.style.color= '#24292E'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  icongithub-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="mailto:ljhhhui@126.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconmail"></i>
+    </a>
+    
+  </div>
+  <div class="footer-copyright"></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-daovoice">
+    <i class="iconfont iconcomment"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+</body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i["DaoVoiceObject"] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    a.charset = "utf-8";
+    m.parentNode.insertBefore(a, m)
+  })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+    "//widget.daovoice.io/widget/0f81ff2f.js", "daovoice")
+  daovoice('init', {
+    app_id: "abcdefg"
+  }, {
+    launcher: {
+      disableLauncherIcon: true,
+    },
+  });
+  daovoice('update');
+</script>
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>
