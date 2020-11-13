@@ -160,7 +160,7 @@
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 10, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>329</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1156</span>
     </div>
   </div>
 </section>
@@ -169,6 +169,16 @@
         <p> mobx与redux都是react状态管理的，mobx相对简单一些，所以就先学它。</p>
 <p>mobx是单向数据流，通过观察者模式对数据进行跟踪，当所观察的属性发生变化或者（被？）引用时，触发依赖的监听函数。在react中通过@observable设置可观察数据（state），通过@observer（观察者）对组件进行数据的更新和监听，并渲染到视图，当@action修改观察的数据时，触发@observer对组件数据更新并重新渲染到视图。@computed，计算属性，get和set可以用来控制computed。</p>
 <p>toJS方法：递归地将一个(observable)对象转换为 javascript 结构。 支持 observable 数组、对象、映射和原始类型。</p>
+<h4 id="inject"><a href="#inject" class="headerlink" title="inject"></a>inject</h4><p>在项目中使用到了inject，虽然知道是注入，但是不知道具体的使用方法，一开始直接用@inject疯狂报错。。。</p>
+<p>先看一段官网的解释</p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs applescript">inject (mobx-react 包)<br>相当于Provider 的高阶组件。可以用来从 React 的context中挑选 store 作为 <span class="hljs-keyword">prop</span> 传递给目标组件。<br></code></pre></td></tr></table></figure>
+
+<p>直接在组件前@inject会报以下错误❌</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs subunit"><span class="hljs-keyword">Error: </span>MobX injector: Store &#x27;todoList&#x27; is not available! Make sure it is provided by some Provider<br></code></pre></td></tr></table></figure>
+
+<p>然后搜了一圈资料，发现是要在父组件中添加provider，搬来的一个例子👍</p>
+<figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs scala"><span class="hljs-meta">@inject</span>(<span class="hljs-symbol">&#x27;todoLis</span>t&#x27;)<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ToDoApp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span></span>&#123;<br>    render()&#123;<br>        <span class="hljs-keyword">return</span> (<br>            &lt;div&gt;<br>                &lt;<span class="hljs-type">TodoListView</span> todoList=&#123;<span class="hljs-keyword">this</span>.props.todoList&#125;/&gt;<br>            &lt;/div&gt;<br>        );<br>    &#125;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span></span>&#123;<br>    render()&#123;<br>        <span class="hljs-keyword">return</span>(<br>            &lt;<span class="hljs-type">Provider</span> todoList=&#123;todoList&#125;&gt;<br>                &lt;<span class="hljs-type">ToDoApp</span>/&gt;<br>            &lt;/<span class="hljs-type">Provider</span>&gt;<br>        )<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
 
       </section>
       <section class="extra">
