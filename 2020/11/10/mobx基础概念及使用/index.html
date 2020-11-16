@@ -160,7 +160,7 @@
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 10, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1156</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1236</span>
     </div>
   </div>
 </section>
@@ -179,6 +179,9 @@
 <p>然后搜了一圈资料，发现是要在父组件中添加provider，搬来的一个例子👍</p>
 <figure class="highlight scala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><code class="hljs scala"><span class="hljs-meta">@inject</span>(<span class="hljs-symbol">&#x27;todoLis</span>t&#x27;)<br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">ToDoApp</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span></span>&#123;<br>    render()&#123;<br>        <span class="hljs-keyword">return</span> (<br>            &lt;div&gt;<br>                &lt;<span class="hljs-type">TodoListView</span> todoList=&#123;<span class="hljs-keyword">this</span>.props.todoList&#125;/&gt;<br>            &lt;/div&gt;<br>        );<br>    &#125;<br>&#125;<br><br><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">App</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">Component</span></span>&#123;<br>    render()&#123;<br>        <span class="hljs-keyword">return</span>(<br>            &lt;<span class="hljs-type">Provider</span> todoList=&#123;todoList&#125;&gt;<br>                &lt;<span class="hljs-type">ToDoApp</span>/&gt;<br>            &lt;/<span class="hljs-type">Provider</span>&gt;<br>        )<br>    &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
+<p>—————–11.14</p>
+<p>mobx中store的数组通过map中的index修改时，直接报错，说0/1属性无法访问到</p>
+<p>mobx中store数据修改后不能重新渲染</p>
 
       </section>
       <section class="extra">
