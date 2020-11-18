@@ -7,14 +7,13 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>flex布局 - Hexo</title>
+  <title>JS之对象及其实例和静态函数 - Hexo</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
 
   
   
-  <meta name="description" content=" 今天在写底部导航栏的时候，用到了flex布局，不是很..."> 
   
   <meta name="author" content="John Doe"> 
 
@@ -106,7 +105,7 @@
 
 <nav class="navbar">
   <div class="left"></div>
-  <div class="center">flex布局</div>
+  <div class="center">JS之对象及其实例和静态函数</div>
   <div class="right">
     <i class="iconfont iconmenu j-navbar-menu"></i>
   </div>
@@ -153,78 +152,30 @@
     <article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="/image/%E7%BE%BD%E6%89%87%E8%B1%86.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
-    <h1 class="head-title">flex布局</h1>
+    <h1 class="head-title">JS之对象及其实例和静态函数</h1>
     <div class="head-info">
-      <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 17, 2020</span
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 18, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1270</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>0</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
-        <p> 今天在写底部导航栏的时候，用到了flex布局，不是很熟练使用，一上来就想着align-item，justify-content。。。。( ╯□╰ )当然是达不到想要的效果</p>
-<h4 id="基本概念"><a href="#基本概念" class="headerlink" title="基本概念"></a>基本概念</h4><p>父元素使用display：flex，则被称为容器，里面的子元素则称为项目。容器默认有两根轴：水平的主轴，垂直的交叉轴，分别是左边和上边为轴的开始。项目默认延主轴排序。</p>
-<h4 id="容器属性"><a href="#容器属性" class="headerlink" title="容器属性"></a>容器属性</h4><ul>
-<li><p>flex-direction</p>
-<p>决定项目在水平的排列方向，取值：row（默认，在主轴上按列），row-reverse(反列)，column（按行），column-reverse（反行）</p>
-</li>
-<li><p>flex-wrap</p>
-<p>决定项目怎么换行，取值：nowrap(默认，不换行)，wrap（正常换行，从上到下，从左到右），wrap-reverse（反过来，从下到上，还是从左到右)</p>
-</li>
-<li><p>flex-flow</p>
-<p>是前面两个属性flex-direction和flex-wrap的合并简写，默认row，nowrap</p>
-</li>
-<li><p>justify-content</p>
-<p>项目在水平方向的对齐方式，取值：flex-start（左对齐），flex-end（右对齐），center（居中），space-between（两端对齐），space-around（每个项目两侧间隔相同，边框间隔会比项目间间隔小一半）</p>
-</li>
-<li><p>align-item</p>
-<p>项目在垂直方向对齐方式，取值：stretch（默认，当未设置高度或为auto时，占满容器）flex-start（上对齐）flex-end（下对齐）center（中心对齐）baseline（文字基线对齐）</p>
-</li>
-<li><p>align-content</p>
-<p>多跟轴线对齐。取值：stretch（默认，在项目垂直方向之间增加空白）flex-start （取消项目之间的空白并将其置顶） flex-end（取消项目之间的空白并将其置底） center（取消项目之间的空白并将其垂直居中） space-between （垂直方向两端对齐，项目之间增加相同空白间隔） space-around （项目上下保留相同的空白）</p>
-</li>
-</ul>
-<h4 id="项目属性"><a href="#项目属性" class="headerlink" title="项目属性"></a>项目属性</h4><ul>
-<li><p>order</p>
-<p>项目排序顺序，数值越小越靠前，默认0，可以为负数</p>
-</li>
-<li><p>flex-grow</p>
-<p>项目的放大比例，默认0（不放大），如果都为1，将等分剩余空间。</p>
-</li>
-<li><p>flex-shrink</p>
-<p>项目的缩小比例，默认1（空间不足，缩小），如果都为1，等比缩小。负值无效</p>
-</li>
-<li><p>flex-basis</p>
-<p>在分配多余空间前，项目在水平方向的大小，默认auto（项目本身大小），可以设px</p>
-</li>
-<li><p>flex</p>
-<p>是flex-grow、flex-shrink、flex-basis三者简写，默认0 1 auto，优先写这个而不是单独写三个属性，浏览器会自动推算。</p>
-</li>
-<li><p>align-self</p>
-<p>定义单个项目的对齐方式，可覆盖align-item（父元素指定的排序方式），默认auto（继承父元素的属性），没有父元素则为stretch。取值与align-item的取值一致，还有一个auto。</p>
-<p>参考文章：<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html">阮一峰flex布局</a></p>
-<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/liyu2012/p/5525609.html">align-content</a></p>
-</li>
-</ul>
-
+        
       </section>
       <section class="extra">
         
         
         
-  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li></ul>
-
         
 <nav class="nav">
   
-    <a href="/2020/11/18/JS%E4%B9%8B%E5%AF%B9%E8%B1%A1%E5%8F%8A%E5%85%B6%E5%AE%9E%E4%BE%8B%E5%92%8C%E9%9D%99%E6%80%81%E5%87%BD%E6%95%B0/"><i class="iconfont iconleft"></i>JS之对象及其实例和静态函数</a>
   
-  
-    <a href="/2020/11/16/react-mobx6%E8%B8%A9%E5%9D%91%E8%AE%B0/">react-mobx6踩坑记<i class="iconfont iconright"></i></a>
+    <a href="/2020/11/17/flex%E5%B8%83%E5%B1%80/">flex布局<i class="iconfont iconright"></i></a>
   
 </nav>
 
