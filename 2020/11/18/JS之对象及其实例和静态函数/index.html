@@ -14,6 +14,7 @@
 
   
   
+  <meta name="description" content=" JS中对象是引用类型，引用类型的实例都需要通过new..."> 
   
   <meta name="author" content="John Doe"> 
 
@@ -152,27 +153,76 @@
     <article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="/image/%E9%9B%BE%E6%9E%97.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">JS之对象及其实例和静态函数</h1>
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 18, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>0</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1402</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
-        
+        <p> JS中对象是引用类型，引用类型的实例都需要通过new来实现。所以先要了解new操作符到底发生了什么。</p>
+<h4 id="new操作符"><a href="#new操作符" class="headerlink" title="new操作符"></a>new操作符</h4><p>首先需要知道的是，在js的函数中，如果没有return值，那么默认返回this。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Cat</span>(<span class="hljs-params">name</span>)</span>&#123;<br>	<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>)<br>&#125;<br><span class="hljs-keyword">new</span> Cat(<span class="hljs-string">&#x27;kele&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+<p>如果不给this添加属性，那么返回的将是一个空对象。</p>
+<figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">function</span> Cat(<span class="hljs-type">name</span>)&#123;<br>	this.name=<span class="hljs-type">name</span><br>&#125;<br>console.log(<span class="hljs-built_in">new</span> Cat(<span class="hljs-string">&#x27;kele&#x27;</span>))//Cat &#123;<span class="hljs-type">name</span>:&quot;kele&quot;&#125;<br></code></pre></td></tr></table></figure>
+
+<p>这样才能实现赋值👆</p>
+<p>在来看new</p>
+<figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-keyword">var</span> cat=<span class="hljs-keyword">new</span> <span class="hljs-type">Cat</span>()<br></code></pre></td></tr></table></figure>
+
+<p>这句代码从表面理解就是创建了一个Cat实例，然后赋值给cat变量，cat就会包含Cat构造函数中的方法和属性，new其实做了三件事</p>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">var</span> <span class="hljs-keyword">cat</span>=&#123;&#125;<span class="hljs-comment">//创建一个空的对象</span><br><span class="hljs-keyword">cat</span>.__proto__==<span class="hljs-keyword">Cat</span>.prototype<span class="hljs-comment">//将cat对象的proto属性指向Cat对象的prototype</span><br><span class="hljs-keyword">Cat</span>.call(<span class="hljs-keyword">cat</span>)<span class="hljs-comment">//将Cat构造函数中方法指向cat变量</span><br></code></pre></td></tr></table></figure>
+
+<p>所以cat变量才会是Cat的一个实例</p>
+<p>下面来实现一个自定义new函数👇</p>
+<figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">myNew</span><span class="hljs-params">(fn,<span class="hljs-rest_arg">...args</span>)</span></span>&#123;<span class="hljs-comment">//fn为构造函数，arg为需要赋值的参数</span><br>  <span class="hljs-keyword">var</span> obj=&#123;&#125;<br>  obj.__proto__=fn.prototype<span class="hljs-comment">//实现继承</span><br>  <span class="hljs-keyword">var</span> res=fn.apply(obj,args)<span class="hljs-comment">//改变this指向</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> res===<span class="hljs-string">&#x27;Object&#x27;</span>?res:obj<span class="hljs-comment">//返回对象</span><br>&#125;<br><span class="hljs-comment">//测试</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Cat</span><span class="hljs-params">(name)</span></span>&#123;<br>	<span class="hljs-keyword">this</span>.name=name<br>&#125;<br>console.log(myNew(Cat,<span class="hljs-string">&#x27;kele&#x27;</span>))<span class="hljs-comment">//Object &#123; name: &quot;kele&quot; &#125;</span><br></code></pre></td></tr></table></figure>
+
+<p>需要注意的是proto属性一定要指向构造函数的原型，避免不能继承原型上的方法。</p>
+<h4 id="实例函数"><a href="#实例函数" class="headerlink" title="实例函数"></a>实例函数</h4><p>实例函数是指，函数的调用是基于Object类型的实例的。</p>
+<figure class="highlight dart"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs dart"><span class="hljs-keyword">var</span> obj=<span class="hljs-keyword">new</span> <span class="hljs-built_in">Object</span>()<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li><p>hasOwnProperty(name)</p>
+<p>判断对象自身是否拥有指定名称的实例属性，不会去检查原型链上的属性</p>
+</li>
+<li><p>propertyIsEnumerable(name)</p>
+<p>判断属性是否为实例属性并是否可枚举，如果是原型链上的属性或不可枚举将返回false</p>
+</li>
+</ul>
+<h4 id="静态函数"><a href="#静态函数" class="headerlink" title="静态函数"></a>静态函数</h4><p>指函数的调用基于Object类型本身而不需要通过类型的实例。</p>
+<ul>
+<li><p>Object.create()</p>
+<p>创建并返回一个指定原型和属性的对象</p>
+</li>
+<li><p>Object.defineProperties()</p>
+<p>添加或修改对象的属性指。</p>
+</li>
+<li><p>Object.getOwnPropertyNames()</p>
+<p>获取对象的所有实例属性和函数，不包含原型链继承的属性和函数，返回数组</p>
+</li>
+<li><p>Object.keys</p>
+<p>获取对象可枚举的实例属性，不包含原型链继承的属性，返回数组</p>
+</li>
+</ul>
+
       </section>
       <section class="extra">
         
         
         
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
+
         
 <nav class="nav">
+  
+    <a href="/2020/11/18/JS%E4%B9%8B%E6%95%B0%E7%BB%84/"><i class="iconfont iconleft"></i>JS之数组</a>
   
   
     <a href="/2020/11/17/flex%E5%B8%83%E5%B1%80/">flex布局<i class="iconfont iconright"></i></a>
