@@ -153,14 +153,14 @@
     <article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="/image/%E7%BE%BD%E6%89%87%E8%B1%86.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">flex布局</h1>
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 17, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>695</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1270</span>
     </div>
   </div>
 </section>
@@ -185,7 +185,29 @@
 <p>项目在垂直方向对齐方式，取值：stretch（默认，当未设置高度或为auto时，占满容器）flex-start（上对齐）flex-end（下对齐）center（中心对齐）baseline（文字基线对齐）</p>
 </li>
 <li><p>align-content</p>
-<p>多跟轴线对齐。</p>
+<p>多跟轴线对齐。取值：stretch（默认，在项目垂直方向之间增加空白）flex-start （取消项目之间的空白并将其置顶） flex-end（取消项目之间的空白并将其置底） center（取消项目之间的空白并将其垂直居中） space-between （垂直方向两端对齐，项目之间增加相同空白间隔） space-around （项目上下保留相同的空白）</p>
+</li>
+</ul>
+<h4 id="项目属性"><a href="#项目属性" class="headerlink" title="项目属性"></a>项目属性</h4><ul>
+<li><p>order</p>
+<p>项目排序顺序，数值越小越靠前，默认0，可以为负数</p>
+</li>
+<li><p>flex-grow</p>
+<p>项目的放大比例，默认0（不放大），如果都为1，将等分剩余空间。</p>
+</li>
+<li><p>flex-shrink</p>
+<p>项目的缩小比例，默认1（空间不足，缩小），如果都为1，等比缩小。负值无效</p>
+</li>
+<li><p>flex-basis</p>
+<p>在分配多余空间前，项目在水平方向的大小，默认auto（项目本身大小），可以设px</p>
+</li>
+<li><p>flex</p>
+<p>是flex-grow、flex-shrink、flex-basis三者简写，默认0 1 auto，优先写这个而不是单独写三个属性，浏览器会自动推算。</p>
+</li>
+<li><p>align-self</p>
+<p>定义单个项目的对齐方式，可覆盖align-item（父元素指定的排序方式），默认auto（继承父元素的属性），没有父元素则为stretch。取值与align-item的取值一致，还有一个auto。</p>
+<p>参考文章：<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2015/07/flex-grammar.html">阮一峰flex布局</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/liyu2012/p/5525609.html">align-content</a></p>
 </li>
 </ul>
 
