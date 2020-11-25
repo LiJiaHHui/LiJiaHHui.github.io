@@ -160,7 +160,7 @@
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 18, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1284</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3632</span>
     </div>
   </div>
 </section>
@@ -187,9 +187,47 @@
 <h5 id="Array-isArray"><a href="#Array-isArray" class="headerlink" title="Array.isArray()"></a>Array.isArray()</h5><p>使用这个方法可以直接判断是否为数组，但是不能判断是否为对象</p>
 <figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">let</span> a=<span class="hljs-literal">[<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>]</span><br><span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">Array</span>.</span></span>is<span class="hljs-constructor">Array(<span class="hljs-params">a</span>)</span><span class="hljs-comment">//true</span><br></code></pre></td></tr></table></figure>
 
-<h5 id="filter-函数过滤满足条件的值"><a href="#filter-函数过滤满足条件的值" class="headerlink" title="filter()函数过滤满足条件的值"></a>filter()函数过滤满足条件的值</h5><p>filter返回一个满足条件的新数组，不改变原来的数组，可以通过自定义方法来过滤复杂数据类型的数组。filter接收一个函数作为参数，返回值为true的元素将被加入新数组。</p>
+<h4 id="filter-函数过滤满足条件的值"><a href="#filter-函数过滤满足条件的值" class="headerlink" title="filter()函数过滤满足条件的值"></a>filter()函数过滤满足条件的值</h4><p>filter返回一个满足条件的新数组，不改变原来的数组，可以通过自定义方法来过滤复杂数据类型的数组。filter接收一个函数作为参数，返回值为true的元素将被加入新数组。</p>
 <p>还可以利用filter进行去重</p>
-<p>reduce()</p>
+<h4 id="reduce"><a href="#reduce" class="headerlink" title="reduce()"></a>reduce()</h4><p>reduce作为累加器，理解它需要知道参数的意义，MDN中的定义如下</p>
+<figure class="highlight inform7"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs inform7">arr.reduce(callback(accumulator, currentValue<span class="hljs-comment">[, index<span class="hljs-comment">[, array]</span>]</span>)<span class="hljs-comment">[, initialValue]</span>)<br>//<span class="hljs-comment">[]</span>内的参数为可选<br></code></pre></td></tr></table></figure>
+
+<p>其中<code>accumulator</code>：上一次调用回调时返回的累积值，或<code>initialValue</code></p>
+<p><code>currentValue</code>:数组中正在处理的元素</p>
+<p><code>index</code> :数组中正在处理的当前元素的索引</p>
+<p><code>array</code>:数组本身</p>
+<h5 id="统计元素出现次数"><a href="#统计元素出现次数" class="headerlink" title="统计元素出现次数"></a>统计元素出现次数</h5><figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">	let countOccurrences=function(arr)&#123;<br>  <span class="hljs-keyword">return</span> arr.reduce(function(accumulator,currentValue)&#123;<br>    accumulator[currentValue]?accumulator[currentValue]++:accumulator[currentValue]=<span class="hljs-number">1</span><br>    <span class="hljs-keyword">return</span> accumulator<br>  &#125;,&#123;&#125;)<br>&#125;<br>console.log(countOccurrences([<span class="hljs-number">1</span>,<span class="hljs-number">2</span>,<span class="hljs-number">3</span>,<span class="hljs-number">4</span>,<span class="hljs-number">5</span>,<span class="hljs-number">6</span>,<span class="hljs-number">7</span>]))<br></code></pre></td></tr></table></figure>
+
+<p>我自己在chrome上运行时，想偷个懒将函数名称写成count，然后报错</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">Identifier</span> <span class="hljs-string">&#x27;count&#x27;</span> has already been declared<br></code></pre></td></tr></table></figure>
+
+<p>这样的函数名称不能在js中定义，可能因为是关键词或者保留字吧，换一个名称就行了。</p>
+<h5 id="多维度统计数据"><a href="#多维度统计数据" class="headerlink" title="多维度统计数据"></a>多维度统计数据</h5><p>场景：汇率不同，将一组人民币分别换算成美元和欧元</p>
+<figure class="highlight pf"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><code class="hljs pf">let items = [&#123; price: <span class="hljs-number">10</span> &#125;, &#123; price: <span class="hljs-number">20</span> &#125;, &#123; price: <span class="hljs-number">300</span> &#125;]<br>let reduces = &#123;<br>	//分别计算不同汇率<br>    totalEuros: function (<span class="hljs-keyword">state</span>, item) &#123;<br>        return <span class="hljs-keyword">state</span>.euros += item.price * <span class="hljs-number">0.1265</span><br>    &#125;,<br>    totalDolls: function (<span class="hljs-keyword">state</span>, item) &#123;<br>        return <span class="hljs-keyword">state</span>.dolls += item.price * <span class="hljs-number">0.1487</span><br>    &#125;<br>&#125;<br>let managerReduces = function (reduces) &#123;<br>    return function (<span class="hljs-keyword">state</span>, item) &#123;<br>        return Object.keys(reduces).reduce(<br>            function (next, key) &#123;<br>            	//此处next累加器只是占个位，因为真正的值都是reduces里面的函数返回的<br>                reduces[key](<span class="hljs-keyword">state</span>, item)<br>                return <span class="hljs-keyword">state</span><br>            &#125;, &#123;&#125;<br>        )<br>    &#125;<br>&#125;<br>//将callback函数封装成manager，设置初始值<br>let totals = items.reduce(managerReduces(reduces), &#123; euros: <span class="hljs-number">0</span>, dolls: <span class="hljs-number">0</span> &#125;)<br>console.<span class="hljs-keyword">log</span>(totals)<br></code></pre></td></tr></table></figure>
+
+<h5 id="找出数组中的最值"><a href="#找出数组中的最值" class="headerlink" title="找出数组中的最值"></a>找出数组中的最值</h5><ul>
+<li>Math.min</li>
+</ul>
+<p>利用Math.min()和Math.max()，由于 <code>min</code> 是 <code>Math</code> 的静态方法，所以应该像这样使用：<code>Math.min()</code>，而不是作为你创建的 <code>Math</code> 实例的方法（Math 不是构造函数）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> nums=[<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">0</span>]<br><span class="hljs-built_in">Array</span>.prototype.min = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">Math</span>.min.apply(&#123;&#125;,<span class="hljs-built_in">this</span>)<br>&#125;<br><span class="hljs-built_in">console</span>.log(nums.min())<span class="hljs-comment">//0</span><br></code></pre></td></tr></table></figure>
+
+<p>为Array类型添加静态函数min，apply传入的{}，表示当前执行环境的全局对象，this代表传入的数组。不能直接调用，除非直接传入数据👇，但是实际开发中传入的往往是数组</p>
+<figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">let minNum=Math.min(<span class="hljs-number">1</span>,<span class="hljs-number">3</span>,<span class="hljs-number">0</span>)<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>reduce</li>
+</ul>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-built_in">Array</span>.prototype.min = <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-keyword">return</span> <span class="hljs-built_in">this</span>.reduce(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">pre,cur</span>)</span>&#123;<br>        <span class="hljs-comment">// 比较，返回较小的数</span><br>        <span class="hljs-keyword">return</span> pre&gt;cur?cur:pre<br>    &#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<ul>
+<li>sort</li>
+</ul>
+<p>原生的sort排序后直接取值</p>
+<figure class="highlight livecodeserver"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs livecodeserver">//最小值<br>nums.<span class="hljs-built_in">sort</span>((<span class="hljs-keyword">a</span>, b) =&gt; <span class="hljs-keyword">a</span> - b)[<span class="hljs-number">0</span>])<br>//最大值<br>nums.<span class="hljs-built_in">sort</span>((<span class="hljs-keyword">a</span>, b) =&gt; <span class="hljs-keyword">a</span> - b)[nums.<span class="hljs-built_in">length</span><span class="hljs-number">-1</span>])<br></code></pre></td></tr></table></figure>
+
+<p>还有for循环就不说了</p>
+<h5 id="数组遍历"><a href="#数组遍历" class="headerlink" title="数组遍历"></a>数组遍历</h5><p>有for、forEach()、map()、filter()、reduce（）、find（）、some（）＋every（）函数的方法 </p>
+<p>其中，find是es6新添加的，其他都是es5新增的，所以我们可以做兼容性处理（<del>手动实现API</del>）</p>
 
       </section>
       <section class="extra">
