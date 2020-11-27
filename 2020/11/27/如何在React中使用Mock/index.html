@@ -160,7 +160,7 @@
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 27, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>6299</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>6375</span>
     </div>
   </div>
 </section>
@@ -172,8 +172,8 @@
 <p>  ❄防止第三方接口失效，在调用第三方接口的时候，今天还开着，有可能明天就被关了/(ㄒoㄒ)/~~。所以可以使用mock-server来模拟接口返回数据。</p>
 <p>类似mock的还有百度的  yapi，阿里的   rap2， 大搜车的  easy-mock</p>
 <p>本文将使用三种方法来请求mock，一种直接调用axios中的方法，一种原生的promise＋xhr，一种在前面的基础上使用async/ await。</p>
-<p>安装依赖</p>
-<figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile">yarn <span class="hljs-keyword">add</span><span class="bash"> mockjs</span><br>yarn <span class="hljs-keyword">add</span><span class="bash"> axios</span><br></code></pre></td></tr></table></figure>
+<p>附上demoGitHub的地址</p>
+<h3 id="安装依赖"><a href="#安装依赖" class="headerlink" title="安装依赖"></a>安装依赖</h3><figure class="highlight dockerfile"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><code class="hljs dockerfile">yarn <span class="hljs-keyword">add</span><span class="bash"> mockjs</span><br>yarn <span class="hljs-keyword">add</span><span class="bash"> axios</span><br></code></pre></td></tr></table></figure>
 
 <p>文件目录</p>
 <p>|—data.js</p>
@@ -213,6 +213,8 @@
 <p>项目</p>
 <p>在总结的过程中，被别人安利了安利 hooks，不用关注this和@umi/useRequest。下次再了解（下次一定下次一定</p>
 <p>参考文章：</p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/Chad97/article/details/90175950">React中使用Mockjs进行接口数据模拟</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.cnblogs.com/liAnran/p/10040738.html">React请求数据为什么要在componentDidMount方法里面做？</a></p>
 <p><a href="async/await%E5%9F%BA%E6%9C%AC%E7%90%86%E8%A7%A3%E5%8F%8A%E9%A1%B9%E7%9B%AE%E6%A1%88%E4%BE%8B%EF%BC%88%E7%BB%93%E5%90%88Promise%EF%BC%89">async/await基本理解及项目案例（结合Promise）</a></p>
 
       </section>
