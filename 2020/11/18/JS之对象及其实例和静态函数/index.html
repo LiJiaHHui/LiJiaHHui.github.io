@@ -160,7 +160,7 @@
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 18, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1402</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1443</span>
     </div>
   </div>
 </section>
@@ -180,7 +180,7 @@
 <p>这句代码从表面理解就是创建了一个Cat实例，然后赋值给cat变量，cat就会包含Cat构造函数中的方法和属性，new其实做了三件事</p>
 <figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">var</span> <span class="hljs-keyword">cat</span>=&#123;&#125;<span class="hljs-comment">//创建一个空的对象</span><br><span class="hljs-keyword">cat</span>.__proto__==<span class="hljs-keyword">Cat</span>.prototype<span class="hljs-comment">//将cat对象的proto属性指向Cat对象的prototype</span><br><span class="hljs-keyword">Cat</span>.call(<span class="hljs-keyword">cat</span>)<span class="hljs-comment">//将Cat构造函数中方法指向cat变量</span><br></code></pre></td></tr></table></figure>
 
-<p>所以cat变量才会是Cat的一个实例</p>
+<p>实例的隐式原型<strong>proto</strong>,均指向构造其本身的构造函数的显式原型prototype。所以cat变量才会是Cat的一个实例</p>
 <p>下面来实现一个自定义new函数👇</p>
 <figure class="highlight actionscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><code class="hljs actionscript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">myNew</span><span class="hljs-params">(fn,<span class="hljs-rest_arg">...args</span>)</span></span>&#123;<span class="hljs-comment">//fn为构造函数，arg为需要赋值的参数</span><br>  <span class="hljs-keyword">var</span> obj=&#123;&#125;<br>  obj.__proto__=fn.prototype<span class="hljs-comment">//实现继承</span><br>  <span class="hljs-keyword">var</span> res=fn.apply(obj,args)<span class="hljs-comment">//改变this指向</span><br>  <span class="hljs-keyword">return</span> <span class="hljs-keyword">typeof</span> res===<span class="hljs-string">&#x27;Object&#x27;</span>?res:obj<span class="hljs-comment">//返回对象</span><br>&#125;<br><span class="hljs-comment">//测试</span><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Cat</span><span class="hljs-params">(name)</span></span>&#123;<br>	<span class="hljs-keyword">this</span>.name=name<br>&#125;<br>console.log(myNew(Cat,<span class="hljs-string">&#x27;kele&#x27;</span>))<span class="hljs-comment">//Object &#123; name: &quot;kele&quot; &#125;</span><br></code></pre></td></tr></table></figure>
 

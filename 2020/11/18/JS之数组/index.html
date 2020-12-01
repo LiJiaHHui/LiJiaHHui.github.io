@@ -160,14 +160,15 @@
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 18, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3632</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3681</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
         <p>  数组也是js中常用的数据类型，下面通过一些场景来描述它的使用。</p>
-<h4 id="判断变量类型，数组or对象"><a href="#判断变量类型，数组or对象" class="headerlink" title="判断变量类型，数组or对象"></a>判断变量类型，数组or对象</h4><h5 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h5><p>array也是引用类型，通过instanceof来判断变量是数组还是对象。但因为数组是属于对象的，所有判断全应该先是否为数组，再判断是否为对象。</p>
+<h4 id="判断变量类型，数组or对象"><a href="#判断变量类型，数组or对象" class="headerlink" title="判断变量类型，数组or对象"></a>判断变量类型，数组or对象</h4><h5 id="instanceof"><a href="#instanceof" class="headerlink" title="instanceof"></a>instanceof</h5><p>instanceof用于判断构造函数的prototype属性是否出现在对象的原型链中的任何位置。</p>
+<p>array也是引用类型，通过instanceof来判断变量是数组还是对象。但因为数组是属于对象的，所有判断全应该先是否为数组，再判断是否为对象。</p>
 <p>可以封装一个函数</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">myDataType</span>(<span class="hljs-params">o</span>)</span>&#123;<br>	<span class="hljs-keyword">if</span>(o <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Array</span>)&#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;Array&#x27;</span><br>	&#125;<span class="hljs-keyword">else</span> <span class="hljs-keyword">if</span>(o <span class="hljs-keyword">instanceof</span> <span class="hljs-built_in">Object</span>)&#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;Object&#x27;</span><br>	&#125; <span class="hljs-keyword">else</span>&#123;<br>		<span class="hljs-keyword">return</span> <span class="hljs-string">&#x27;not is a object type&#x27;</span><br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
