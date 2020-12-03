@@ -160,7 +160,7 @@
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 18, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1443</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1442</span>
     </div>
   </div>
 </section>
@@ -178,7 +178,7 @@
 <figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-keyword">var</span> cat=<span class="hljs-keyword">new</span> <span class="hljs-type">Cat</span>()<br></code></pre></td></tr></table></figure>
 
 <p>这句代码从表面理解就是创建了一个Cat实例，然后赋值给cat变量，cat就会包含Cat构造函数中的方法和属性，new其实做了三件事</p>
-<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">var</span> <span class="hljs-keyword">cat</span>=&#123;&#125;<span class="hljs-comment">//创建一个空的对象</span><br><span class="hljs-keyword">cat</span>.__proto__==<span class="hljs-keyword">Cat</span>.prototype<span class="hljs-comment">//将cat对象的proto属性指向Cat对象的prototype</span><br><span class="hljs-keyword">Cat</span>.call(<span class="hljs-keyword">cat</span>)<span class="hljs-comment">//将Cat构造函数中方法指向cat变量</span><br></code></pre></td></tr></table></figure>
+<figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs stata"><span class="hljs-keyword">var</span> <span class="hljs-keyword">cat</span>=&#123;&#125;<span class="hljs-comment">//创建一个空的对象</span><br><span class="hljs-keyword">cat</span>.__proto__==<span class="hljs-keyword">Cat</span>.prototype<span class="hljs-comment">//将cat对象的proto属性指向构造函数的prototype</span><br><span class="hljs-keyword">Cat</span>.call(<span class="hljs-keyword">cat</span>)<span class="hljs-comment">//将Cat构造函数中方法指向cat变量</span><br></code></pre></td></tr></table></figure>
 
 <p>实例的隐式原型<strong>proto</strong>,均指向构造其本身的构造函数的显式原型prototype。所以cat变量才会是Cat的一个实例</p>
 <p>下面来实现一个自定义new函数👇</p>

@@ -1,0 +1,389 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Grid布局 - Hexo</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  <meta name="description" content=" Grid与Flex布局有一定相似性，都可以指定容器内..."> 
+  
+  <meta name="author" content="John Doe"> 
+
+  
+    <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_hhodbqn7tit.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css">
+
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        loadingImage: '/images/theme/loading.gif',
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      motto: {
+        api: '',
+        default: '一以贯之的努力，不得懈怠的人生'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: false
+      },
+      daovoice: {
+        enable: true
+      }
+    }
+  </script>
+
+  
+
+  
+<meta name="generator" content="Hexo 5.1.1"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left"></div>
+  <div class="center">Grid布局</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/categories " class="underline"> 分类</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">Grid布局</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 03, 2020</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1693</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <p> Grid与Flex布局有一定相似性，都可以指定容器内部多个项目的位置，但是Grid布局是二维布局，将容器划分为行和列，Flex布局是一维布局，针对轴线布局。</p>
+<p>同样，Grid布局也会有容器和项目的概念，还有行和列，交叉得到单元格。</p>
+<h2 id="容器属性"><a href="#容器属性" class="headerlink" title="容器属性"></a>容器属性</h2><h3 id="display"><a href="#display" class="headerlink" title="display"></a>display</h3><p>display：grid指定容器，默认是块级元素,但也可以设成行内元素：display：inline-grid可以设为行内元素。</p>
+<p>注意，当设置成网格布局后，项目的float、display：inline-block/table-cell、vertical-align都会失效</p>
+<h3 id="grid-template-columns、grid-template-rows"><a href="#grid-template-columns、grid-template-rows" class="headerlink" title="grid-template-columns、grid-template-rows"></a>grid-template-columns、grid-template-rows</h3><p>前者定义每一行垂直的列宽，后者定义水平的行高。可以直接px定义，也可以使用**repeat()**来简化重复值。第一个参数是重复次数，第二个参数是重复的值</p>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs apache"><span class="hljs-attribute">grid</span>-template-rows: repeat(<span class="hljs-number">3</span>, <span class="hljs-number">33</span>.<span class="hljs-number">33</span>%);//定义了三栏的行高为<span class="hljs-number">33</span>.<span class="hljs-number">33</span>%<br></code></pre></td></tr></table></figure>
+
+<p>可以使用auto-fill来自动填充，直到容器放不下了。使用fr关键字表示比例关系。auto表示由浏览器自己决定长度。</p>
+<p>grid-template-columns对于两栏布局、三栏布局十分方便</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.wrapper</span> &#123;<br>  <span class="hljs-attribute">display</span>: grid;<br>  <span class="hljs-attribute">grid-template-columns</span>: <span class="hljs-number">70%</span> <span class="hljs-number">30%</span>;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>十二栏布局</p>
+<figure class="highlight css"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-tag">grid-template-columns</span><span class="hljs-selector-pseudo">:repeat(12</span>,1<span class="hljs-selector-tag">fr</span>)<br></code></pre></td></tr></table></figure>
+
+<h3 id="column-gap、row-gap-、gap"><a href="#column-gap、row-gap-、gap" class="headerlink" title="column-gap、row-gap 、gap"></a>column-gap、row-gap 、gap</h3><p>row-gap 设置行间距、column-gap设置列间距，gap是两个属性的简写。根据最新标准，前缀grid-去掉了。</p>
+<h3 id="grid-template-areas"><a href="#grid-template-areas" class="headerlink" title="grid-template-areas"></a>grid-template-areas</h3><p>“区域”，一个区域由单个或多个单元格组成。grid-template-areas划分区域</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css">grid-template-areas: &#x27;a b c&#x27;<br>                     &#x27;d e f&#x27;<br>                     &#x27;g h i&#x27;;<br></code></pre></td></tr></table></figure>
+
+<p>如果某些区域不需要利用，则使用”点”（<code>.</code>）表示。</p>
+<h3 id="grid-auto-flow"><a href="#grid-auto-flow" class="headerlink" title="grid-auto-flow"></a>grid-auto-flow</h3><p>设置子元素的排列顺序，默认row先行后列，column先列后行</p>
+<h3 id="justify-items-，-align-items-，-place-items"><a href="#justify-items-，-align-items-，-place-items" class="headerlink" title="justify-items ， align-items ， place-items"></a>justify-items ， align-items ， place-items</h3><p>justify-items设置单元格内容的水平位置（左右中），align-items设置单元格内容的垂直位置（上中下）。取值都如下：</p>
+<ul>
+<li>start：对齐单元格的起始边缘。</li>
+<li>end：对齐单元格的结束边缘。</li>
+<li>center：单元格内部居中。</li>
+<li>stretch：拉伸，占满单元格的整个宽度（默认值）。</li>
+</ul>
+<h2 id="项目属性"><a href="#项目属性" class="headerlink" title="项目属性"></a>项目属性</h2><h3 id="grid-column-start-，-grid-column-end-，-grid-row-start-，-grid-row-end"><a href="#grid-column-start-，-grid-column-end-，-grid-row-start-，-grid-row-end" class="headerlink" title="grid-column-start ， grid-column-end ， grid-row-start ， grid-row-end"></a>grid-column-start ， grid-column-end ， grid-row-start ， grid-row-end</h3><p>用于指定项目四个边框的位置分别位于哪个网格线上</p>
+<ul>
+<li><code>grid-column-start</code>属性：左边框所在的垂直网格线</li>
+<li><code>grid-column-end</code>属性：右边框所在的垂直网格线</li>
+<li><code>grid-row-start</code>属性：上边框所在的水平网格线</li>
+<li><code>grid-row-end</code>属性：下边框所在的水平网格线</li>
+</ul>
+<p>grid-column 是前面两个属性的简写， grid-row 也是简写。</p>
+<h3 id="grid-area"><a href="#grid-area" class="headerlink" title="grid-area"></a>grid-area</h3><p>指定项目放在哪个区域</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs css"><span class="hljs-selector-class">.item-1</span> &#123;<br>  <span class="hljs-attribute">grid-area</span>: e;<br>&#125;//放在中间区域<br></code></pre></td></tr></table></figure>
+
+<p>grid-area属性还可用作grid-row-start、grid-column-start、grid-row-end、grid-column-end的简写，直接指定项目的位置。</p>
+<h3 id="justify-self-，align-self-，place-self"><a href="#justify-self-，align-self-，place-self" class="headerlink" title="justify-self ，align-self ，place-self"></a>justify-self ，align-self ，place-self</h3><p>与前面的<code>justify-items</code>属性的用法完全一致，只是用于单个项目。</p>
+<p>参考文章：<a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2019/03/grid-layout-tutorial.html">CSS Grid 网格布局教程</a></p>
+
+      </section>
+      <section class="extra">
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/css/" rel="tag">css</a></li></ul>
+
+        
+<nav class="nav">
+  
+    <a href="/2020/12/03/css%E7%9F%A5%E8%AF%86%E7%82%B9/"><i class="iconfont iconleft"></i>css知识点</a>
+  
+  
+    <a href="/2020/12/03/%E5%9C%A8vue%E4%B8%AD%E4%BD%BF%E7%94%A8scss%E5%8F%8A%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9/">在vue中使用scss及注意事项<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+      </section>
+      
+      <section class="comments">
+  
+  <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+</section>
+      
+    </section>
+  </div>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+    
+    
+    
+    
+    <a href="tencent://message/?Menu=yes&uin=1151329119 " target="_blank" onMouseOver="this.style.color= '#12B7F5'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconQQ "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="/images/theme/wechat.png " target="_blank" onMouseOver="this.style.color= '#09BB07'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconwechat-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="https://github.com/LiJiaHHui " target="_blank" onMouseOver="this.style.color= '#24292E'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  icongithub-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="mailto:ljhhhui@126.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconmail"></i>
+    </a>
+    
+  </div>
+  <div class="footer-copyright"></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-daovoice">
+    <i class="iconfont iconcomment"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+</body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i["DaoVoiceObject"] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    a.charset = "utf-8";
+    m.parentNode.insertBefore(a, m)
+  })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+    "//widget.daovoice.io/widget/0f81ff2f.js", "daovoice")
+  daovoice('init', {
+    app_id: "abcdefg"
+  }, {
+    launcher: {
+      disableLauncherIcon: true,
+    },
+  });
+  daovoice('update');
+</script>
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>
