@@ -153,14 +153,14 @@
     <article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="/image/%E5%B1%B1.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
     <h1 class="head-title">关于react实现定位———navigator.geolocation与腾讯地图</h1>
     <div class="head-info">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 07, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1567</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2340</span>
     </div>
   </div>
 </section>
@@ -176,10 +176,11 @@
 <p>为啥超时了呢，搜了一波发现有个解释：因为部分浏览器使用的谷歌的定位服务，而谷歌服务在中国被墙了，所以要么定位非常非常慢，也非常非常不准，要么直接无法定位。。。。</p>
 <p>所以放弃使用geolocation来获取经纬度，准备用腾讯地图的API来获取。</p>
 <h3 id="react中引入腾讯地图"><a href="#react中引入腾讯地图" class="headerlink" title="react中引入腾讯地图"></a>react中引入腾讯地图</h3><p>但是<a target="_blank" rel="noopener" href="https://lbs.qq.com/webApi/component/componentGuide/componentGeolocation">腾讯地图</a>官网的例子，直接在react项目中使用，直接报错，qq对象不存在。</p>
+<p>第一种方法：</p>
 <p>首先，需要在react中的webpack中设置：</p>
 <figure class="highlight coffeescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs coffeescript"><span class="hljs-built_in">module</span>.<span class="hljs-built_in">exports</span> = &#123;<br>  externals:&#123;<br>    <span class="hljs-string">&#x27;QMap&#x27;</span>:<span class="hljs-string">&#x27;qq.maps&#x27;</span><br>  &#125;,<br> &#125;<br></code></pre></td></tr></table></figure>
 
-<p>安装依赖，然后引用</p>
+<p>然后引用</p>
 <figure class="highlight clean"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs clean"><span class="hljs-keyword">import</span> QMap <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;QMap&#x27;</span><br></code></pre></td></tr></table></figure>
 
 <p>直接使用</p>
@@ -189,13 +190,29 @@
 <figure class="highlight nim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs nim">module.exports = function (webpackEnv) &#123;//由对象变成了函数<br>	...<br>	<span class="hljs-keyword">return</span>&#123;//在<span class="hljs-keyword">return</span>中配置<br>	//entry:...<br>	//output:...<br>	externals:<span class="hljs-meta">&#123;...&#125;</span><br>	&#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>其中，如果我们想引用一个库，但是又不想让webpack打包，并且又不影响我们在程序中以CMD、AMD或者window/global全局等方式进行使用，那就可以通过配置externals。</p>
-<p>或者直接npm i qqmap，引入SDK。</p>
+<p>或者直接npm i qqmap，引入依赖。</p>
+<p>第二种方法</p>
+<p><strong>用Window对象保存QMap变量，实现HTML文件和JS文件间的变量传递</strong></p>
+<p>先引入脚本</p>
+<figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs xml"><span class="hljs-tag">&lt;<span class="hljs-name">script</span> <span class="hljs-attr">type</span>=<span class="hljs-string">&quot;text/javascript&quot;</span> <span class="hljs-attr">src</span>=<span class="hljs-string">&quot;https://apis.map.qq.com/tools/geolocation/min?key=UQPBZ-RCU36-K2YS3-EMV6Y-JI6JJ-3WBUM&amp;referer=myapp&amp;callback=showPosition&quot;</span>&gt;</span><span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br>   <span class="hljs-tag">&lt;<span class="hljs-name">script</span>&gt;</span><br><span class="javascript">        <span class="hljs-built_in">window</span>.QMap = qq.maps;</span><br>   <span class="hljs-tag">&lt;/<span class="hljs-name">script</span>&gt;</span><br></code></pre></td></tr></table></figure>
+
+<p>将QMap对象保存到全局可访问的window对象中，使用方法如下</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">let</span> QMap=<span class="hljs-built_in">window</span>.QMap<br></code></pre></td></tr></table></figure>
+
+
+
+
+
 <p><img   class="lazyload" data-original="C:\Users\Rain\AppData\Roaming\Typora\typora-user-images\image-20201207171947614.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201207171947614"></p>
 <p>我在项目中使用new qq.maps.Geocoder就会报错，后来查看文档发现了可以自动获取IP地址进行定位👍</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><code class="hljs javascript">   <span class="hljs-keyword">let</span>  citylocation = <span class="hljs-keyword">new</span> qq.maps.CityService();<br>    <span class="hljs-comment">//请求成功回调函数</span><br>    citylocation.setComplete(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">result</span>) </span>&#123;<br>        <span class="hljs-keyword">let</span> a= <span class="hljs-built_in">JSON</span>.parse(<span class="hljs-built_in">JSON</span>.stringify(result.detail.latLng))<br>        <span class="hljs-built_in">console</span>.log(a);<br>        <span class="hljs-keyword">let</span> &#123;lat,lng&#125;= a;<br>        <span class="hljs-built_in">console</span>.log(lat+<span class="hljs-string">&#x27;,&#x27;</span>+lng)<br>   <span class="hljs-built_in">this</span>.setState(&#123;<br>        location:lat+<span class="hljs-string">&#x27;,&#x27;</span>+lng<br>    &#125;)<br>    &#125;);<br>    <span class="hljs-comment">//请求失败回调函数</span><br>    citylocation.setError(<span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>) </span>&#123;<br>        alert(<span class="hljs-string">&quot;出错了，请输入正确的经纬度！！！&quot;</span>);<br>    &#125;);<br>    citylocation.searchLocalCity();<br>&#125;)<br></code></pre></td></tr></table></figure>
 
 <p>控制台成功输出经纬度</p>
 <p><img   class="lazyload" data-original="C:\Users\Rain\AppData\Roaming\Typora\typora-user-images\image-20201207182219241.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201207182219241"></p>
+<p>由于使用IP定位会出现定位不准的情况，所以还是得使用腾讯前端定位组件，在react中使用。</p>
+<p>我的项目中，react项目创建的index在public里面，所以在public/index.html中引入script标签实现跨域。</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">let</span> QMap=window.QMap<br><span class="hljs-keyword">let</span> geolocation=<span class="hljs-keyword">new</span> QMap.<span class="hljs-constructor">Geolocation()</span><br>geolocation.get<span class="hljs-constructor">Location(<span class="hljs-params">showPosition</span>, <span class="hljs-params">showErr</span>)</span>;<br><span class="hljs-keyword">function</span> show<span class="hljs-constructor">Position(<span class="hljs-params">position</span>)</span> &#123;<br>    console.log(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">JSON</span>.</span></span>stringify(position)) <br>&#125;;<br><span class="hljs-keyword">function</span> show<span class="hljs-constructor">Err()</span> &#123;<br>  console.log(<span class="hljs-string">&quot;err!!!!&quot;</span>)<br>&#125;;<br></code></pre></td></tr></table></figure>
+
 
       </section>
       <section class="extra">
