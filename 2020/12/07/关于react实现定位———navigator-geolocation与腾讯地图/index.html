@@ -160,7 +160,7 @@
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 07, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2340</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2468</span>
     </div>
   </div>
 </section>
@@ -213,6 +213,10 @@
 <p>我的项目中，react项目创建的index在public里面，所以在public/index.html中引入script标签实现跨域。</p>
 <figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs reasonml"><span class="hljs-keyword">let</span> QMap=window.QMap<br><span class="hljs-keyword">let</span> geolocation=<span class="hljs-keyword">new</span> QMap.<span class="hljs-constructor">Geolocation()</span><br>geolocation.get<span class="hljs-constructor">Location(<span class="hljs-params">showPosition</span>, <span class="hljs-params">showErr</span>)</span>;<br><span class="hljs-keyword">function</span> show<span class="hljs-constructor">Position(<span class="hljs-params">position</span>)</span> &#123;<br>    console.log(<span class="hljs-module-access"><span class="hljs-module"><span class="hljs-identifier">JSON</span>.</span></span>stringify(position)) <br>&#125;;<br><span class="hljs-keyword">function</span> show<span class="hljs-constructor">Err()</span> &#123;<br>  console.log(<span class="hljs-string">&quot;err!!!!&quot;</span>)<br>&#125;;<br></code></pre></td></tr></table></figure>
 
+<p>然鹅，发现一个很诡异的问题，成功拿到了返回的数据，但是一直走失败逻辑！！！！我设置了callback都无用。</p>
+<p>在搜了一波之后，官网的FAQ其实就告诉我了👇</p>
+<p><img   class="lazyload" data-original="C:\Users\Rain\AppData\Roaming\Typora\typora-user-images\image-20201209145231855.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20201209145231855"></p>
+<p>因为我本地创建的react项目默认走的是http协议，所以要升级为https。方法见下篇文章。</p>
 
       </section>
       <section class="extra">
@@ -223,6 +227,8 @@
 
         
 <nav class="nav">
+  
+    <a href="/2020/12/09/React%E4%B8%AD%E5%B0%86http%E5%8D%87%E7%BA%A7%E4%B8%BAhttps/"><i class="iconfont iconleft"></i>React中将http升级为https</a>
   
   
     <a href="/2020/12/07/react%E8%B7%A8%E5%9F%9F-%E9%85%8D%E7%BD%AE%E6%8E%A5%E5%8F%A3%E8%B7%A8%E5%9F%9F%E4%BB%A3%E7%90%86%EF%BC%8C%E5%AE%9E%E7%8E%B0axios%E8%B7%A8%E5%9F%9F/">react跨域-配置接口跨域代理，实现axios跨域<i class="iconfont iconright"></i></a>
