@@ -7,13 +7,15 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>ts - Hexo</title>
+  <title>react中使用TS - Hexo</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
 
   
   
+  <meta name="description" content=" 首先是安装TS依赖
+1npm install -S ..."> 
   
   <meta name="author" content="John Doe"> 
 
@@ -105,7 +107,7 @@
 
 <nav class="navbar">
   <div class="left"></div>
-  <div class="center">标签</div>
+  <div class="center">react中使用TS</div>
   <div class="right">
     <i class="iconfont iconmenu j-navbar-menu"></i>
   </div>
@@ -148,23 +150,55 @@
   </div>
 </nav>
   <main id="main">
-  <section class="archive">
-    <div class="archive-container">
-      <div class="archive-post">
-        <h2 class="archive-total"># ts</h2>
-        
-        
-        
-        <h3 class="archive-year">2020</h3>
-        
-        <div class="archive-item">
-          <a class="archive-date" href="/2020/12/10/TS%E5%9F%BA%E7%A1%80/">12/10</a>
-          <a class="archive-title" href="/2020/12/10/TS%E5%9F%BA%E7%A1%80/">TS基础</a>
-        </div>
-        
-      </div>
+  <div class="container" id="container">
+    <article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">react中使用TS</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 10, 2020</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>182</span>
     </div>
-  </section>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <p> 首先是安装TS依赖</p>
+<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs cmake">npm <span class="hljs-keyword">install</span> -S -D typescript<br></code></pre></td></tr></table></figure>
+
+<p>写的时候报错，类型“mapRequest”上不存在属性“setState”</p>
+<p>再安装eact、react-dom的类型定义</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs nginx"><span class="hljs-attribute">npm</span> install --save-dev  <span class="hljs-string">&quot;<span class="hljs-variable">@types</span>/react&quot;</span>  <span class="hljs-string">&quot;<span class="hljs-variable">@types</span>/react-dom&quot;</span><br></code></pre></td></tr></table></figure>
+      </section>
+      <section class="extra">
+        
+        
+        
+        
+<nav class="nav">
+  
+  
+    <a href="/2020/12/10/TS%E5%9F%BA%E7%A1%80/">TS基础<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+      </section>
+      
+      <section class="comments">
+  
+  <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+</section>
+      
+    </section>
+  </div>
+</article>
+  </div>
 </main>
   <footer class="footer">
   <div class="footer-social">
