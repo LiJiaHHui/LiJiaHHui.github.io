@@ -160,7 +160,7 @@
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 10, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>5744</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>5982</span>
     </div>
   </div>
 </section>
@@ -258,7 +258,12 @@
 <figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs ts">(<span class="hljs-built_in">window</span> <span class="hljs-keyword">as</span> <span class="hljs-built_in">any</span>).foo = <span class="hljs-number">1</span>;<br></code></pre></td></tr></table></figure>
 
 <p> <a target="_blank" rel="noopener" href="https://github.com/Microsoft/TypeScript/wiki/TypeScript-Design-Goals">TypeScript 的设计理念</a>之一：<strong>一方面不能滥用 <code>as any</code>，另一方面也不要完全否定它的作用，我们需要在类型的严格性和开发的便利性之间掌握平衡</strong> :balance_scale:</p>
-
+<h3 id="内置对象"><a href="#内置对象" class="headerlink" title="内置对象"></a>内置对象</h3><p>JS本身就有很多内置对象，在TS中可以当作已经定义好了的类型</p>
+<p>ECMAScript标准里的内置对象：Boolean、Error、Date、RegExp</p>
+<p>DOM,BOM中的内置对象：Document、HTMlElement、Event、NodeList</p>
+<p>可以将变量定义为这些类型。</p>
+<p>Node.js 不是内置对象的一部分，如果想用 TypeScript 写 Node.js，则需要引入第三方声明文件：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs bash">npm install @types/node --save-dev<br></code></pre></td></tr></table></figure>
       </section>
       <section class="extra">
         
