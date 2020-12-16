@@ -14,7 +14,7 @@
 
   
   
-  <meta name="description" content="CDN的缓存与回源策略​    CDN的核心点有两个：..."> 
+  <meta name="description" content="CDN的缓存与回源策略​     CDN是内容分发网路..."> 
   
   <meta name="author" content="John Doe"> 
 
@@ -160,15 +160,17 @@
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 24, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>501</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>539</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
-        <h3 id="CDN的缓存与回源策略"><a href="#CDN的缓存与回源策略" class="headerlink" title="CDN的缓存与回源策略"></a>CDN的缓存与回源策略</h3><p>​    CDN的核心点有两个：一是缓存，二是回源。缓存是指，将静态资源copy一份，放在CDN服务器上。回源是指，当请求的资源在CDN上找不到时（一般是缓存的数据过期了），就会向根服务器去请求这个资源。</p>
-<p>​    CDN往往用来存放静态资源，比如说JS，CSS,图片等不需要业务服务器进行计算得资源。根服务器本质上是业务服务器，核心任务是生成动态页面或返回非静态页面，动态资源是指后端实时动态生成得资源，比如JSP或者依赖服务端渲染而得到的页面。非纯静态资源是指，需要服务器在页面之外做额外计算的html页面，比如说页面的权限认证。</p>
+        <h3 id="CDN的缓存与回源策略"><a href="#CDN的缓存与回源策略" class="headerlink" title="CDN的缓存与回源策略"></a>CDN的缓存与回源策略</h3><p>​     CDN是内容分发网路，指一组分布在各个地区的服务器，存储着数据的副本。CDN的核心功能有两个：一是缓存，二是回源。缓存是指，将静态资源copy一份，放在CDN服务器上。静态资源，比如说JS，CSS,图片等不需要业务服务器进行计算得资源。</p>
+<p>​        回源是指，当请求的资源在CDN上找不到时（一般是缓存的数据过期了），就会向根服务器去请求这个资源。根服务器本质上是业务服务器，用来生成动态页面或返回非静态页面，动态资源是指后端实时动态生成得资源，比如JSP或者依赖服务端渲染而得到的页面。非纯静态资源是指，需要服务器做额外计算的html页面，比如说页面的权限认证。</p>
 <h4 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h4><p>​    静态资源访问量大，访问频率高，所以加载速度是前端优化的重要指标。大型电商，都是将静态资源放到CDN中。如果CDN域名与网站域名不一致，还可以带来一个额外的好处就是，当用户访问CDN上的静态资源时，不会携带cookie，避免性能消耗</p>
+<p>浏览器缓存</p>
+<p>使用浏览器缓存</p>
 <p>两栏布局：float，左浮动</p>
 <p>absolute绝对定位，left，top设为0</p>
 <p>table布局</p>

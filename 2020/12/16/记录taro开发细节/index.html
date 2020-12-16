@@ -7,14 +7,14 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>ES6知识点 - Hexo</title>
+  <title>记录taro开发细节 - Hexo</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
 
   
   
-  <meta name="description" content="let与constlet和const的作用域都是块级作..."> 
+  <meta name="description" content=" 1、taro中是不能引入其他第三方ui库的，当我想用..."> 
   
   <meta name="author" content="John Doe"> 
 
@@ -106,7 +106,7 @@
 
 <nav class="navbar">
   <div class="left"></div>
-  <div class="center">ES6知识点</div>
+  <div class="center">记录taro开发细节</div>
   <div class="right">
     <i class="iconfont iconmenu j-navbar-menu"></i>
   </div>
@@ -153,55 +153,37 @@
     <article class="article">
   <div class="wrap">
     <section class="head">
-  <img   class="lazyload" data-original="/image/deepSea.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
-    <h1 class="head-title">ES6知识点</h1>
+    <h1 class="head-title">记录taro开发细节</h1>
     <div class="head-info">
-      <span class="post-info-item"><i class="iconfont iconcalendar"></i>September 17, 2020</span
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 16, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1504</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>187</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
-        <h1 id="let与const"><a href="#let与const" class="headerlink" title="let与const"></a>let与const</h1><p>let和const的作用域都是块级作用域，都不能重复声明，都不存在变量提升，在变量声明前使用会导致暂时性死区。两者的区别在于，let声明的是一个常量，声明时可以不赋值，声明后可以修改；const声明的是一个常量，声明时一定要赋值，声明后不能被修改。</p>
-<p>const中保存的是变量指向的内存地址。对于基本数据类型而言，值就是指向内存地址中的数据，等同于常量。对于引用类型而言，const保存的是一个指向固定地址的指针。</p>
-<p>因此如果const声明一个对象，对象是可以添加新属性的，声明一个数组也是可以通过push方法添加数据。要真正冻结对象，不允许重复赋值的话，使用Object.freeze方法。</p>
-<p>冻结对象本身</p>
-<p><code>const foo = Object.freeze(&#123;&#125;)</code></p>
-<p>彻底冻结，包括属性</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs html">var constantize(obj)=&gt;&#123;<br>	Object.freeze(obj);<br>	Object.key(obj).forEach((key)=&gt;&#123;<br>		if(typeof(obj[key]===&#x27;Object&#x27;))&#123;<br>			constantize(obj[key])<br>		&#125;<br>	&#125;)<br>&#125;<br></code></pre></td></tr></table></figure>
+        <p> 1、taro中是不能引入其他第三方ui库的，当我想用antd中的轮播图时，马上报错了</p>
+<p>2、配置路由：在app.tsx中的配置，然后pages.js中会自动生成路由文件</p>
+<figure class="highlight awk"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs awk">config: Config = &#123;<br>    page:[<span class="hljs-regexp">//</span>数组的第一项代表小程序的初始页面<br>        <span class="hljs-string">&#x27;pages/home/index&#x27;</span>,<br>    ]<br></code></pre></td></tr></table></figure>
 
-<p>var的作用域是全局作用域，有变量提升，可以重复声明。</p>
-<p>let与var的区别：当在一个for循环里面时，var声明的i是全局的，每次修改的都是同一个变量，let声明的i仅在本轮循环中有效，每一次循环的i都是一个新变量，js会记住上一次循环i的值，来初始化本轮的i。</p>
-<h1 id="块级作用域与函数声明"><a href="#块级作用域与函数声明" class="headerlink" title="块级作用域与函数声明"></a>块级作用域与函数声明</h1><p>es5中只有全局作用域和函数作用域，es6新增块级作用域，所以按es5的规则，函数不能定义在块级作用域中，但是在浏览器中，函数可以声明在块级作用域中，并且会被提升到全局作用域或者是函数作用域的头部（类似var），也提升到当前块级作用域的头部。</p>
-<h1 id="声明变量的六种方法"><a href="#声明变量的六种方法" class="headerlink" title="声明变量的六种方法"></a>声明变量的六种方法</h1><p>var，let，const，function，import，class</p>
-<h1 id="顶层对象"><a href="#顶层对象" class="headerlink" title="顶层对象"></a>顶层对象</h1><p>在浏览器中顶层对象是指window，在node中指的是global，es5中顶层对象与全局对象是等价的。</p>
-<h1 id="循环遍历"><a href="#循环遍历" class="headerlink" title="循环遍历"></a>循环遍历</h1><p>最原始的是for循环，数组也提供内置的forEach方法,参数是一个函数<br>myArray.forEach(function (value)){<br> value+1<br>}<br>缺点在于不能中途跳出，break，return无效<br>For-in 遍历的是键名key，是一个字符串，主要是为遍历对象设计的，不适合遍历数组<br>Es6中新增for-of循环<br>for-of遍历的是值,提供了遍历所有数据结构的统一操作接口，可以用break跳出循环</p>
-<p>图for-in与for-of的对比</p>
-<h1 id="rest参数与扩展运算符"><a href="#rest参数与扩展运算符" class="headerlink" title="rest参数与扩展运算符"></a>rest参数与扩展运算符</h1><p>互为逆运算，rest用于获取函数多余参数，…扩展运算符是将一个数组转为用逗号分隔的参数序列</p>
-<p>扩展运算符是将数组分割为序列，rest运算符是将分割序列合并为数组</p>
-<p>浏览器对同一域名请求的最大并发连接量<br>在http1.1以下是可以有多个tcp连接，http2是取消了多个连接，一个tcp连接用多路复用实现数据的同时传输<br>IE10+，火狐，谷歌4+的最大并发连接数量是6个</p>
-<p>http方法<br>Get和post的区别<br>在tcp/ip层面：get产生一个数据包，浏览器将header和data一起发送出去，资源存在服务器响应200<br>post产生两个数据包，浏览器先发送一个headers，服务器响应100 continue后再继续发送data，服务器响应200并且返回数据</p>
-<p>五层协议<br>从应用层</p>
-<p>http请求</p>
+<p>3、</p>
 
       </section>
       <section class="extra">
         
         
         
-  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/JS/" rel="tag">JS</a></li></ul>
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/taro/" rel="tag">taro</a></li></ul>
 
         
 <nav class="nav">
   
-    <a href="/2020/09/17/JS%E4%B9%8BObject%E7%9A%84%E6%96%B9%E6%B3%95/"><i class="iconfont iconleft"></i>JS之Object的方法</a>
   
-  
-    <a href="/2020/09/12/Node%E6%90%AD%E5%BB%BA%E6%9C%8D%E5%8A%A1%E5%99%A8%E5%AE%9E%E7%8E%B0%E7%9C%9F%E6%9C%BA%E8%B0%83%E8%AF%95%E9%A1%B9%E7%9B%AE/">Node搭建服务器实现真机调试项目<i class="iconfont iconright"></i></a>
+    <a href="/2020/12/11/TS%E8%BF%9B%E9%98%B6%E7%9F%A5%E8%AF%86%E7%82%B9/">TS进阶知识点<i class="iconfont iconright"></i></a>
   
 </nav>
 

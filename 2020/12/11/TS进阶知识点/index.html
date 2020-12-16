@@ -160,7 +160,7 @@
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 11, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2154</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3601</span>
     </div>
   </div>
 </section>
@@ -194,22 +194,50 @@
 <li>类（Class）：定义了一件事物的抽象特点，包含它的属性和方法</li>
 <li>对象（Object）：类的实例，通过 <code>new</code> 生成</li>
 <li>面向对象（OOP）的三大特性：封装、继承、多态</li>
-<li>封装（Encapsulation）：将对数据的操作细节隐藏起来，只暴露对外的接口。外界调用端不需要（也不可能）知道细节，就能通过对外提供的接口来访问该对象，同时也保证了外界无法任意更改对象内部的数据</li>
-<li>继承（Inheritance）：子类继承父类，子类除了拥有父类的所有特性外，还有一些更具体的特性</li>
-<li>多态（Polymorphism）：由继承而产生了相关的不同的类，对同一个方法可以有不同的响应。比如 <code>Cat</code> 和 <code>Dog</code> 都继承自 <code>Animal</code>，但是分别实现了自己的 <code>eat</code> 方法。此时针对某一个实例，我们无需了解它是 <code>Cat</code> 还是 <code>Dog</code>，就可以直接调用 <code>eat</code> 方法，程序会自动判断出来应该如何执行 <code>eat</code></li>
+<li>封装（Encapsulation）：将对数据的内部逻辑隐藏起来，只暴露一个接口。外界调用不需要（也不可能）知道细节，就能通过接口来访问对象，同时也保证了外界无法任意更改对象内部的数据</li>
+<li>继承（Inheritance）：子类继承父类，子类除了拥有父类的所有特性外，还有一些自己的特性</li>
+<li>多态（Polymorphism）：继承自同一个父类的不同子类，对同一个方法有不同的响应。比如 <code>Cat</code> 和 <code>Dog</code> 都继承自 <code>Animal</code>，但是分别实现了自己的 <code>eat</code> 方法。此时针对某一个实例，我们无需了解它是 <code>Cat</code> 还是 <code>Dog</code>，就可以直接调用 <code>eat</code> 方法，程序会自动判断出来应该如何执行 <code>eat</code></li>
 <li>存取器（getter &amp; setter）：用以改变属性的读取和赋值行为</li>
 <li>修饰符（Modifiers）：修饰符是一些关键字，用于限定成员或类型的性质。比如 <code>public</code> 表示公有属性或方法</li>
 <li>抽象类（Abstract Class）：抽象类是供其他类继承的基类，抽象类不允许被实例化。抽象类中的抽象方法必须在子类中被实现</li>
-<li>接口（Interfaces）：不同类之间公有的属性或方法，可以抽象成一个接口。接口可以被类实现（implements）。一个类只能继承自另一个类，但是可以实现多个接口</li>
+<li>接口（Interfaces）：不同类之间公有的属性或方法，可以抽象成一个接口。接口可以被类实现（implements）。一个类只能继承自另一个类，但是可以实现多个接口。</li>
 </ul>
 <h4 id="ES6中类的用法"><a href="#ES6中类的用法" class="headerlink" title="ES6中类的用法"></a>ES6中类的用法</h4><p>使用 <code>class</code> 定义类，使用 <code>constructor</code> 定义构造函数。通过 <code>new</code> 生成新实例的时候，会自动调用构造函数。</p>
 <p>使用 <code>extends</code> 关键字实现继承，子类中使用 <code>super</code> 关键字来调用父类的构造函数和方法。</p>
 <p>存取器，使用getter和setter改变属性的赋值和读取行为。</p>
-<p>静态方法，使用static修饰的方法，不需实例化，可直接通过类调用。</p>
+<p>静态方法，指使用static修饰的方法，不需实例化，可直接通过类调用。</p>
+<p>静态方法作用：在创建类的时候就已经存在内存中，直到程序结束才销毁，不用在每一个实例化中反复创建，节约内存空间</p>
 <h4 id="ES7中类的用法"><a href="#ES7中类的用法" class="headerlink" title="ES7中类的用法"></a>ES7中类的用法</h4><p>实例属性：ES6中实例属性只能通过构造函数的<code>this.xxx</code>定义，ES7中可以通过在类中直接定义。</p>
-<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Animal</span> </span>&#123;<br>  name = <span class="hljs-string">&#x27;Jack&#x27;</span>;<br><br>  <span class="hljs-keyword">constructor</span>() &#123;<br>    <span class="hljs-comment">// ...</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs js"><span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">Animal</span> </span>&#123;<br>  name = <span class="hljs-string">&#x27;Jack&#x27;</span>;<br>  <span class="hljs-keyword">constructor</span>() &#123;<br>    <span class="hljs-comment">// ...</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
 
 <p>静态属性：可以用static定义一个静态属性。</p>
+<h4 id="TS中类的用法"><a href="#TS中类的用法" class="headerlink" title="TS中类的用法"></a>TS中类的用法</h4><p>修饰符：</p>
+<ul>
+<li>public：修饰公有属性和方法，默认所有属性和方法都是public</li>
+<li>private：修饰私有属性和方法，不能在类的外部访问</li>
+<li>protected：修饰属性和方法受保护，但是可以被子类访问</li>
+</ul>
+<p>当构造函数为private时，不允许被继承或实例化，为protected时，只能被继承。</p>
+<p>修饰符和readonly还可以用在构造函数参数中=在类中定义该属性并赋值</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">class</span> Animal &#123;<br>  <span class="hljs-comment">// public name: string;</span><br>  <span class="hljs-keyword">public</span> <span class="hljs-keyword">constructor</span>(<span class="hljs-params"><span class="hljs-keyword">public</span> name</span>) &#123;<br>    <span class="hljs-comment">// this.name = name;</span><br>  &#125;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>抽象类：</p>
+<p><code>abstract</code>来是声明，抽象类不能被实例化，只能继承，子类中必须实现抽象方法。</p>
+<p>类的类型：</p>
+<p>可以给类加上TS类型</p>
+<h4 id="类与接口"><a href="#类与接口" class="headerlink" title="类与接口"></a>类与接口</h4><p>一个类可以实现多个接口，接口是一些类之间公共方法和属性的抽象，接口可以继承接口。在TS中，接口可以继承类。因为在TS中，创建一个类的同时也创建了一个类型</p>
+<h4 id="泛型"><a href="#泛型" class="headerlink" title="泛型"></a>泛型</h4><p>指在定义函数、接口或类的时候，不预先指定具体类型，而是在使用时再指定。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">createArray</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">length: <span class="hljs-built_in">number</span>, value: T</span>): <span class="hljs-title">Array</span>&lt;<span class="hljs-title">T</span>&gt; </span>&#123;<br>    <span class="hljs-keyword">let</span> result: T[] = [];<br>    <span class="hljs-keyword">for</span> (<span class="hljs-keyword">let</span> i = <span class="hljs-number">0</span>; i &lt; length; i++) &#123;<br>        result[i] = value;<br>    &#125;<br>    <span class="hljs-keyword">return</span> result;<br>&#125;<br><br>createArray&lt;<span class="hljs-built_in">string</span>&gt;(<span class="hljs-number">3</span>, <span class="hljs-string">&#x27;x&#x27;</span>); <span class="hljs-comment">// [&#x27;x&#x27;, &#x27;x&#x27;, &#x27;x&#x27;]</span><br></code></pre></td></tr></table></figure>
+
+<p>函数名后添加了 <code>&lt;T&gt;</code>，<code>T</code>指可以输入任何类型的值，Array<T>数组中的每一项都是输入的value的类型</p>
+<p>泛型约束：在函数内部使用泛型的时候，由于事先并不知道具体的类型，有的属性和方法不能随意使用</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loggingIdentity</span>&lt;<span class="hljs-title">T</span>&gt;(<span class="hljs-params">arg: T</span>): <span class="hljs-title">T</span> </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(arg.length);<br>    <span class="hljs-keyword">return</span> arg;<br>&#125;<br><span class="hljs-comment">// index.ts(2,19): error TS2339: Property &#x27;length&#x27; does not exist on type &#x27;T&#x27;.</span><br></code></pre></td></tr></table></figure>
+
+<p>泛型T不一定包含属性length，要对泛型进行约束，只允许变量包含特定的（如length）属性才能传入。</p>
+<figure class="highlight ts"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs ts"><span class="hljs-keyword">interface</span> Lengthwise &#123;<br>    length: <span class="hljs-built_in">number</span>;<br>&#125;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">loggingIdentity</span>&lt;<span class="hljs-title">T</span> <span class="hljs-title">extends</span> <span class="hljs-title">Lengthwise</span>&gt;(<span class="hljs-params">arg: T</span>): <span class="hljs-title">T</span> </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(arg.length);<br>    <span class="hljs-keyword">return</span> arg;<br>&#125;<br></code></pre></td></tr></table></figure>
+
+<p>泛型可以用在接口和类上</p>
+<h4 id="声明合并"><a href="#声明合并" class="headerlink" title="声明合并"></a>声明合并</h4><p>当定义了两个相同名字的函数、类、接口时，会合并成一个类型。</p>
 
       </section>
       <section class="extra">
@@ -220,6 +248,8 @@
 
         
 <nav class="nav">
+  
+    <a href="/2020/12/16/%E8%AE%B0%E5%BD%95taro%E5%BC%80%E5%8F%91%E7%BB%86%E8%8A%82/"><i class="iconfont iconleft"></i>记录taro开发细节</a>
   
   
     <a href="/2020/12/10/react%E4%B8%AD%E4%BD%BF%E7%94%A8TS/">react中使用TS<i class="iconfont iconright"></i></a>
