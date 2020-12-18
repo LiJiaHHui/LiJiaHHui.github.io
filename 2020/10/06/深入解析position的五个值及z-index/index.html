@@ -160,7 +160,7 @@
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>October 06, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2697</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2768</span>
     </div>
   </div>
 </section>
@@ -194,6 +194,7 @@
 <p>由于在html中的加载的顺序问题，灰色块被覆盖了，设置灰色块的z-index就可以解决这个问题了。</p>
 <p>还有一点就是，如果有两个父元素，各自都包含了子元素，那么想让其中被覆盖的子元素上来的话，可以直接设置被覆盖的子元素的z-index，或者设置被覆盖的子元素的父元素的z-index，一起都带上来。</p>
 <h1 id="sticky"><a href="#sticky" class="headerlink" title="sticky"></a>sticky</h1><p>字面意思：黏，与fixed固定不同的是，sticky元素中的内容是可以换成另一个内容的，可以理解成黏住的东西是可以撕下来的嘛，固定了的就没那么好摘了。</p>
+<p>sticky主要用于对scroll事件的监听，当某个元素与父元素的距离达到了sticky的要求时，这时sticky的效果就相当与fixed。</p>
 <p>当滚动起来的时候，设置的top会变成与浏览器的距离。</p>
 <h1 id="脱离文档流的问题"><a href="#脱离文档流的问题" class="headerlink" title="脱离文档流的问题"></a>脱离文档流的问题</h1><p>子元素设置为fixed和absolute脱离文档流，会造成父元素高度的坍塌，具体表现就是，父元素不能包裹住子元素了。</p>
 <p>解决的办法：参考清除浮动一文。</p>

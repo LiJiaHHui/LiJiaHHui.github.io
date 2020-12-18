@@ -160,7 +160,7 @@
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 24, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>539</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1399</span>
     </div>
   </div>
 </section>
@@ -171,11 +171,28 @@
 <h4 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h4><p>​    静态资源访问量大，访问频率高，所以加载速度是前端优化的重要指标。大型电商，都是将静态资源放到CDN中。如果CDN域名与网站域名不一致，还可以带来一个额外的好处就是，当用户访问CDN上的静态资源时，不会携带cookie，避免性能消耗</p>
 <p>浏览器缓存</p>
 <p>使用浏览器缓存</p>
-<p>两栏布局：float，左浮动</p>
-<p>absolute绝对定位，left，top设为0</p>
-<p>table布局</p>
-<p>双浮动 右栏使用calc计算宽度</p>
-<p>flex 弹性布局左栏 flex 0 0 宽度，右栏flex1</p>
+<h3 id="项目优化"><a href="#项目优化" class="headerlink" title="项目优化"></a>项目优化</h3><p>http中优化有两个方向：减少请求次数、减少单次请求所花费的时间。这些可以通过webpck来实现资源的压缩与合并。</p>
+<h4 id="webpack优化方案："><a href="#webpack优化方案：" class="headerlink" title="webpack优化方案："></a>webpack优化方案：</h4><ul>
+<li><p>Babel-loader使用exclude来避免转义某些文件，比如说node_modules，或者通过设置cacheDirectory开启缓存将转义结果缓存到文件系统。</p>
+</li>
+<li><p>使用DllPlugin管理第三方库，将第三方库单独打包到一个文件中，这个文件就是一个依赖库，只有当依赖自身的版本发生更新时才会被重新打包。</p>
+<p>方法：在plugin中对DllPlugin进行配置</p>
+</li>
+<li><p>使用happypack，将loader由单进程变为多进程，由于webpack是单进程的而我们的CPU是多核的，使用happypack充分利用CPU的优势。</p>
+<p>使用插件的形式引入，在rules和plugin中配置</p>
+</li>
+<li><p>文件结构可视化：使用文件结构可视化，找出体积过大的原因</p>
+</li>
+<li><p>利用tree-shaking：删除冗余代码，在编译过程中获取没有被使用的代码，打包的时候去除。</p>
+</li>
+<li><p>按需加载：一次不加载所有的文件内容，只加载所需的部分。当需要更多内容的时候，再对用到的内容进行加载。</p>
+<p>方法：webpack中的path与路由进行配置，核心是路由中的require.ensure方法，异步方法，组件会被单独打包成一个文件，当路由跳转时，异步方法的回调才会生效。React-router4中的code-splitting实际上也是用require.ensure实现的。</p>
+</li>
+</ul>
+<h4 id="Gzip原理"><a href="#Gzip原理" class="headerlink" title="Gzip原理"></a>Gzip原理</h4><p>http压缩是以缩小体积为目的，对http内容进行重新编码的过程。使用http压缩的话，数据中从服务器发送过来的时候就已经压缩好了，所以浏览器要声明自己所支持的格式，不支持压缩的浏览器将下载未经压缩的数据。常见的压缩有Gzip和Deflate。</p>
+<p>Gzip实现压缩的方法很简单：在request headers加上accpt-encoding：gzip</p>
+<p>Gzip是高效的，通常压缩后能减少70%的大小，它的原理是从一个文本文件中找到重复的字符串，然后临时替换，从而使文件变小。</p>
+<p>一般来说，Gzip是服务器的事情，压缩是在服务器中进行的。我们通过服务器压缩的时间和CPU开销（指的是浏览器解析压缩文件的开销），来换取传输过程时间的减少</p>
 
       </section>
       <section class="extra">
