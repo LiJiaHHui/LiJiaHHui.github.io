@@ -7,13 +7,14 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>node - Hexo</title>
+  <title>计网之网络套接字 - Hexo</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
 
   
   
+  <meta name="description" content="Socket定义socket是网络上两个程序连接的端点..."> 
   
   <meta name="author" content="John Doe"> 
 
@@ -105,7 +106,7 @@
 
 <nav class="navbar">
   <div class="left"></div>
-  <div class="center">标签</div>
+  <div class="center">计网之网络套接字</div>
   <div class="right">
     <i class="iconfont iconmenu j-navbar-menu"></i>
   </div>
@@ -148,29 +149,61 @@
   </div>
 </nav>
   <main id="main">
-  <section class="archive">
-    <div class="archive-container">
-      <div class="archive-post">
-        <h2 class="archive-total"># node</h2>
-        
-        
-        
-        <h3 class="archive-year">2021</h3>
-        
-        <div class="archive-item">
-          <a class="archive-date" href="/2021/01/08/nodejs%E5%AE%9E%E4%BE%8B/">01/08</a>
-          <a class="archive-title" href="/2021/01/08/nodejs%E5%AE%9E%E4%BE%8B/">nodejs实例</a>
-        </div>
-        
-        
-        <div class="archive-item">
-          <a class="archive-date" href="/2021/01/05/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAnode%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">01/05</a>
-          <a class="archive-title" href="/2021/01/05/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAnode%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">深入浅出node笔记（一）</a>
-        </div>
-        
-      </div>
+  <div class="container" id="container">
+    <article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">计网之网络套接字</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>January 07, 2021</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>310</span>
     </div>
-  </section>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h3 id="Socket定义"><a href="#Socket定义" class="headerlink" title="Socket定义"></a>Socket定义</h3><p>socket是网络上两个程序连接的端点，在Linux中一切皆文件，所以可以通过函数对其进行读写、打开关闭的操作。</p>
+<p>socket需要以下参数：请求地址，使用的传输层协议（udp，tcp），端口号</p>
+<h3 id="socket类型"><a href="#socket类型" class="headerlink" title="socket类型"></a>socket类型</h3><p>在win和Linux中都有原始套接字、流式套接字、数据包套接字。</p>
+<p>原始套接字：允许低于传输层的协议访问，或者物理网络直接访问。如发送ICMP报文。</p>
+<p>流式套接字：提供面向连接、可靠的传输服务，数据按字节流、顺序传输，传输过程中保证数据不丢失，不冗余，用于tcp协议</p>
+<p>数据包套接字：提供面向无连接的传输服务，数据收发无序，不保证数据的准确到达，用于udp协议    </p>
+<p>在五层模型中的位置，具体看图</p>
+<img   class="lazyload" data-original="C:\Users\Rain\AppData\Roaming\Typora\typora-user-images\image-20210107165911166.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20210107165911166" style="zoom:80%;" />
+      </section>
+      <section class="extra">
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E8%AE%A1%E7%BD%91/" rel="tag">计网</a></li></ul>
+
+        
+<nav class="nav">
+  
+    <a href="/2021/01/08/nodejs%E5%AE%9E%E4%BE%8B/"><i class="iconfont iconleft"></i>nodejs实例</a>
+  
+  
+    <a href="/2021/01/05/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAnode%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">深入浅出node笔记（一）<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+      </section>
+      
+      <section class="comments">
+  
+  <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+</section>
+      
+    </section>
+  </div>
+</article>
+  </div>
 </main>
   <footer class="footer">
   <div class="footer-social">

@@ -161,7 +161,7 @@ require http创建服务器，使用crea...">
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>January 05, 2021</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1685</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2340</span>
     </div>
   </div>
 </section>
@@ -190,7 +190,18 @@ require http创建服务器，使用crea...">
 <p>CMD定义模块时，动态引入依赖，需要的时候再去引入。</p>
 <h3 id="异步IO"><a href="#异步IO" class="headerlink" title="异步IO"></a>异步IO</h3><p>异步IO是为了实现，调用IO而不影响运算。</p>
 <p>书中首先写的是操作系统的异步IO，这里就不多介绍了。</p>
-<p>node中的异步IO与事件循环：查看是否有事件要处理，有的话查看事件是否有关联回调，有的话就执行回调，再查看是否有事件要处理，没有事件就退出。通过观察者询问，判断是否有事件要处理</p>
+<p>node中的异步IO与事件循环、IO线程池、观察者、请求对象相关。</p>
+<p>首先发起一个异步调用的请求，封装请求对象，设置参数和回调函数，最后将请求对象放入进程池中，至此异步调用阶段结束。进入线程池后，分配线程执行任务，将结果写入请求对象中。继续事件循环。</p>
+<p>事件循环是指，查看是否有事件要处理，有的话查看事件是否有关联回调，有的话就执行回调，再查看是否有事件要处理，没有事件就退出。通过观察者询问，判断是否有事件要处理。</p>
+<p>线程池：系统在启动时创建大量空闲线程，程序将一个任务传给线程池，线程池分配给某线程，线程执行完后进入空闲状态而不会死亡。</p>
+<h4 id="异步API"><a href="#异步API" class="headerlink" title="异步API"></a>异步API</h4><p>setTimeout与setInterval都是定时器，区别在于一次或多次定时执行任务。定时器的实现原理：被插入定时器观察者中的红黑树中，每次tick时会迭代检查定时器对象是否超时，超时就立即执行回调函数。</p>
+<p>这样的缺点在于：当某个循环占用过多的时间，事件循环会延迟，导致定时器超时很久。</p>
+<p>process.nextTick()较定时器更轻量，process.nextTick将回调函数放入队列中延迟执行，每次tick取出执行。</p>
+<p>setImmediate类似process.nextTick，将回调函数放入队列中延迟执行。但优先级比process.nextTick低，因为在事件循环中idle观察者先于IO观察者，IO观察者先于check观察者。process.nextTick属于idle观察者，setImmediate属于check观察者。</p>
+<h4 id="事件驱动"><a href="#事件驱动" class="headerlink" title="事件驱动"></a>事件驱动</h4><p>事件驱动的本质是，通过主循环的事件来运行程序。</p>
+<p>对于网络套接字的处理也用到了异步IO，服务器收到网络请求形成事件后发送给IO观察者，事件循环处理这些事件，如果有业务层的回调，JS执行回调。</p>
+<img   class="lazyload" data-original="C:\Users\Rain\AppData\Roaming\Typora\typora-user-images\image-20210107144841613.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20210107144841613" style="zoom: 67%;" />
+
 
       </section>
       <section class="extra">
@@ -201,6 +212,8 @@ require http创建服务器，使用crea...">
 
         
 <nav class="nav">
+  
+    <a href="/2021/01/07/%E8%AE%A1%E7%BD%91%E4%B9%8B%E7%BD%91%E7%BB%9C%E5%A5%97%E6%8E%A5%E5%AD%97/"><i class="iconfont iconleft"></i>计网之网络套接字</a>
   
   
     <a href="/2020/12/29/JS%E4%B9%8Bsplice%EF%BC%8Cslice%EF%BC%8Csubstring%E5%92%8Csubstr%E7%9A%84%E7%94%A8%E6%B3%95%E4%B8%8E%E5%8C%BA%E5%88%AB/">JS之splice，slice，substring和substr的用法与区别<i class="iconfont iconright"></i></a>

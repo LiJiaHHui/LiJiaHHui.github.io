@@ -7,7 +7,7 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>node - Hexo</title>
+  <title>Hexo</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
@@ -62,7 +62,7 @@
     var CONFIG = window.CONFIG || {};
     var ZHAOO = window.ZHAOO || {};
     CONFIG = {
-      isHome: false,
+      isHome: true,
       fancybox: true,
       pjax: false,
       lazyload: {
@@ -103,14 +103,6 @@
   
 
 
-<nav class="navbar">
-  <div class="left"></div>
-  <div class="center">标签</div>
-  <div class="right">
-    <i class="iconfont iconmenu j-navbar-menu"></i>
-  </div>
-</nav>
-
   <nav class="menu">
   <div class="menu-wrap">
     <div class="menu-close">
@@ -148,29 +140,72 @@
   </div>
 </nav>
   <main id="main">
-  <section class="archive">
-    <div class="archive-container">
-      <div class="archive-post">
-        <h2 class="archive-total"># node</h2>
+  
+    <div class="preview">
+  <nav class="navbar j-navbar-menu">
+    <i class="iconfont iconmenu"></i>
+  </nav>
+  <div class="preview-image">
+    <h2 class="preview-motto" id="motto"></h2>
+    <!-- <span class="preview-cursor">|</span> -->
+    
+    <div class="preview-overlay">
+      <svg class="preview-waves" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+        viewBox="0 24 150 28" preserveAspectRatio="none" shape-rendering="auto">
+        <defs>
+          <path id="gentle-wave" d="M-160 44c30 0 58-18 88-18s 58 18 88 18 58-18 88-18 58 18 88 18 v44h-352z" />
+        </defs>
+        <g class="preview-parallax">
+          <use xlink:href="#gentle-wave" x="48" y="0" fill="rgba(255,255,255,0.7" />
+          <use xlink:href="#gentle-wave" x="48" y="3" fill="rgba(255,255,255,0.5)" />
+          <use xlink:href="#gentle-wave" x="48" y="5" fill="rgba(255,255,255,0.3)" />
+          <use xlink:href="#gentle-wave" x="48" y="7" fill="#fff" />
+        </g>
+      </svg>
+    </div>
+    
+  </div>
+  <div class="preview-scroll">
+    <a href="#container" class="smooth-scroll"><i class="iconfont iconMouse"></i></a>
+  </div>
+</div>
+  
+  <div class="container" id="container">
+    <section class="row post">
+  
+  <div class="col-lg-4 col-md-6 col-sm-12 post-item">
+  <div class="post-wrap">
+    
+    <a href="/2020/02/13/%E6%B5%85%E6%9E%90JS%E4%B8%AD%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8%E6%9C%BA%E5%88%B6/" class="post-image">
+      <img   class="lazyload" data-original="/image/galaxy.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+    </a>
+    <div class="post-content">
+      <h3 class="post-title"><a href="/2020/02/13/%E6%B5%85%E6%9E%90JS%E4%B8%AD%E5%BC%82%E6%AD%A5%E8%B0%83%E7%94%A8%E6%9C%BA%E5%88%B6/">浅析JS中异步调用机制</a></h3>
+      
+      
+      
+      <div class="post-excerpt">
+        <p class="substr-3">JS是单线程的，单线程是指在事件队列中，每次只执行一个事件，如果设计成多线程模式，DOM之间会存在资源竞争。
+首先，我们要了解浏览器内核的线程，由多个线程组成浏览器的渲染进程，共同渲染出页面。
+...</p>
+      </div>
+      <div class="post-info">
+        <span class="post-info-item"><i class="iconfont iconcalendar"></i>February 13, 2020</span
+          class="post-info-item">
         
-        
-        
-        <h3 class="archive-year">2021</h3>
-        
-        <div class="archive-item">
-          <a class="archive-date" href="/2021/01/08/nodejs%E5%AE%9E%E4%BE%8B/">01/08</a>
-          <a class="archive-title" href="/2021/01/08/nodejs%E5%AE%9E%E4%BE%8B/">nodejs实例</a>
-        </div>
-        
-        
-        <div class="archive-item">
-          <a class="archive-date" href="/2021/01/05/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAnode%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">01/05</a>
-          <a class="archive-title" href="/2021/01/05/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAnode%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">深入浅出node笔记（一）</a>
-        </div>
-        
+        <span class="post-info-item"><i class="iconfont iconfont-size"></i>854</span>
       </div>
     </div>
-  </section>
+  </div>
+</div>
+  
+</section>
+    <section class="paginator">
+  
+  <a class="extend prev" rel="prev" href="/page/5/">&lt;</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span>
+  
+</section>
+  </div>
 </main>
   <footer class="footer">
   <div class="footer-social">
