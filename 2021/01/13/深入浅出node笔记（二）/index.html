@@ -1,0 +1,380 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>深入浅出node笔记（二） - Hexo</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  <meta name="description" content="函数式编程在JS中，函数是一等公民，即函数可以作为函数..."> 
+  
+  <meta name="author" content="John Doe"> 
+
+  
+    <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_hhodbqn7tit.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css">
+
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        loadingImage: '/images/theme/loading.gif',
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      motto: {
+        api: '',
+        default: '一以贯之的努力，不得懈怠的人生'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: false
+      },
+      daovoice: {
+        enable: true
+      }
+    }
+  </script>
+
+  
+
+  
+<meta name="generator" content="Hexo 5.1.1"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left"></div>
+  <div class="center">深入浅出node笔记（二）</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/categories " class="underline"> 分类</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/image/%E5%82%85%E7%A7%91%E6%91%86.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">深入浅出node笔记（二）</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>January 13, 2021</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1921</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h3 id="函数式编程"><a href="#函数式编程" class="headerlink" title="函数式编程"></a>函数式编程</h3><p>在JS中，函数是一等公民，即函数可以作为函数参数，函数返回值，也可以赋值给变量</p>
+<h4 id="高阶函数"><a href="#高阶函数" class="headerlink" title="高阶函数"></a>高阶函数</h4><p>常规的函数接受的参数或者返回的值是基本数据类型或对象引用。高阶函数是指函数接受的参数或者返回的是函数。对于高阶函数而言，每次接受的函数不同，可以出现不同结果。在ES5中有许多的高阶函数：forEach、map、reduce、filter、every、some</p>
+<h4 id="偏函数"><a href="#偏函数" class="headerlink" title="偏函数"></a>偏函数</h4><p>通过指定部分参数来产生一个定制函数，比如著名JS库underscore 中提供的after方法，underscore提供不添加内置对象而实现函数式编程的方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><code class="hljs javascript">_.after = <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params">times，func</span>)</span>&#123;<br>	<span class="hljs-keyword">if</span> (times &lt;= <span class="hljs-number">0</span>) <span class="hljs-keyword">return</span> func() ;<br>    <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span>(<span class="hljs-params"></span>)</span>&#123;<br>		<span class="hljs-keyword">if</span> (--times&lt; <span class="hljs-number">1</span>) &#123; <span class="hljs-keyword">return</span> func.apply(<span class="hljs-built_in">this</span>,<span class="hljs-built_in">arguments</span>);<br>		&#125;<br>	&#125;;<br>&#125;;<br><br></code></pre></td></tr></table></figure>
+
+<p>after函数的作用是：在times（&gt;0）次调用才真正执行的函数。</p>
+<h4 id="异步编程"><a href="#异步编程" class="headerlink" title="异步编程"></a>异步编程</h4><p>node最大的特点是事件驱动的非阻塞IO，非阻塞IO让CPU和IO之间不互相等待，提高资源利用。</p>
+<p>前面提到过异步IO的原理是通过事件循环的方式，JS线程将任务分配给IO线程池的线程，</p>
+<p>异步编程的难点在于：</p>
+<p>1、异常处理</p>
+<p>通常我们是try/catch来捕获异常，这只能捕获当次事件循环内的错误，对于下次事件循环（如process.nextTick）回调函数错误无能为力。</p>
+<p>node在处理异常形成了一种约定：将异常作为回调函数的第一个参数，如果为空，表明异步调用没有异常。</p>
+<p>2、阻塞代码</p>
+<p>JS中没有sleep这样让线程沉睡的函数，可以通过setTimeout，setInterval来解决。</p>
+<p>3、多线程编程</p>
+<p>前端中，JS与UI渲染是同在主进程，可以使用web workers，独立于主线程的线程，分离JS计算和UI渲染，充分利用多核CPU。单个node进程是没有充分利用多核CPU的，node借鉴了这个模式，使用了child_process</p>
+<h3 id="异步编程解决方案"><a href="#异步编程解决方案" class="headerlink" title="异步编程解决方案"></a>异步编程解决方案</h3><p>解决方案主要有：事件发布/订阅、Promise/Deferred，流程控制库</p>
+<h4 id="事件发布-订阅"><a href="#事件发布-订阅" class="headerlink" title="事件发布/订阅"></a>事件发布/订阅</h4><p>node提供events模块简单实现发布/订阅，不存在事件冒泡，不存在preventDefault（阻止默认事件）、stopPropagation（阻止事件冒泡），具有on、once、removeListener、removeAllListeners和emit方法。发布订阅实现了一个事件与多个回调函数的关联。</p>
+<ul>
+<li><p>继承events模块</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> events=<span class="hljs-built_in">require</span>(<span class="hljs-string">&#x27;events&#x27;</span>);<br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Stream</span>(<span class="hljs-params"></span>)</span>&#123;<br>events.EventEmitter.call(<span class="hljs-built_in">this</span>);<br>util.inherits (Stream，events.EventEmitter);<br></code></pre></td></tr></table></figure>
+
+<p>node在util中封装了继承的方法，直接调用就行，</p>
+</li>
+<li><p>事件队列解决雪崩问题</p>
+<p>使用once方法只执行一次，执行后解除与事件的关联。雪崩是指在高访问、大并发量的情况下缓存失效，同时大量请求涌入数据库，导致影响整个网站响应速度。</p>
+<figure class="highlight lua"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs lua">var proxy = new events.EventEmitter();<br>var <span class="hljs-built_in">status</span> = <span class="hljs-string">&quot;ready&quot;</span>;<br>var <span class="hljs-built_in">select</span> = <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(callback)</span></span>&#123;<br>	proxy.once(<span class="hljs-string">&quot;selected&quot;</span>, callback);<br>	<span class="hljs-keyword">if</span> (<span class="hljs-built_in">status</span> === <span class="hljs-string">&quot;ready&quot;</span>)&#123;<br>		<span class="hljs-built_in">status</span> = <span class="hljs-string">&quot;pending&quot;</span>;<br>		db.<span class="hljs-built_in">select</span>(<span class="hljs-string">&quot;sQL&quot;</span>， <span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-params">(results)</span></span>&#123;<br>			proxy.emit(<span class="hljs-string">&quot;selected&quot;</span>， results);<br>			<span class="hljs-built_in">status</span> = <span class="hljs-string">&quot;ready&quot;</span>;<br>		&#125;);<br>	&#125;<br>&#125;;<br></code></pre></td></tr></table></figure>
+
+<p>利用once将请求回调压入事件队列中，保证每个回调只执行一次。对于相同的SQL查询，队列中的回调可以共享查询结果。</p>
+</li>
+<li><p>多异步的协作方案</p>
+<p>在异步编程中会出现事件与回调函数是多对一的关系，业务可能依赖两个回调函数，回调函数间不饿能保证顺序，需要借助第三方函数和变量来协调。</p>
+</li>
+</ul>
+
+      </section>
+      <section class="extra">
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/" rel="tag">node</a></li></ul>
+
+        
+<nav class="nav">
+  
+  
+    <a href="/2021/01/08/nodejs%E5%AE%9E%E4%BE%8B/">nodejs实例<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+      </section>
+      
+      <section class="comments">
+  
+  <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+</section>
+      
+    </section>
+  </div>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+    
+    
+    
+    
+    <a href="tencent://message/?Menu=yes&uin=1151329119 " target="_blank" onMouseOver="this.style.color= '#12B7F5'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconQQ "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="/images/theme/wechat.png " target="_blank" onMouseOver="this.style.color= '#09BB07'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconwechat-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="https://github.com/LiJiaHHui " target="_blank" onMouseOver="this.style.color= '#24292E'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  icongithub-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="mailto:ljhhhui@126.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconmail"></i>
+    </a>
+    
+  </div>
+  <div class="footer-copyright"></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-daovoice">
+    <i class="iconfont iconcomment"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+</body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i["DaoVoiceObject"] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    a.charset = "utf-8";
+    m.parentNode.insertBefore(a, m)
+  })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+    "//widget.daovoice.io/widget/0f81ff2f.js", "daovoice")
+  daovoice('init', {
+    app_id: "abcdefg"
+  }, {
+    launcher: {
+      disableLauncherIcon: true,
+    },
+  });
+  daovoice('update');
+</script>
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>
