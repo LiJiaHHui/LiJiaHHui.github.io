@@ -7,13 +7,14 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>node - Hexo</title>
+  <title>深入浅出node笔记（三） - Hexo</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
 
   
   
+  <meta name="description" content="内存控制V8垃圾回收机制和内存限制由于node基于v8..."> 
   
   <meta name="author" content="John Doe"> 
 
@@ -105,7 +106,7 @@
 
 <nav class="navbar">
   <div class="left"></div>
-  <div class="center">标签</div>
+  <div class="center">深入浅出node笔记（三）</div>
   <div class="right">
     <i class="iconfont iconmenu j-navbar-menu"></i>
   </div>
@@ -148,41 +149,63 @@
   </div>
 </nav>
   <main id="main">
-  <section class="archive">
-    <div class="archive-container">
-      <div class="archive-post">
-        <h2 class="archive-total"># node</h2>
-        
-        
-        
-        <h3 class="archive-year">2021</h3>
-        
-        <div class="archive-item">
-          <a class="archive-date" href="/2021/01/14/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAnode%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/">01/14</a>
-          <a class="archive-title" href="/2021/01/14/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAnode%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/">深入浅出node笔记（三）</a>
-        </div>
-        
-        
-        <div class="archive-item">
-          <a class="archive-date" href="/2021/01/13/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAnode%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">01/13</a>
-          <a class="archive-title" href="/2021/01/13/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAnode%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">深入浅出node笔记（二）</a>
-        </div>
-        
-        
-        <div class="archive-item">
-          <a class="archive-date" href="/2021/01/08/nodejs%E5%AE%9E%E4%BE%8B/">01/08</a>
-          <a class="archive-title" href="/2021/01/08/nodejs%E5%AE%9E%E4%BE%8B/">nodejs实例</a>
-        </div>
-        
-        
-        <div class="archive-item">
-          <a class="archive-date" href="/2021/01/05/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAnode%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">01/05</a>
-          <a class="archive-title" href="/2021/01/05/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAnode%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/">深入浅出node笔记（一）</a>
-        </div>
-        
-      </div>
+  <div class="container" id="container">
+    <article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/image/%E7%81%AB%E5%B1%B1%E5%8F%A3%E6%B9%96.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">深入浅出node笔记（三）</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>January 14, 2021</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>238</span>
     </div>
-  </section>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <h3 id="内存控制"><a href="#内存控制" class="headerlink" title="内存控制"></a>内存控制</h3><h4 id="V8垃圾回收机制和内存限制"><a href="#V8垃圾回收机制和内存限制" class="headerlink" title="V8垃圾回收机制和内存限制"></a>V8垃圾回收机制和内存限制</h4><p>由于node基于v8构建，v8只能使用部分内存，对于浏览器来说绰绰有余，但却限制了node开发使用大内存，如果超过了限制将导致进程退出。</p>
+<ul>
+<li><p>对象分配：</p>
+<p>v8中所有的JS对象都是通过堆来分配的，可以通过process.memoryUsage来查看内存使用情况。</p>
+<p>v8限制堆大小，是由于垃圾回收机制导致的，过大的内存会导致垃圾回收效率降低。可以通过选项来设置内存的大小。</p>
+</li>
+<li><p>垃圾回收机制</p>
+<p>按对象的存活时间分为不同代的垃圾，新生代和老生代，</p>
+</li>
+<li></li>
+</ul>
+
+      </section>
+      <section class="extra">
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/node/" rel="tag">node</a></li></ul>
+
+        
+<nav class="nav">
+  
+  
+    <a href="/2021/01/13/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAnode%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/">深入浅出node笔记（二）<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+      </section>
+      
+      <section class="comments">
+  
+  <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+</section>
+      
+    </section>
+  </div>
+</article>
+  </div>
 </main>
   <footer class="footer">
   <div class="footer-social">

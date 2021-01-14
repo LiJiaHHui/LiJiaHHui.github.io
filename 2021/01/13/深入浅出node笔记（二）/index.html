@@ -160,7 +160,7 @@
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>January 13, 2021</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1921</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>3082</span>
     </div>
   </div>
 </section>
@@ -200,6 +200,30 @@
 <p>在异步编程中会出现事件与回调函数是多对一的关系，业务可能依赖两个回调函数，回调函数间不饿能保证顺序，需要借助第三方函数和变量来协调。</p>
 </li>
 </ul>
+<h4 id="Promise-Deferred"><a href="#Promise-Deferred" class="headerlink" title="Promise/Deferred"></a>Promise/Deferred</h4><p>promise/A对单个异步操作这样抽象：promise只会在三种状态之一：pending、resolved、rejected，只能从pending变为resolve或reject，状态改变后不能更改。</p>
+<p>在API的定义上，只要有then方法即可，then方法有以下要求：接受resolved、rejected的回调，只接受function对象，返回promise对象，以实现链式调用。</p>
+<p>deferred主要维护内部状态的变化，promise用于外部，通过API then获取外部逻辑。与事件发布/订阅相比，promise是高级接口，事件是低级接口，低级接口的灵活性更高，高级接口一旦定义就不大容易变化，但对于解决经典问题十分有效。</p>
+<p>promise通过all实现多个异步操作，只有当所有的异步操作成功，才会返回成功，否则就会失败。</p>
+<p>书中使用node实现了链式调用，主要通过两个步骤：所有回调都存到队列中、promise完成时，逐个执行回调，检测到返回了新的promise对象时，改变deferred中promise的引用为新的promise对象，并将剩下的回调转给它。</p>
+<h4 id="流程控制库"><a href="#流程控制库" class="headerlink" title="流程控制库"></a>流程控制库</h4><p>  事件发布/订阅和promise/deferred是经典或写进规范的解决方式，以下方式非模式化但更加灵活。</p>
+<ul>
+<li><p>尾触发和next</p>
+<p>尾触发是指，有的方法需要手动调用才能执行后续的调用，关键词是next。常用于connect的中间件，每个中间件传递请求对象、响应对象和尾触发函数，通过队列形成处理流。</p>
+<p>next的原理是，取出队列中的中间件执行，同时将当前方法传入实现递归调用，达到持续触发的目的。</p>
+</li>
+<li><p>async</p>
+<p>async基于promise，写法上更加简洁，不需要then，然后也不需要写匿名函数处理resolve</p>
+<p>async提供series实现异步的串行执行，parallel实现异步的并行执行，waterfall实现异步的依赖处理，auto实现自动依赖处理，</p>
+</li>
+<li><p>step</p>
+<p>step库比async更加轻量，只有一个接口Step，可以接受任意数量的任务，任务将串行执行。用到的this关键字其实是内部的next方法，将异步的结果传递给下一个任务</p>
+<p>同样，Step通过this的parallel也可以实现多个异步并行执行，需要注意的是如果异步结果返回多个参数，Step只会取前2个参数，group实现按结果分组，</p>
+</li>
+<li><p>wind</p>
+<p>文中还提到了wind库，其中使用了eval</p>
+</li>
+</ul>
+<h4 id="异步并发控制"><a href="#异步并发控制" class="headerlink" title="异步并发控制"></a>异步并发控制</h4><p>有时候，如果异步的并发量过大，下层服务器将吃不消，书中作者提供了一个bagpipe的解决方法，async提供了parallelLimit，用一个参数来控制异步并发的数量，缺点在于不能动态增加任务。queue可以实现动态添加并行任务。</p>
 
       </section>
       <section class="extra">
@@ -210,6 +234,8 @@
 
         
 <nav class="nav">
+  
+    <a href="/2021/01/14/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAnode%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/"><i class="iconfont iconleft"></i>深入浅出node笔记（三）</a>
   
   
     <a href="/2021/01/08/nodejs%E5%AE%9E%E4%BE%8B/">nodejs实例<i class="iconfont iconright"></i></a>
