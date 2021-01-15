@@ -160,7 +160,7 @@
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>January 14, 2021</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>238</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1117</span>
     </div>
   </div>
 </section>
@@ -172,11 +172,24 @@
 <p>v8中所有的JS对象都是通过堆来分配的，可以通过process.memoryUsage来查看内存使用情况。</p>
 <p>v8限制堆大小，是由于垃圾回收机制导致的，过大的内存会导致垃圾回收效率降低。可以通过选项来设置内存的大小。</p>
 </li>
-<li><p>垃圾回收机制</p>
-<p>按对象的存活时间分为不同代的垃圾，新生代和老生代，</p>
+<li><p>垃圾回收机制：</p>
+<p>按对象的存活时间分为不同代的垃圾，新生代和老生代。</p>
+<p>副垃圾回收器负责新生代的垃圾回收，主要使用的算法是，将新生代的区域划为一半是对象区，一半是空闲区。新加入的对象放到对象区，当对象区快写满的时候，执行一次垃圾回收的操作。在回收的过程中，标记需要清理的垃圾和存活的对象，将存活的对象复制到空闲区，并排好序，这样就没有内存碎片了。之后将对象区和空闲区进行反转，一直重复使用两块区域。</p>
+<p>为了不让容易存活的对象马上就填满对象区，JS有<code>对象晋升机制</code>，当一个对象经过两次垃圾回收还存在时，移入老生代中。</p>
+<p>主垃圾回收器负责老生代的垃圾回收，使用标记清除法，进入环境的变量打上进入环境的标识，离开环境的变量打上离开环境的标识，清除除了进入环境的变量和被进入环境引用的变量（闭包）。v8主要使用标记清除，当空间不足分配晋升过来的新对象时，使用标记整理。标记过程一样，清除的时候先将存活对象移动到一端，然后清除端边界外的内存。</p>
 </li>
-<li></li>
+<li><p>全停顿：</p>
+<p>指一旦执行垃圾回收，JS脚本将暂停，等待回收完继续执行JS。新生代的全停顿影响不大，老生代可能会造成页面的卡顿。为了降低卡顿，v8使用<code>增量标记</code>：将标记过程分为一个个子标记过程，让垃圾回收和JS交替进行，直到标记完成，</p>
+<p>闭包是指：内部函数可以访问到外部函数的变量。在JS运行中，无法立即回收的内存有闭包和全局变量引用。全局变量可以通过delete来删除引用或者重新赋值。要注意是否造成了内存泄漏，可以通过chrome的performance面板的memory来观察内存的变化，多次垃圾回收后整体趋势向上，很可能存在内存泄漏。</p>
+</li>
 </ul>
+<h4 id="大内存应用"><a href="#大内存应用" class="headerlink" title="大内存应用"></a>大内存应用</h4><p>node提供stream处理大文件，fs.createReadStream()和fs.createWriteStream()方法通过流的方式实现对大文件的操作，封装了data事件和写入操作。</p>
+<figure class="highlight reasonml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs reasonml">var reader = fs.create<span class="hljs-constructor">ReadStream(&#x27;<span class="hljs-params">in</span>.<span class="hljs-params">txt</span>’)</span>;<br>var writer = fs.create<span class="hljs-constructor">WriteStream(&#x27;<span class="hljs-params">out</span>.<span class="hljs-params">txt</span>&#x27;)</span>;<br>reader.pipe(writer);<br></code></pre></td></tr></table></figure>
+
+
+
+
+
 
       </section>
       <section class="extra">
