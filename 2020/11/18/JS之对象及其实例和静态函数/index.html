@@ -174,7 +174,7 @@
 <figure class="highlight pgsql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs pgsql"><span class="hljs-keyword">function</span> Cat(<span class="hljs-type">name</span>)&#123;<br>	this.name=<span class="hljs-type">name</span><br>&#125;<br>console.log(<span class="hljs-built_in">new</span> Cat(<span class="hljs-string">&#x27;kele&#x27;</span>))//Cat &#123;<span class="hljs-type">name</span>:&quot;kele&quot;&#125;<br></code></pre></td></tr></table></figure>
 
 <p>这样才能实现赋值👆</p>
-<p>在来看new</p>
+<p>再来看new</p>
 <figure class="highlight haxe"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs haxe"><span class="hljs-keyword">var</span> cat=<span class="hljs-keyword">new</span> <span class="hljs-type">Cat</span>()<br></code></pre></td></tr></table></figure>
 
 <p>这句代码从表面理解就是创建了一个Cat实例，然后赋值给cat变量，cat就会包含Cat构造函数中的方法和属性，new其实做了三件事</p>

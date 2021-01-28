@@ -1,0 +1,379 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>从this的5种绑定开始 - Hexo</title>
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="google" content="notranslate" />
+
+  
+  
+  <meta name="description" content=" js中共有5中this的绑定，关于this的指向之前..."> 
+  
+  <meta name="author" content="John Doe"> 
+
+  
+    <link rel="icon" href="/images/icons/favicon-16x16.png" type="image/png" sizes="16x16">
+  
+  
+    <link rel="icon" href="/images/icons/favicon-32x32.png" type="image/png" sizes="32x32">
+  
+  
+    <link rel="apple-touch-icon" href="/images/icons/apple-touch-icon.png" sizes="180x180">
+  
+  
+    <meta rel="mask-icon" href="/images/icons/stun-logo.svg" color="#333333">
+  
+  
+    <meta rel="msapplication-TileImage" content="/images/icons/favicon-144x144.png">
+    <meta rel="msapplication-TileColor" content="#000000">
+  
+
+  
+<link rel="stylesheet" href="/css/style.css">
+
+
+  
+  
+<link rel="stylesheet" href="//at.alicdn.com/t/font_1445822_hhodbqn7tit.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.css">
+
+  
+
+  
+  
+  
+<link rel="stylesheet" href="https://cdn.bootcss.com/highlight.js/9.18.1/styles/xcode.min.css">
+
+  
+
+  <script>
+    var CONFIG = window.CONFIG || {};
+    var ZHAOO = window.ZHAOO || {};
+    CONFIG = {
+      isHome: false,
+      fancybox: true,
+      pjax: false,
+      lazyload: {
+        enable: true,
+        loadingImage: '/images/theme/loading.gif',
+      },
+      donate: {
+        enable: false,
+        alipay: 'https://pic.izhaoo.com/alipay.jpg',
+        wechat: 'https://pic.izhaoo.com/wechat.jpg'
+      },
+      motto: {
+        api: '',
+        default: '一以贯之的努力，不得懈怠的人生'
+      },
+      galleries: {
+        enable: true
+      },
+      fab: {
+        enable: true,
+        alwaysShow: false
+      },
+      carrier: {
+        enable: false
+      },
+      daovoice: {
+        enable: true
+      }
+    }
+  </script>
+
+  
+
+  
+<meta name="generator" content="Hexo 5.1.1"></head>
+<body class="lock-screen">
+  <div class="loading"></div>
+  
+
+
+<nav class="navbar">
+  <div class="left"></div>
+  <div class="center">从this的5种绑定开始</div>
+  <div class="right">
+    <i class="iconfont iconmenu j-navbar-menu"></i>
+  </div>
+</nav>
+
+  <nav class="menu">
+  <div class="menu-wrap">
+    <div class="menu-close">
+      <i class="iconfont iconbaseline-close-px"></i>
+    </div>
+    <ul class="menu-content">
+      
+      
+      
+      
+      <li class="menu-item"><a href="/ " class="underline"> 首页</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/archives " class="underline"> 归档</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/tags " class="underline"> 标签</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/categories " class="underline"> 分类</a></li>
+      
+      
+      
+      
+      <li class="menu-item"><a href="/about " class="underline"> 关于</a></li>
+      
+    </ul>
+    <div class="menu-copyright"></div>
+  </div>
+</nav>
+  <main id="main">
+  <div class="container" id="container">
+    <article class="article">
+  <div class="wrap">
+    <section class="head">
+  <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
+  <div class="head-mask">
+    <h1 class="head-title">从this的5种绑定开始</h1>
+    <div class="head-info">
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>January 28, 2021</span
+        class="post-info-item">
+      
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2007</span>
+    </div>
+  </div>
+</section>
+    <section class="main">
+      <section class="content">
+        <p> js中共有5中this的绑定，关于this的指向之前有点晕，现在好好梳理一下:star:</p>
+<h3 id="默认绑定"><a href="#默认绑定" class="headerlink" title="默认绑定"></a>默认绑定</h3><p>即没有调用前缀的情况下，即函数调用，this指向全局对象（非严格模式）。</p>
+<h3 id="隐式绑定"><a href="#隐式绑定" class="headerlink" title="隐式绑定"></a>隐式绑定</h3><p>函数调用的前面有一个对象，即方法调用，函数的this指向对象。</p>
+<p>当函数调用有多个对象时，this指向最近的对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name);<br>&#125;;<br><span class="hljs-keyword">let</span> obj = &#123;<br>    name: <span class="hljs-string">&#x27;时间飞行&#x27;</span>,<br>    func: fn,<br>&#125;;<br><span class="hljs-keyword">let</span> obj1 = &#123;<br>    name: <span class="hljs-string">&#x27;听风是风&#x27;</span>,<br>    o: obj<br>&#125;;<br>obj1.o.func() <span class="hljs-comment">//时间飞行</span><br></code></pre></td></tr></table></figure>
+
+<p>当去掉obj中的<code>name: &#39;时间飞行&#39;</code>时，输出的是undefined，属于原型链查找，obj和obj1的原型并不相同</p>
+<p>作用域链与原型链的区别：</p>
+<p>作用域链查找是指，当访问一个变量时，当前作用域没有找到，便向父级作用域寻找，一直向上，顶端是全局对象window，如果window都没有这个变量就报错。</p>
+<p>原型链查找是指，访问一个对象的属性，当前对象没有找到，便向原型的属性查找，一直向上，顶端是null，如果没找到返回undefined。</p>
+<h4 id="隐式丢失："><a href="#隐式丢失：" class="headerlink" title="隐式丢失："></a>隐式丢失：</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> name = <span class="hljs-string">&#x27;时间飞行&#x27;</span>;<br><span class="hljs-keyword">let</span> obj = &#123;<br>    name: <span class="hljs-string">&#x27;听风是风&#x27;</span>,<br>    fn: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name);<br>    &#125;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn1</span>(<span class="hljs-params">param</span>) </span>&#123;<br>    param();<br>&#125;;<br>fn1(obj.fn);<span class="hljs-comment">//时间飞行 因为是单纯传入函数 </span><br>fn1(obj.fn());<span class="hljs-comment">//听风是风 传入的是函数的调用</span><br></code></pre></td></tr></table></figure>
+
+<h3 id="显示绑定"><a href="#显示绑定" class="headerlink" title="显示绑定"></a>显示绑定</h3><p>通过apply、call、bind改变this的指向</p>
+<p>三者的区别在于：</p>
+<ul>
+<li>call、apply在改变this的同时会执行函数，bind改变this后返回函数，需要手动执行函数。</li>
+<li>bind属于硬绑定，返回的函数的this不能通过call，apply，bind改变，call和apply只适用当前绑定。</li>
+<li>call传入的参数是散列，apply传入的是数组。</li>
+</ul>
+<h3 id="new绑定"><a href="#new绑定" class="headerlink" title="new绑定"></a>new绑定</h3><p>this指向新对象</p>
+<p>this绑定优先级：</p>
+<ul>
+<li>显示绑定&gt;隐式绑定&gt;默认绑定</li>
+<li>new绑定&gt;隐式绑定&gt;默认绑定</li>
+</ul>
+<p>需要注意的是，不存在同时的显示绑定和new绑定</p>
+<h3 id="箭头函数"><a href="#箭头函数" class="headerlink" title="箭头函数"></a>箭头函数</h3><p>箭头函数没有自己的this，将当前执行上下文的上文作为this。</p>
+<p>👇关于this指向的题目</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-comment">/*非严格模式*/</span><br><br><span class="hljs-keyword">var</span> name = <span class="hljs-string">&#x27;window&#x27;</span><br><br><span class="hljs-keyword">var</span> obj1 = &#123;<br>    name: <span class="hljs-string">&#x27;听风是风&#x27;</span>,<br>    fn1: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name)<br>    &#125;,<br>    fn2: <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name),<br>    fn3: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>            <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name)<br>        &#125;<br>    &#125;,<br>    fn4: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-keyword">return</span> <span class="hljs-function">() =&gt;</span> <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name)<br>    &#125;<br>&#125;<br><span class="hljs-keyword">var</span> obj2 = &#123;<br>    name: <span class="hljs-string">&#x27;时间飞行&#x27;</span><br>&#125;;<br><br>obj1.fn1();<span class="hljs-comment">//?</span><br>obj1.fn1.call(obj2);<span class="hljs-comment">//?</span><br><br>obj1.fn2();<span class="hljs-comment">//?</span><br>obj1.fn2.call(obj2);<span class="hljs-comment">//?</span><br><br>obj1.fn3()();<span class="hljs-comment">//?</span><br>obj1.fn3().call(obj2);<span class="hljs-comment">//?</span><br>obj1.fn3.call(obj2)();<span class="hljs-comment">//?</span><br><br>obj1.fn4()();<span class="hljs-comment">//?</span><br>obj1.fn4().call(obj2);<span class="hljs-comment">//?</span><br>obj1.fn4.call(obj2)();<span class="hljs-comment">//?</span><br></code></pre></td></tr></table></figure>
+
+<p>输出如下：</p>
+<p>听风是风   this隐式调用，指向obj1对象</p>
+<p>时间飞行   显示改变this指向obj2<br>window   比较特殊的是<br>window<br>window<br>时间飞行<br>window<br>听风是风<br>听风是风</p>
+
+      </section>
+      <section class="extra">
+        
+        
+        
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/js/" rel="tag">js</a></li></ul>
+
+        
+<nav class="nav">
+  
+  
+    <a href="/2021/01/14/%E6%B7%B1%E5%85%A5%E6%B5%85%E5%87%BAnode%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/">深入浅出node笔记（三）<i class="iconfont iconright"></i></a>
+  
+</nav>
+
+      </section>
+      
+      <section class="comments">
+  
+  <div class="btn" id="comments-btn">查看评论</div>
+  
+  
+</section>
+      
+    </section>
+  </div>
+</article>
+  </div>
+</main>
+  <footer class="footer">
+  <div class="footer-social">
+    
+    
+    
+    
+    
+    <a href="tencent://message/?Menu=yes&uin=1151329119 " target="_blank" onMouseOver="this.style.color= '#12B7F5'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconQQ "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="/images/theme/wechat.png " target="_blank" onMouseOver="this.style.color= '#09BB07'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconwechat-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="https://github.com/LiJiaHHui " target="_blank" onMouseOver="this.style.color= '#24292E'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  icongithub-fill "></i>
+    </a>
+    
+    
+    
+    
+    
+    <a href="mailto:ljhhhui@126.com " target="_blank" onMouseOver="this.style.color='#FFBE5B'"
+      onMouseOut="this.style.color='#33333D'">
+      <i class="iconfont footer-social-item  iconmail"></i>
+    </a>
+    
+  </div>
+  <div class="footer-copyright"></div>
+</footer>
+  
+      <div class="fab fab-plus">
+    <i class="iconfont iconplus"></i>
+  </div>
+  
+  <div class="fab fab-daovoice">
+    <i class="iconfont iconcomment"></i>
+  </div>
+  
+  <div class="fab fab-up">
+    <i class="iconfont iconcaret-up"></i>
+  </div>
+  
+</body>
+
+
+<script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcdn.net/ajax/libs/jquery.lazyload/1.9.1/jquery.lazyload.min.js"></script>
+
+
+
+
+
+
+<script src="https://cdn.bootcss.com/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+
+
+
+
+
+<script src="/js/utils.js"></script>
+<script src="/js/modules.js"></script>
+<script src="/js/zui.js"></script>
+<script src="/js/script.js"></script>
+
+
+
+
+
+<script>
+  (function (i, s, o, g, r, a, m) {
+    i["DaoVoiceObject"] = r;
+    i[r] = i[r] || function () {
+      (i[r].q = i[r].q || []).push(arguments)
+    }, i[r].l = 1 * new Date();
+    a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+    a.async = 1;
+    a.src = g;
+    a.charset = "utf-8";
+    m.parentNode.insertBefore(a, m)
+  })(window, document, "script", ('https:' == document.location.protocol ? 'https:' : 'http:') +
+    "//widget.daovoice.io/widget/0f81ff2f.js", "daovoice")
+  daovoice('init', {
+    app_id: "abcdefg"
+  }, {
+    launcher: {
+      disableLauncherIcon: true,
+    },
+  });
+  daovoice('update');
+</script>
+
+
+
+<script>
+  (function () {
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+      bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    } else {
+      bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+  })();
+</script>
+
+
+<script>
+  var _hmt = _hmt || [];
+  (function () {
+    var hm = document.createElement("script");
+    hm.src = "https://hm.baidu.com/hm.js?4c204d8bc027a0455b5fc642ac334ca8";
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(hm, s);
+  })();
+</script>
+
+
+
+
+
+
+
+
+
+
+</html>
