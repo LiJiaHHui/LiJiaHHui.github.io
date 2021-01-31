@@ -14,7 +14,7 @@
 
   
   
-  <meta name="description" content="CDN的缓存与回源策略​     CDN是内容分发网路..."> 
+  <meta name="description" content="CDN的缓存与回源策略​     CDN是内容分发网络..."> 
   
   <meta name="author" content="John Doe"> 
 
@@ -160,13 +160,13 @@
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 24, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1399</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2099</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
-        <h3 id="CDN的缓存与回源策略"><a href="#CDN的缓存与回源策略" class="headerlink" title="CDN的缓存与回源策略"></a>CDN的缓存与回源策略</h3><p>​     CDN是内容分发网路，指一组分布在各个地区的服务器，存储着数据的副本。CDN的核心功能有两个：一是缓存，二是回源。缓存是指，将静态资源copy一份，放在CDN服务器上。静态资源，比如说JS，CSS,图片等不需要业务服务器进行计算得资源。</p>
+        <h3 id="CDN的缓存与回源策略"><a href="#CDN的缓存与回源策略" class="headerlink" title="CDN的缓存与回源策略"></a>CDN的缓存与回源策略</h3><p>​     CDN是内容分发网络，指一组分布在各个地区的服务器，存储着数据的副本。CDN的核心功能有两个：一是缓存，二是回源。缓存是指，将静态资源copy一份，放在CDN服务器上。静态资源，比如说JS，CSS,图片等不需要业务服务器进行计算得资源。</p>
 <p>​        回源是指，当请求的资源在CDN上找不到时（一般是缓存的数据过期了），就会向根服务器去请求这个资源。根服务器本质上是业务服务器，用来生成动态页面或返回非静态页面，动态资源是指后端实时动态生成得资源，比如JSP或者依赖服务端渲染而得到的页面。非纯静态资源是指，需要服务器做额外计算的html页面，比如说页面的权限认证。</p>
 <h4 id="实际应用"><a href="#实际应用" class="headerlink" title="实际应用"></a>实际应用</h4><p>​    静态资源访问量大，访问频率高，所以加载速度是前端优化的重要指标。大型电商，都是将静态资源放到CDN中。如果CDN域名与网站域名不一致，还可以带来一个额外的好处就是，当用户访问CDN上的静态资源时，不会携带cookie，避免性能消耗</p>
 <p>浏览器缓存</p>
@@ -189,10 +189,29 @@
 <p>方法：webpack中的path与路由进行配置，核心是路由中的require.ensure方法，异步方法，组件会被单独打包成一个文件，当路由跳转时，异步方法的回调才会生效。React-router4中的code-splitting实际上也是用require.ensure实现的。</p>
 </li>
 </ul>
-<h4 id="Gzip原理"><a href="#Gzip原理" class="headerlink" title="Gzip原理"></a>Gzip原理</h4><p>http压缩是以缩小体积为目的，对http内容进行重新编码的过程。使用http压缩的话，数据中从服务器发送过来的时候就已经压缩好了，所以浏览器要声明自己所支持的格式，不支持压缩的浏览器将下载未经压缩的数据。常见的压缩有Gzip和Deflate。</p>
+<h4 id="http压缩和Gzip原理"><a href="#http压缩和Gzip原理" class="headerlink" title="http压缩和Gzip原理"></a>http压缩和Gzip原理</h4><p>http压缩是指为了缩小http内容，进行重新编码的过程。使用http压缩的话，数据中从服务器发送过来的时候就已经压缩好了，所以浏览器要声明自己所支持的格式，不支持压缩的浏览器将下载未经压缩的数据。常见的压缩有Gzip和Deflate。</p>
 <p>Gzip实现压缩的方法很简单：在request headers加上accpt-encoding：gzip</p>
 <p>Gzip是高效的，通常压缩后能减少70%的大小，它的原理是从一个文本文件中找到重复的字符串，然后临时替换，从而使文件变小。</p>
 <p>一般来说，Gzip是服务器的事情，压缩是在服务器中进行的。我们通过服务器压缩的时间和CPU开销（指的是浏览器解析压缩文件的开销），来换取传输过程时间的减少</p>
+<h3 id="页面优化"><a href="#页面优化" class="headerlink" title="页面优化"></a>页面优化</h3><p>从页面的加载三阶段（加载、交互、关闭）来看，页面优化也可分为三部分</p>
+<h4 id="加载阶段"><a href="#加载阶段" class="headerlink" title="加载阶段"></a>加载阶段</h4><p>主要是提高关键资源的加载速度，关键资源是指能够阻塞首次渲染的资源。可以从三个方面来考虑，减少关键资源个数，减少关键资源大小，减少RTT次数（从发送端发送请求到收到接收端的确认的时间），方法具体如下。</p>
+<ul>
+<li><p>减少关键资源个数：可以将js和css改为内联形式、js如果不操作dom，css的话，改为异步加载，async或defer。</p>
+</li>
+<li><p>减少关键资源大小：压缩css和js，减少注释</p>
+</li>
+<li><p>减少RTT次数：使用CDN</p>
+</li>
+</ul>
+<h4 id="交互阶段"><a href="#交互阶段" class="headerlink" title="交互阶段"></a>交互阶段</h4><p>关键在于加速渲染进程中渲染帧的速度。交互阶段的渲染一般是由</p>
+<h3 id="图片优化"><a href="#图片优化" class="headerlink" title="图片优化"></a>图片优化</h3><h4 id="雪碧图和base64"><a href="#雪碧图和base64" class="headerlink" title="雪碧图和base64"></a>雪碧图和base64</h4><p>雪碧图是指将许多小的图片（如logo），合成在一张图片上，然后利用css背景定位来显示部分图片。这样就可以减少请求次数了。</p>
+<p>base64作为雪碧图的补充而存在，base64是一种编码方式，用于传输8bit字节码，用64个字符表示二进制数据。对图片进行base64编码，将结果直接写入html或css中，浏览器就会显示图片而不用进行网络请求。</p>
+<p>可以用webpack的url-loader来实现，可以根据图片大小判断是否要进行base64编码。</p>
+<p>base64缺点在于转换后的体积变大，所以只能用于小图。并且转换后图片不能合成雪碧图，适用与更新频率很低的图片。</p>
+<p>关于图片格式</p>
+<p>jpg：有损压缩，体积小，加载快，不支持透明。常用于显示大图，图片质量较好，体积不大</p>
+<p>png：无损压缩，体积大，质量高，支持透明。主要用于呈现小logo、颜色简单对比强烈的图片。</p>
+<p>svg：矢量图，体积小，不失真，兼容性好。常用于图标。</p>
 
       </section>
       <section class="extra">
