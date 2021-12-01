@@ -7,14 +7,14 @@
   <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>网络安全相关 - Hexo</title>
+  <title>el-table复选框实现分页记忆 - Hexo</title>
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
   <meta name="google" content="notranslate" />
 
   
   
-  <meta name="description" content="xss攻击​    XSS攻击是指跨站脚本攻击，是一种..."> 
+  <meta name="description" content="el-table 结合 el-pagination 实..."> 
   
   <meta name="author" content="John Doe"> 
 
@@ -106,7 +106,7 @@
 
 <nav class="navbar">
   <div class="left"></div>
-  <div class="center">网络安全相关</div>
+  <div class="center">el-table复选框实现分页记忆</div>
   <div class="right">
     <i class="iconfont iconmenu j-navbar-menu"></i>
   </div>
@@ -155,53 +155,40 @@
     <section class="head">
   <img   class="lazyload" data-original="/images/theme/post-image.jpg" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  draggable="false">
   <div class="head-mask">
-    <h1 class="head-title">网络安全相关</h1>
+    <h1 class="head-title">el-table复选框实现分页记忆</h1>
     <div class="head-info">
-      <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 02, 2020</span
+      <span class="post-info-item"><i class="iconfont iconcalendar"></i>June 06, 2021</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>793</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2106</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
-        <h2 id="xss攻击"><a href="#xss攻击" class="headerlink" title="xss攻击"></a>xss攻击</h2><p>​    XSS攻击是指跨站脚本攻击，是一种黑客攻击的手段，往HTML或者是DOM中注入恶意脚本，当用户浏览页面时实施攻击。最初XSS攻击是通过跨域实现的，但是现在跨域已经不是唯一的实现方式了，XSS的名称（cross site scripting）却一直保存下来。</p>
-<h3 id="实现方式"><a href="#实现方式" class="headerlink" title="实现方式"></a>实现方式</h3><p>XSS实现的三种方式：反射型，存储型，基于DOM型。</p>
-<p>反射型：将恶意脚本当作用户发送给服务器的请求的一部分，然后服务器将恶意脚本返回给用户。</p>
-<p>存储型：利用服务器漏洞将恶意脚本存储到服务器中，当用户访问页面执行恶意脚本。</p>
-<p>基于DOM型：黑客利用各种手段比如说设置钓鱼WiFi，恶意软件，劫持用户请求的数据，然后用户加载修改过的页面。</p>
-<h3 id="预防攻击的方法"><a href="#预防攻击的方法" class="headerlink" title="预防攻击的方法"></a>预防攻击的方法</h3><p>主要有以下几种方法：</p>
-<p>一：使用服务器对输入脚本进行过滤或转码</p>
-<p>比如服务器对script标签进行过滤，对&lt;&gt;进行转码</p>
-<p>二：充分利用CSP（内容安全策略）</p>
-<p>CSP包含以下内容：</p>
-<ul>
-<li>禁止加载其他域下的资源</li>
-<li>禁止加载内联脚本和未授权脚本</li>
-<li>禁止向第三方发送数据</li>
-<li>提供上报机制，便于修复问题</li>
-</ul>
-<p>三：使用HTTPonly属性</p>
-<p>设置cookie的HTTPonly属性，表明cookie只能使用在HTTP请求的过程中，JS脚本不能通过document.cookie访问。</p>
-<h2 id="CSRF"><a href="#CSRF" class="headerlink" title="CSRF"></a>CSRF</h2><p>📕csrf（跨站请求伪造）是指，恶意脚本利用用户的浏览器，发送伪造的请求给用户认证过的网站，利用浏览器的漏洞：简单的身份验证只能保证请求是用户浏览器发送的，却不一定是用户想发送的。</p>
-<p>防御：检查referer字段，请求来源的URL（包含协议、域名和参数），缺点是可能被恶意修改</p>
-<p>添加校验token：要求用户浏览器提供不保存在cookie中，并且无法伪造的数据进行校验。通常是窗体的一个数据项，服务器附加伪随机数在窗体上，通过窗体发送的请求会携带这个伪随机数，提供给服务器进行校验</p>
+        <p>el-table 结合 el-pagination 实现分页后默认是没有复选框记忆功能的,想到采用Map数据结构来存储所选选项。但是vue响应数据是不支持的，<code>Map</code>与<code>Set</code>里面的元素变化时Vue追踪不到这些变化，因此无法做出响应。</p>
+<p>解决方法是将Map可序列化，写在computed中实现响应式。</p>
+<figure class="highlight kotlin"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br></pre></td><td class="code"><pre><code class="hljs kotlin">  <span class="hljs-keyword">data</span> () &#123;<br>    <span class="hljs-keyword">return</span> &#123;<br>myMap:new Map(),<br> 	&#125;<br> &#125;,<br> methods:&#123;<br>    selectMemoriedDataFn () &#123; <span class="hljs-comment">// 分页记忆自动选中方法</span><br>      let currentArr = <span class="hljs-keyword">this</span>.myMap.<span class="hljs-keyword">get</span>(<span class="hljs-keyword">this</span>.currentPage)  <span class="hljs-comment">// 当前分页对应被选中数据</span><br>      console.log(<span class="hljs-string">&#x27;选中&#x27;</span>,currentArr)<br>      <span class="hljs-keyword">if</span> (currentArr &amp;&amp; currentArr.length) &#123; <span class="hljs-comment">// 存在则继续执行</span><br>        let tempRowsIDs = <span class="hljs-keyword">this</span>.tableData.map(L =&gt; L.id) <span class="hljs-comment">// 当前分页被选中数据的id集合</span><br>        currentArr.forEach((item) =&gt; &#123; <span class="hljs-comment">// 遍历当前分页被选中数据</span><br>          <span class="hljs-keyword">if</span> (tempRowsIDs.includes(item.id)) &#123; <span class="hljs-comment">// id匹配上，则选中</span><br><span class="hljs-keyword">this</span>.$refs.multipleTable.toggleRowSelection(<span class="hljs-keyword">this</span>.tableData[tempRowsIDs.indexOf(item.id)])<br>          &#125;<br>        &#125;)<br>      &#125;<br>    &#125;,<br>    <span class="hljs-comment">// 选中选项触发</span><br>    handleSelect(<span class="hljs-keyword">val</span>)&#123;<br>      <span class="hljs-keyword">this</span>.myMap.<span class="hljs-keyword">set</span>(<span class="hljs-keyword">this</span>.currentPage,<span class="hljs-keyword">val</span>)<br>      let all=[]<br>      <span class="hljs-keyword">for</span> (let value of <span class="hljs-keyword">this</span>.myMap.values()) &#123;<br>        value.forEach(item=&gt;&#123;<br>          all.push(item)<br>        <span class="hljs-keyword">this</span>.multipleSelectionAll=all<br>        &#125;<br>        )<br>      &#125;<br>    &#125;,<br>    <span class="hljs-comment">//  currentPage 改变时会触发</span><br>    handleCurrentChange(<span class="hljs-keyword">val</span>)&#123;<br>      <span class="hljs-keyword">this</span>.currentPage=<span class="hljs-keyword">val</span><br>      <span class="hljs-keyword">if</span>(<span class="hljs-keyword">this</span>.myMap.has(<span class="hljs-keyword">this</span>.currentPage))&#123;<br>        <span class="hljs-keyword">this</span>.flag=<span class="hljs-literal">true</span><br>        <span class="hljs-keyword">this</span>.selectMemoriedDataFn()<br>        console.log(<span class="hljs-string">&#x27;flag change&#x27;</span>,<span class="hljs-keyword">this</span>.flag)<br>      &#125;<br>      <span class="hljs-keyword">this</span>.getData()<br>     &#125;,<br>     &#125;,<br>  computed:&#123;<br>    <span class="hljs-comment">// 序列化map</span><br>    mySetAsList() &#123;<br>      <span class="hljs-comment">// var x = this.mySetChangeTracker;</span><br>      <span class="hljs-comment">// By using `mySetChangeTracker` we tell Vue that this property depends on it,</span><br>      <span class="hljs-comment">// so it gets re-evaluated whenever `mySetChangeTracker` changes</span><br>      <span class="hljs-keyword">return</span> Array.from(<span class="hljs-keyword">this</span>.myMap);<br>    &#125;<br>  &#125;,<br>  watch:&#123;<br>    tableData () &#123; <span class="hljs-comment">// 监听数据变化，然后执行分页记忆自动选中回调</span><br>      <span class="hljs-keyword">this</span>.$nextTick(() =&gt; &#123;<br>        <span class="hljs-keyword">this</span>.selectMemoriedDataFn()<br>      &#125;)<br>    &#125;<br>  &#125;,<br></code></pre></td></tr></table></figure>
+
+
+
+<p>踩坑：async-validator [inputvalue is required]</p>
+<p>调单验证规则失效</p>
+<p>没有绑定form表单导致校验失败</p>
+<p>参考文章：<a target="_blank" rel="noopener" href="https://blog.csdn.net/SGAFPZys/article/details/80754786">https://blog.csdn.net/SGAFPZys/article/details/80754786</a></p>
 
       </section>
       <section class="extra">
         
         
         
-  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/%E7%BD%91%E7%BB%9C%E5%AE%89%E5%85%A8/" rel="tag">网络安全</a></li></ul>
+  <ul class="tag-list" itemprop="keywords"><li class="tag-list-item"><a class="tag-list-link" href="/tags/vue/" rel="tag">vue</a></li></ul>
 
         
 <nav class="nav">
   
-    <a href="/2020/11/04/%E5%8D%A0%E5%9D%91-%E6%9C%8D%E5%8A%A1%E5%99%A8%E9%83%A8%E7%BD%B2%E9%82%A3%E4%BA%9B%E4%BA%8B/"><i class="iconfont iconleft"></i>[占坑]服务器部署那些事</a>
   
-  
-    <a href="/2020/10/22/%E9%9D%A2%E8%AF%95%E6%80%BB%E7%BB%93%EF%BC%88%E4%BA%8C%EF%BC%89/">面试总结（二）<i class="iconfont iconright"></i></a>
+    <a href="/2021/04/15/webpack%E5%85%A5%E9%97%A8%E5%9F%BA%E7%A1%80/">webpack入门基础<i class="iconfont iconright"></i></a>
   
 </nav>
 

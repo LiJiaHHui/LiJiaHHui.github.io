@@ -160,7 +160,7 @@
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>September 17, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1504</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1488</span>
     </div>
   </div>
 </section>
@@ -169,6 +169,8 @@
         <h1 id="let与const"><a href="#let与const" class="headerlink" title="let与const"></a>let与const</h1><p>let和const的作用域都是块级作用域，都不能重复声明，都不存在变量提升，在变量声明前使用会导致暂时性死区。两者的区别在于，let声明的是一个常量，声明时可以不赋值，声明后可以修改；const声明的是一个常量，声明时一定要赋值，声明后不能被修改。</p>
 <p>const中保存的是变量指向的内存地址。对于基本数据类型而言，值就是指向内存地址中的数据，等同于常量。对于引用类型而言，const保存的是一个指向固定地址的指针。</p>
 <p>因此如果const声明一个对象，对象是可以添加新属性的，声明一个数组也是可以通过push方法添加数据。要真正冻结对象，不允许重复赋值的话，使用Object.freeze方法。</p>
+<p><img   class="lazyload" data-original="C:\Users\Rain\AppData\Roaming\Typora\typora-user-images\image-20210223154557328.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20210223154557328"></p>
+<p><img   class="lazyload" data-original="C:\Users\Rain\AppData\Roaming\Typora\typora-user-images\image-20210223154619836.png" src="data:image/gif;base64,iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAYAAAAfFcSJAAAADUlEQVQImWNgYGBgAAAABQABh6FO1AAAAABJRU5ErkJggg=="  alt="image-20210223154619836"></p>
 <p>冻结对象本身</p>
 <p><code>const foo = Object.freeze(&#123;&#125;)</code></p>
 <p>彻底冻结，包括属性</p>
@@ -180,7 +182,6 @@
 <h1 id="声明变量的六种方法"><a href="#声明变量的六种方法" class="headerlink" title="声明变量的六种方法"></a>声明变量的六种方法</h1><p>var，let，const，function，import，class</p>
 <h1 id="顶层对象"><a href="#顶层对象" class="headerlink" title="顶层对象"></a>顶层对象</h1><p>在浏览器中顶层对象是指window，在node中指的是global，es5中顶层对象与全局对象是等价的。</p>
 <h1 id="循环遍历"><a href="#循环遍历" class="headerlink" title="循环遍历"></a>循环遍历</h1><p>最原始的是for循环，数组也提供内置的forEach方法,参数是一个函数<br>myArray.forEach(function (value)){<br> value+1<br>}<br>缺点在于不能中途跳出，break，return无效<br>For-in 遍历的是键名key，是一个字符串，主要是为遍历对象设计的，不适合遍历数组<br>Es6中新增for-of循环<br>for-of遍历的是值,提供了遍历所有数据结构的统一操作接口，可以用break跳出循环</p>
-<p>图for-in与for-of的对比</p>
 <h1 id="rest参数与扩展运算符"><a href="#rest参数与扩展运算符" class="headerlink" title="rest参数与扩展运算符"></a>rest参数与扩展运算符</h1><p>互为逆运算，rest用于获取函数多余参数，…扩展运算符是将一个数组转为用逗号分隔的参数序列</p>
 <p>扩展运算符是将数组分割为序列，rest运算符是将分割序列合并为数组</p>
 <p>浏览器对同一域名请求的最大并发连接量<br>在http1.1以下是可以有多个tcp连接，http2是取消了多个连接，一个tcp连接用多路复用实现数据的同时传输<br>IE10+，火狐，谷歌4+的最大并发连接数量是6个</p>

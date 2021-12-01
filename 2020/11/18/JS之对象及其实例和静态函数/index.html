@@ -160,14 +160,14 @@
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>November 18, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1442</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1446</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
         <p> JS中对象是引用类型，引用类型的实例都需要通过new来实现。所以先要了解new操作符到底发生了什么。</p>
-<h4 id="new操作符"><a href="#new操作符" class="headerlink" title="new操作符"></a>new操作符</h4><p>首先需要知道的是，在js的函数中，如果没有return值，那么默认返回this。</p>
+<h4 id="new操作符"><a href="#new操作符" class="headerlink" title="new操作符"></a>new操作符</h4><p>首先需要知道的是，在js的函数中，如果没有return值，那么默认返回undefined。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">Cat</span>(<span class="hljs-params">name</span>)</span>&#123;<br>	<span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>)<br>&#125;<br><span class="hljs-keyword">new</span> Cat(<span class="hljs-string">&#x27;kele&#x27;</span>)<br></code></pre></td></tr></table></figure>
 
 <p>如果不给this添加属性，那么返回的将是一个空对象。</p>
@@ -202,7 +202,7 @@
 <p>创建并返回一个指定原型和属性的对象</p>
 </li>
 <li><p>Object.defineProperties()</p>
-<p>添加或修改对象的属性指。</p>
+<p>添加或修改对象的属性。</p>
 </li>
 <li><p>Object.getOwnPropertyNames()</p>
 <p>获取对象的所有实例属性和函数，不包含原型链继承的属性和函数，返回数组</p>
