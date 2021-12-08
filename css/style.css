@@ -1099,7 +1099,10 @@ body ul {
   transition: all 0.3s cubic-bezier(0.25, 0.5, 0.5, 0.9);
 }
 .post .post-item .post-wrap .post-image img:hover {
-  filter: grayscale(100%);
+  width: 98%;
+  height: 98%;
+  box-shadow: 0 0 50px #c6c6c6;
+  transform: rotate(-2deg) translateY(-5px) scale(1.025);
 }
 .post .post-item .post-wrap .post-content {
   padding: 20px;
