@@ -14,7 +14,7 @@
 
   
   
-  <meta name="description" content=" js中共有5中this的绑定，关于this的指向之前..."> 
+  <meta name="description" content=":star: js中共有5中this的绑定，关于thi..."> 
   
   <meta name="author" content="LiJiahui"> 
 
@@ -160,14 +160,15 @@
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>January 28, 2021</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2254</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>2374</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
-        <p> js中共有5中this的绑定，关于this的指向之前有点晕，现在好好梳理一下:star:</p>
-<h3 id="默认绑定"><a href="#默认绑定" class="headerlink" title="默认绑定"></a>默认绑定</h3><p>即没有调用前缀的情况下，即函数调用，this指向全局对象（非严格模式）。</p>
+        <p>:star: js中共有5中this的绑定，关于this的指向之前有点晕，现在好好梳理一下</p>
+<p>其中优先级从高到低分别是：new绑定、显式绑定、隐式绑定、默认绑定。注意默认绑定通常指向全局对象，严格模式下指向undefined。</p>
+<h3 id="默认绑定"><a href="#默认绑定" class="headerlink" title="默认绑定"></a>默认绑定</h3><p>即没有调用前缀的情况下，即函数调用，在浏览器中this指向全局对象window（非严格模式），严格模式指向undefined。</p>
 <h3 id="隐式绑定"><a href="#隐式绑定" class="headerlink" title="隐式绑定"></a>隐式绑定</h3><p>函数调用的前面有一个对象，即方法调用，函数的this指向对象。</p>
 <p>当函数调用有多个对象时，this指向最近的对象。</p>
 <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn</span>(<span class="hljs-params"></span>) </span>&#123;<br>    <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name);<br>&#125;;<br><span class="hljs-keyword">let</span> obj = &#123;<br>    name: <span class="hljs-string">&#x27;时间飞行&#x27;</span>,<br>    func: fn,<br>&#125;;<br><span class="hljs-keyword">let</span> obj1 = &#123;<br>    name: <span class="hljs-string">&#x27;听风是风&#x27;</span>,<br>    o: obj<br>&#125;;<br>obj1.o.func() <span class="hljs-comment">//时间飞行</span><br></code></pre></td></tr></table></figure>
@@ -178,7 +179,7 @@
 <p>原型链查找是指，访问一个对象的属性，当前对象没有找到，便向原型的属性查找，一直向上，顶端是null，如果没找到返回undefined。</p>
 <h4 id="隐式丢失："><a href="#隐式丢失：" class="headerlink" title="隐式丢失："></a>隐式丢失：</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><code class="hljs javascript"><span class="hljs-keyword">var</span> name = <span class="hljs-string">&#x27;时间飞行&#x27;</span>;<br><span class="hljs-keyword">let</span> obj = &#123;<br>    name: <span class="hljs-string">&#x27;听风是风&#x27;</span>,<br>    fn: <span class="hljs-function"><span class="hljs-keyword">function</span> (<span class="hljs-params"></span>) </span>&#123;<br>        <span class="hljs-built_in">console</span>.log(<span class="hljs-built_in">this</span>.name);<br>    &#125;<br>&#125;;<br><br><span class="hljs-function"><span class="hljs-keyword">function</span> <span class="hljs-title">fn1</span>(<span class="hljs-params">param</span>) </span>&#123;<br>    param();<br>&#125;;<br>fn1(obj.fn);<span class="hljs-comment">//时间飞行 因为是单纯传入函数 </span><br>fn1(obj.fn());<span class="hljs-comment">//听风是风 传入的是函数的调用</span><br></code></pre></td></tr></table></figure>
 
-<h3 id="显示绑定"><a href="#显示绑定" class="headerlink" title="显示绑定"></a>显示绑定</h3><p>通过apply、call、bind改变this的指向</p>
+<h3 id="显式绑定"><a href="#显式绑定" class="headerlink" title="显式绑定"></a>显式绑定</h3><p>通过apply、call、bind改变this的指向</p>
 <p>三者的区别在于：</p>
 <ul>
 <li>call、apply在改变this的同时会执行函数，bind改变this后返回函数，需要手动执行函数。</li>
@@ -199,6 +200,8 @@
 <p>输出如下：</p>
 <p>听风是风        this隐式调用，指向obj1对象</p>
 <p>时间飞行        显示改变this指向obj2<br>window         比较特殊的是fn2是箭头函数，只与上下文有关<br>window         箭头函数没有this，无法显示改变指向<br>window         相当于let fn=obj1.fn(),window.fn()，window隐式调用了<br>时间飞行        显示改变了this指向<br>window         最后window隐式调用了<br>听风是风        返回的是闭包中的箭头函数，隐式调用不能改变this<br>听风是风        同上<br>时间飞行        改变fn4的this，指向obj2，箭头函数就使用上层上下文（obj2）的属性</p>
+<p>参考文章：</p>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000014224541">带你彻底搞懂 JS 中 this 机制</a></p>
 
       </section>
       <section class="extra">
