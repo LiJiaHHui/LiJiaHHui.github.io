@@ -160,7 +160,7 @@
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>September 17, 2020</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1488</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>1921</span>
     </div>
   </div>
 </section>
@@ -184,6 +184,36 @@
 <h1 id="循环遍历"><a href="#循环遍历" class="headerlink" title="循环遍历"></a>循环遍历</h1><p>最原始的是for循环，数组也提供内置的forEach方法,参数是一个函数<br>myArray.forEach(function (value)){<br> value+1<br>}<br>缺点在于不能中途跳出，break，return无效<br>For-in 遍历的是键名key，是一个字符串，主要是为遍历对象设计的，不适合遍历数组<br>Es6中新增for-of循环<br>for-of遍历的是值,提供了遍历所有数据结构的统一操作接口，可以用break跳出循环</p>
 <h1 id="rest参数与扩展运算符"><a href="#rest参数与扩展运算符" class="headerlink" title="rest参数与扩展运算符"></a>rest参数与扩展运算符</h1><p>互为逆运算，rest用于获取函数多余参数，…扩展运算符是将一个数组转为用逗号分隔的参数序列</p>
 <p>扩展运算符是将数组分割为序列，rest运算符是将分割序列合并为数组</p>
+<ul>
+<li><p><strong>…拓展运算符</strong></p>
+<p>用于遍历对象所有可以访问的参数</p>
+</li>
+<li><p><strong>set</strong></p>
+<p>es6新结构，创建值唯一的对象</p>
+</li>
+<li><p><strong>字符串模板</strong></p>
+<p>${}，可以执行js</p>
+</li>
+<li><p><strong>flat,flatMap</strong></p>
+<p>数组扁平化，flat将数组拉平，默认拉平一层，参数为Infinity就可以拉平任意层。flatMap实际是先执行Map函数，再执行flat函数。</p>
+<p><code>flat</code>方法不支持IE浏览器。</p>
+</li>
+<li><p><strong>可选链运算符</strong></p>
+<p>嵌套属性需要判断是否存在，通过&amp;&amp;符号判断，使用可选链运算符.?就不用这样判断了</p>
+<figure class="highlight delphi"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs delphi"><span class="hljs-keyword">const</span> <span class="hljs-keyword">name</span> = obj?.<span class="hljs-keyword">name</span>;<br></code></pre></td></tr></table></figure>
+</li>
+<li><p><strong>空值合并运算符</strong></p>
+<p><code>??</code>如果左侧是undefined或者null，返回右侧，可以应用在值判空上</p>
+<figure class="highlight csharp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><code class="hljs csharp"><span class="hljs-keyword">if</span>((<span class="hljs-keyword">value</span>??<span class="hljs-string">&#x27;&#x27;</span>) !== <span class="hljs-string">&#x27;&#x27;</span>)==<span class="hljs-keyword">if</span>(<span class="hljs-keyword">value</span> !== <span class="hljs-literal">null</span> &amp;&amp; <span class="hljs-keyword">value</span> !== undefined &amp;&amp; <span class="hljs-keyword">value</span> !== <span class="hljs-string">&#x27;&#x27;</span>)<br></code></pre></td></tr></table></figure>
+
+
+
+
+
+
+
+</li>
+</ul>
 <p>浏览器对同一域名请求的最大并发连接量<br>在http1.1以下是可以有多个tcp连接，http2是取消了多个连接，一个tcp连接用多路复用实现数据的同时传输<br>IE10+，火狐，谷歌4+的最大并发连接数量是6个</p>
 <p>http方法<br>Get和post的区别<br>在tcp/ip层面：get产生一个数据包，浏览器将header和data一起发送出去，资源存在服务器响应200<br>post产生两个数据包，浏览器先发送一个headers，服务器响应100 continue后再继续发送data，服务器响应200并且返回数据</p>
 <p>五层协议<br>从应用层</p>
