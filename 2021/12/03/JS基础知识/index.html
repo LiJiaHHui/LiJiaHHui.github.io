@@ -160,13 +160,13 @@
       <span class="post-info-item"><i class="iconfont iconcalendar"></i>December 03, 2021</span
         class="post-info-item">
       
-      <span class="post-info-item"><i class="iconfont iconfont-size"></i>541</span>
+      <span class="post-info-item"><i class="iconfont iconfont-size"></i>787</span>
     </div>
   </div>
 </section>
     <section class="main">
       <section class="content">
-        <h3 id="JS修改数组的方法"><a href="#JS修改数组的方法" class="headerlink" title="JS修改数组的方法"></a>JS修改数组的方法</h3><p>增：push、unshift、splice、concat</p>
+        <h4 id="JS修改数组的方法"><a href="#JS修改数组的方法" class="headerlink" title="JS修改数组的方法"></a>JS修改数组的方法</h4><p>增：push、unshift、splice、concat</p>
 <figure class="highlight angelscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><code class="hljs angelscript">push，向数组尾部添加元素，返回新数组长度<br><br>unshift，向数组头部添加元素，返回新数组<br><br>splice，增删数组，参数<span class="hljs-number">1</span>：start位置，参数<span class="hljs-number">2</span>：删除数量，参数<span class="hljs-number">3</span>（可选）：添加元素，返回空数组<br><br>concat，创建一个新副本，将数组添加到末尾<br></code></pre></td></tr></table></figure>
 
 <p>删：pop、shift、splice、slice</p>
@@ -177,11 +177,17 @@
 <p>查：indexOf、includes、find</p>
 <figure class="highlight gradle"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><code class="hljs gradle">indexOf：找元素在数组中的位置<br><span class="hljs-keyword">includes</span>：元素是否包含在数组里<br><span class="hljs-keyword">find</span>：找到第一个匹配的元素<br></code></pre></td></tr></table></figure>
 
-<h3 id="字符串增删改查"><a href="#字符串增删改查" class="headerlink" title="字符串增删改查"></a>字符串增删改查</h3><p>增：在副本上添加，concat</p>
+<h4 id="字符串增删改查"><a href="#字符串增删改查" class="headerlink" title="字符串增删改查"></a>字符串增删改查</h4><p>增：在副本上添加，concat</p>
 <p>删：在副本上删除，subString、slice、subStr</p>
 <figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><code class="hljs sql">subStr（<span class="hljs-keyword">start</span>，<span class="hljs-keyword">length</span>）<br><span class="hljs-keyword">subString</span>（<span class="hljs-keyword">start</span>，<span class="hljs-keyword">end</span>）<br>slice（<span class="hljs-keyword">start</span>，<span class="hljs-keyword">end</span>）<br><span class="hljs-keyword">subString</span>与slice的区别：slice <span class="hljs-keyword">start</span>参数能接受负数，并自动与长度相加；<span class="hljs-keyword">subString</span> 自动以小的参数为<span class="hljs-keyword">start</span><br></code></pre></td></tr></table></figure>
 
 <p>改：在副本的基础上修改</p>
+<h4 id="DOM增删改查"><a href="#DOM增删改查" class="headerlink" title="DOM增删改查"></a>DOM增删改查</h4><p>dom操作节点的：元素节点、属性节点、文本节点</p>
+<p>dom增删改查：</p>
+<p>新增：createElement、createAttribute、</p>
+<p>appendChild元素节点添加子节点</p>
+<p>改：replaceChild替换元素节点、setAttribute，或者直接修改属性名修改属性节点、设置innerHTML就可以设置文本节点内容</p>
+<p>删除：removeChild删除元素子节点、removeAttribute删除属性、innerHTML设置为空，或者使用removeChild删除文本节点</p>
 
       </section>
       <section class="extra">
